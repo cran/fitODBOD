@@ -14,7 +14,7 @@ dTriBin(x,n,mode)
 \item{mode}{single value for mode}
 }
 \value{
-The output of \code{dTriBin} gives a list format cosisting
+The output of \code{dTriBin} gives a list format consisting
 
 \code{pdf}             probability function values in vector form
 

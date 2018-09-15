@@ -4,7 +4,7 @@
 \name{Course_data}
 \alias{Course_data}
 \title{Course Data}
-\format{A data frame with 2 variables and 9 observations
+\format{A data frame with 2 columns and 9 rows
 \describe{
 \item{\code{sub.pass}}{subjects passed}
 \item{\code{fre}}{Observed frequencies}
@@ -21,7 +21,7 @@ Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2}.
 Course_data
 }
 \description{
-The data refer to the numbers of coursesaken by a class of 65 students from the first year of the
+The data refer to the numbers of courses taken by a class of 65 students from the first year of the
 Department of Statistics of Athens University of Economics. The students enrolled in this class
 attended 8 courses during the first year of their study. The total numbers of successful
 examinations (including resits) were recorded.

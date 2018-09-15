@@ -17,7 +17,10 @@
 #'
 #' The cumulative probability function is the summation of probability function values
 #'
-#' \deqn{P_{AddBin}(x)= {n \choose x} p^x (1-p)^{n-x}(\frac{alpha}{2}(\frac{x(x-1)}{p}+\frac{(n-x)(n-x-1)}{(1-p)}-\frac{alpha n(n-1)}{2})+1)}
+#' \deqn{P_{AddBin}(x)= {n \choose x} p^x (1-p)^{n-x}(\frac{alpha}{2}(\frac{x(x-1)}{p}+\frac{(n-x)(n-x-1)}{(1-p)}-\frac{alpha(n-1)n}{2})+1)}
+#'
+#' The alpha is in between
+#' \deqn{\frac{-2}{n(n-1)}min(\frac{p}{1-p},\frac{1-p}{p}) \le alpha \le (\frac{n+(2p-1)^2}{4p(1-p)})^{-1}}
 #'
 #' \deqn{x = 0,1,2,3,...n}
 #' \deqn{n = 1,2,3,...}
@@ -46,8 +49,6 @@
 #'
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
-#'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
 #'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
@@ -113,7 +114,7 @@ dAddBin<-function(x,n,p,alpha)
     {
       #checking the probability value is inbetween zero and one or alpha value is inbetween negative one
       #and positive one
-      if( p < 0 | p > 1| alpha > 1 | alpha < -1)
+      if( p <= 0 | p >= 1| alpha > 1 | alpha < -1)
       {
         stop("Probability or alpha value doesnot satisfy conditions")
       }
@@ -189,6 +190,9 @@ dAddBin<-function(x,n,p,alpha)
 #' \deqn{0 < p < 1}
 #' \deqn{-1 < alpha < 1}
 #'
+#' The alpha is in between
+#' \deqn{\frac{-2}{n(n-1)}min(\frac{p}{1-p},\frac{1-p}{p}) \le alpha \le (\frac{n+(2p-1)^2}{4p(1-p)})^{-1}}
+#'
 #' The mean and the variance are denoted as
 #' \deqn{E_{Addbin}[x]=np}
 #' \deqn{Var_{Addbin}[x]=np(1-p)(1+(n-1)alpha)}
@@ -206,8 +210,6 @@ dAddBin<-function(x,n,p,alpha)
 #'
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
-#'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
 #'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
@@ -289,8 +291,6 @@ pAddBin<-function(x,n,p,alpha)
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -326,7 +326,7 @@ NegLLAddBin<-function(x,freq,p,alpha)
     }
     #checking the probability value is inbetween zero and one or alpha value is inbetween negative one
     #and positive one
-    else if( p < 0 | p > 1 | alpha > 1 | alpha < -1)
+    else if( p <= 0 | p >= 1 | alpha > 1 | alpha < -1)
     {
       stop("Probability or alpha value doesnot satisfy conditions")
     }
@@ -378,7 +378,7 @@ NegLLAddBin<-function(x,freq,p,alpha)
 }
 
 #' Estimating the probability of success and alpha for Additive Binomial
-#' Distributon
+#' Distribution
 #'
 #' The function will estimate the probability of success and alpha using the maximum log likelihood method
 #' for the Additive Binomial distribution when the binomial random
@@ -411,8 +411,6 @@ NegLLAddBin<-function(x,freq,p,alpha)
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -423,8 +421,8 @@ NegLLAddBin<-function(x,freq,p,alpha)
 #' @examples
 #' No.D.D=0:7         #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
-#' #estimating the probability value and alpha value
 #' \dontrun{
+#' #estimating the probability value and alpha value
 #' suppressWarnings(EstMLEAddBin(No.D.D,Obs.fre.1))
 #'
 #' #extracting the estimated probability value
@@ -539,12 +537,12 @@ EstMLEAddBin<-function(x,freq)
   }
 }
 
-#' Fitting the Additive Binomial Distributon when binomial
+#' Fitting the Additive Binomial Distribution when binomial
 #' random variable, frequency, probability of success and alpha are given
 #'
 #' The function will fit the Additive binomial distribution when random variables,
 #' corresponding frequencies, probability of success and alpha are given.
-#' It will provide the the expected frequencies, chi-squared test statistics value, p value,
+#' It will provide the expected frequencies, chi-squared test statistics value, p value,
 #' and degree of freedom value so that it can be seen if this distribution fits the data.
 #'
 #' @usage fitAddBin(x,obs.freq,p,alpha,print)
@@ -562,7 +560,7 @@ EstMLEAddBin<-function(x,freq)
 #' \deqn{-1 < alpha < 1}
 #'
 #' @return
-#' THe output of \code{fitAddBin} gives a list format consisting
+#' The output of \code{fitAddBin} gives a list format consisting
 #'
 #' \code{bin.ran.var} binomial random variables
 #'
@@ -582,8 +580,6 @@ EstMLEAddBin<-function(x,freq)
 #'
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
-#'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
 #'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
@@ -619,7 +615,7 @@ fitAddBin<-function(x,obs.freq,p,alpha,print=T)
   }
   else
   {
-    #for given random variables and mode parameter calculating the estimated probability values
+    #for given random variables and parameters calculating the estimated probability values
     est.prob<-dAddBin(x,max(x),p,alpha)$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
@@ -637,6 +633,11 @@ fitAddBin<-function(x,obs.freq,p,alpha,print=T)
                  Observed Frequency : ",obs.freq,"\n
                  expected Frequency : ",exp.freq,"\n
                  X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results

@@ -2,7 +2,7 @@
 % Please edit documentation in R/CorrBin.R
 \name{fitCorrBin}
 \alias{fitCorrBin}
-\title{Fitting the Correlated Binomial Distributon when binomial
+\title{Fitting the Correlated Binomial Distribution when binomial
 random variable, frequency, probability of success and covariance are given}
 \usage{
 fitCorrBin(x,obs.freq,p,cov,print)
@@ -38,7 +38,7 @@ The output of \code{fitCorrBin} gives a list format consisting
 \description{
 The function will fit the Correlated binomial Distribution
 when random variables, corresponding frequencies, probability of success and covariance are given.
-It will provide the the expected frequencies, chi-squared test statistics value, p value,
+It will provide the expected frequencies, chi-squared test statistics value, p value,
 and degree of freedom so that it can be seen if this distribution fits the data.
 }
 \details{
@@ -57,12 +57,12 @@ Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequenci
 #estimating the parameters using maximum log likelihood value and assigning it
 parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
            data = list(x=No.D.D,freq=Obs.fre.1)))
-pCorrbin=bbmle::coef(parameters)[1]
-covCorrbin=bbmle::coef(parameters)[2]
+pCorrBin=bbmle::coef(parameters)[1]
+covCorrBin=bbmle::coef(parameters)[2]
 #fitting when the random variable,frequencies,probability and covariance are given
-fitCorrBin(No.D.D,Obs.fre.1,pCorrbin,covCorrbin)
+fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin)
 #extracting the expected frequencies
-fitCorrBin(No.D.D,Obs.fre.1,pCorrbin,covCorrbin,FALSE)$exp.freq
+fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin,FALSE)$exp.freq
 }
 \references{
 Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -70,8 +70,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.

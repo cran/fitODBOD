@@ -70,7 +70,7 @@
 #'
 #'
 #' @examples
-#' #plotting the random variables and probabililty values
+#' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' x<-seq(0.2,0.8,by=0.2)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",
@@ -213,7 +213,7 @@ dTRI<-function(p,mode)
 #'
 #'
 #' @examples
-#' #plotting the random variables and probabililty values
+#' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' x<-seq(0.2,0.8,by=0.2)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",
@@ -353,7 +353,7 @@ pTRI<-function(p,mode)
 
 #'
 #' @examples
-#' #plotting the random variables and probabililty values
+#' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' x<-seq(0.2,0.8,by=0.2)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",
@@ -462,7 +462,7 @@ mazTRI<-function(r,mode)
 #' necessary error messages will be provided to go further
 #'
 #' @return
-#' The output of \code{dTriBin} gives a list format cosisting
+#' The output of \code{dTriBin} gives a list format consisting
 #'
 #' \code{pdf}             probability function values in vector form
 #'
@@ -806,7 +806,7 @@ NegLLTriBin<-function(x,freq,mode)
   }
 }
 
-#' Estimating the mode value for Triangular Binomial Distributon
+#' Estimating the mode value for Triangular Binomial Distribution
 #'
 #' The function will estimate the mode value using the maximum log likelihood method for the
 #' triangular binomial distribution when the binomial random variables and corresponding frequencies
@@ -851,8 +851,9 @@ NegLLTriBin<-function(x,freq,mode)
 #' @examples
 #' No.D.D=0:7   #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#' \dontrun{
 #' EstMLETriBin(No.D.D,Obs.fre.1)$mode    #estimating the mode value and extracting the mode value
-#'
+#' }
 #'
 #' @export
 EstMLETriBin<-function(x,freq)
@@ -929,7 +930,7 @@ EstMLETriBin<-function(x,freq)
   }
 }
 
-#' Fitting the Triangular Binomial Distributon when binomial random variable, frequency and mode
+#' Fitting the Triangular Binomial Distribution when binomial random variable, frequency and mode
 #' value are given
 #'
 #' The function will fit the triangular binomial distribution when random variables, corresponding
@@ -966,7 +967,7 @@ EstMLETriBin<-function(x,freq)
 #'
 #' \code{df} degree of freedom
 #'
-#' \code{p.value} prboability value by chi-squared test statistic
+#' \code{p.value} probability value by chi-squared test statistic
 #'
 #' \code{over.dis.para} over dispersion value.
 #'
@@ -988,12 +989,13 @@ EstMLETriBin<-function(x,freq)
 #' @examples
 #' No.D.D=0:7      #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
+#' \dontrun{
 #' modeTriBin=EstMLETriBin(No.D.D,Obs.fre.1)$mode  #assigning the extracted the mode value
 #' #fitting when the random variable,frequencies,mode value are given.
 #' fitTriBin(No.D.D,Obs.fre.1,modeTriBin)
 #'
 #' fitTriBin(No.D.D,Obs.fre.1,modeTriBin,FALSE)$exp.freq  #extracting the expected frequencies
-#'
+#' }
 #' @export
 fitTriBin<-function(x,obs.freq,mode,print=T)
 {
@@ -1025,6 +1027,11 @@ fitTriBin<-function(x,obs.freq,mode,print=T)
           expected Frequency : ",exp.freq,"\n
           X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n
           over dispersion =",dTriBin(x,max(x),mode)$over.dis.para,"\n")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results

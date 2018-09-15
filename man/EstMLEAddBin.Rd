@@ -3,7 +3,7 @@
 \name{EstMLEAddBin}
 \alias{EstMLEAddBin}
 \title{Estimating the probability of success and alpha for Additive Binomial
-Distributon}
+Distribution}
 \usage{
 EstMLEAddBin(x,freq)
 }
@@ -34,8 +34,8 @@ necessary error messages will be provided to go further
 \examples{
 No.D.D=0:7         #assigning the random variables
 Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
-#estimating the probability value and alpha value
 \dontrun{
+#estimating the probability value and alpha value
 suppressWarnings(EstMLEAddBin(No.D.D,Obs.fre.1))
 
 #extracting the estimated probability value
@@ -48,8 +48,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.

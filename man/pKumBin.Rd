@@ -30,7 +30,7 @@ Mixing kumaraswamy distribution with binomial distribution will create the
 Kumaraswamy Binomial distribution.  The probability function and cumulative
 probability function can be constructed and are denoted below.
 
-The cumulative proability function is the summation of probability
+The cumulative probability function is the summation of probability
 function values
 
 \deqn{P_{KumBin}(x)= ab{n \choose x} \sum_{j=0}^{it} (-1)^j{b-1 \choose j}B(x+a+aj,n-x+1) }
@@ -52,22 +52,25 @@ Defined as \eqn{B(a,b)} is the beta function
 messages will be provided to go further
 }
 \examples{
+\dontrun{
 #plotting the random variables and probability values
 col<-rainbow(5)
 a<-c(1,2,5,10,.85)
 plot(0,0,main="Kumaraswamy binomial probability function graph",xlab="Binomial random variable",
 ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
-\dontrun{
+
 for (i in 1:5)
 {
 lines(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)
 points(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],pch=16)
+}
 }
 dKumBin(0:10,10,4,2)$pdf  #extracting the pdf values
 dKumBin(0:10,10,4,2)$mean #extracting the mean
 dKumBin(0:10,10,4,2)$var  #extracting the variance
 dKumBin(0:10,10,4,2)$over.dis.para #extracting the over dispersion value
 
+\dontrun{
 #plotting the random variables and cumulative probability values
 col<-rainbow(5)
 a<-c(1,2,5,10,.85)
@@ -78,8 +81,9 @@ for (i in 1:5)
 lines(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 points(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 }
-pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
 }
+pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
+
 }
 \references{
 Li, X. H., Huang, Y. Y., & Zhao, X. Y. (2011). The Kumaraswamy Binomial Distribution. Chinese Journal

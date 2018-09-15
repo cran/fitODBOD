@@ -2,7 +2,7 @@
 % Please edit documentation in R/Beta.R
 \name{fitBetaBin}
 \alias{fitBetaBin}
-\title{Fitting the Beta-Binomial Distributon when binomial random variable, frequency and shape
+\title{Fitting the Beta-Binomial Distribution when binomial random variable, frequency and shape
 parameters a and b are given}
 \usage{
 fitBetaBin(x,obs.freq,a,b,print)
@@ -37,7 +37,7 @@ The output of \code{fitBetaBin} gives a list format consisting
 }
 \description{
 The function will fit the beta-binomial distribution when random variables, corresponding
-frequencies and shape parameters are given. It will provide the the expected frequencies, chi-squared
+frequencies and shape parameters are given. It will provide the expected frequencies, chi-squared
 test statistics value, p value, degree of freedom and over dispersion value so that it can be
 seen if this distribution fits the data.
 }

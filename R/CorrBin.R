@@ -16,20 +16,20 @@
 #'
 #' The cumulative probability function is the summation of probability function values
 #'
-#' \deqn{P_{Corrbin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
+#' \deqn{P_{CorrBin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
 #' \deqn{x = 0,1,2,3,...n}
 #' \deqn{n = 1,2,3,...}
 #' \deqn{0 < p < 1}
 #' \deqn{-\infty < cov < +\infty }
 #'
-#' The Correlation is inbetween
-#' \deqn{\frac{-2}{n(n-1)} min(\frac{p}{1-p},\frac{p}{1-p}) \le correlation \le \frac{2p(1-p)}{(n-1)p(1-p)+0.25-fo} }
+#' The Correlation is in between
+#' \deqn{\frac{-2}{n(n-1)} min(\frac{p}{1-p},\frac{1-p}{p}) \le correlation \le \frac{2p(1-p)}{(n-1)p(1-p)+0.25-fo} }
 #' where \eqn{fo=min [(x-(n-1)p-0.5)^2] }
 #'
 #' The mean and the variance are denoted as
-#' \deqn{E_{Corrbin}[x]= np}
-#' \deqn{Var_{Corrbin}[x]= np(1-p)(1+(n-1)cov)}
-#' \deqn{Corr_{Corrbin}[x]=\frac{cov}{p(1-p)}}
+#' \deqn{E_{CorrBin}[x]= np}
+#' \deqn{Var_{CorrBin}[x]= n(p(1-p)+(n-1)cov)}
+#' \deqn{Corr_{CorrBin}[x]=\frac{cov}{p(1-p)}}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
 #' necessary error messages will be provided to go further
@@ -56,8 +56,6 @@
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -75,7 +73,7 @@
 #' a<-c(0.58,0.59,0.6,0.61,0.62)
 #' b<-c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
-#' ylab="Probaility function values",xlim = c(0,10),ylim = c(0,0.5))
+#' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
 #' {
 #' lines(0:10,dCorrBin(0:10,10,a[i],b[i])$pdf,col = col[i],lwd=2.85)
@@ -88,12 +86,12 @@
 #' dCorrBin(0:10,10,0.58,0.022)$mincorr  #extracting the minimum correlation value
 #' dCorrBin(0:10,10,0.58,0.022)$maxcorr  #extracting the maximum correlation value
 #'
-#' #plotting the random variables and cumulative proability values
+#' #plotting the random variables and cumulative probability values
 #' col<-rainbow(5)
 #' a<-c(0.58,0.59,0.6,0.61,0.62)
 #' b<-c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
-#' ylab="Probaility function values",xlim = c(0,10),ylim = c(0,1))
+#' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
 #' {
 #' lines(0:10,pCorrBin(0:10,10,a[i],b[i]),col = col[i],lwd=2.85)
@@ -126,8 +124,9 @@ dCorrBin<-function(x,n,p,cov)
     }
     else
     {
+      correlation<-cov/(p*(1-p))
      #checking the probability value is inbetween zero and one
-      if( p < 0 | p > 1 )
+      if( p <= 0 | p >= 1 )
       {
         stop("Probability value doesnot satisfy conditions")
       }
@@ -140,38 +139,45 @@ dCorrBin<-function(x,n,p,cov)
         con<-min(constant)
         left.h<-(-2/(n*(n-1)))*min(p/(1-p),(1-p)/p)
         right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-con)
-
-        #constructing the probability values for all random variables
-        y<-0:n
-        value1<-NULL
-        for(i in 1:length(y))
+        # checking if the correlation output satisfies conditions mentioned above
+        if(correlation < -1 | correlation > 1 | correlation < left.h | correlation > right.h)
         {
-          value1[i]<-((choose(n,y[i]))*(p^y[i])*((1-p)^(n-y[i]))*
-                       (1+(cov/(2*(p^2)*((1-p)^2)))*(((y[i]-n*p)^2)+(y[i]*(2*p-1))-(n*(p^2)))))
-        }
-        check1<-sum(value1)
-
-        #checking if the sum of all probability values leads upto one
-        #if not providing an error message and stopping the function progress
-        if(check1 < 0.9999 | check1 >1.0001 | any(value1 < 0) | any(value1 >1))
-        {
-          stop("Input parameter combinations of probability of success and covariance does
-               not create proper probability function")
+          stop("Correlation cannot be greater than 1 or Lesser than -1 or it cannot be greater than Maximum Correlation or Lesser than Minimum Correlation")
         }
         else
         {
-          #for each random variable in the input vector below calculations occur
-          for (i in 1:length(x))
+          #constructing the probability values for all random variables
+          y<-0:n
+          value1<-NULL
+          for(i in 1:length(y))
           {
-            value[i]<-((choose(n,x[i]))*(p^x[i])*((1-p)^(n-x[i]))*
-                         (1+(cov/(2*(p^2)*((1-p)^2)))*(((x[i]-n*p)^2)+(x[i]*(2*p-1))-(n*(p^2)))))
+            value1[i]<-((choose(n,y[i]))*(p^y[i])*((1-p)^(n-y[i]))*
+                          (1+(cov/(2*(p^2)*((1-p)^2)))*(((y[i]-n*p)^2)+(y[i]*(2*p-1))-(n*(p^2)))))
           }
-          mean<-n*p                 #according to theory the mean
-          variance<-n*p*(1-p)+(n-1)*cov                 #according to theory the variance
-          correlation<-cov/(p*(1-p))                    #according to theory correlation
-          # generating an output in list format consisting pdf,mean and variance
-          output<-list("pdf"=value,"mean"=mean,"var"=variance,"corr"=correlation,"mincorr"=left.h,"maxcorr"=right.h)
-          return(output)
+          check1<-sum(value1)
+
+          #checking if the sum of all probability values leads upto one
+          #if not providing an error message and stopping the function progress
+          if(check1 < 0.9999 | check1 >1.0001 | any(value1 < 0) | any(value1 >1))
+          {
+            stop("Input parameter combinations of probability of success and covariance does
+                 not create proper probability function")
+          }
+          else
+          {
+            #for each random variable in the input vector below calculations occur
+            for (i in 1:length(x))
+            {
+              value[i]<-((choose(n,x[i]))*(p^x[i])*((1-p)^(n-x[i]))*
+                           (1+(cov/(2*(p^2)*((1-p)^2)))*(((x[i]-n*p)^2)+(x[i]*(2*p-1))-(n*(p^2)))))
+            }
+            mean<-n*p                 #according to theory the mean
+            variance<-n*(p*(1-p)+(n-1)*cov)                 #according to theory the variance
+            correlation<-cov/(p*(1-p))                    #according to theory correlation
+            # generating an output in list format consisting pdf,mean and variance
+            output<-list("pdf"=value,"mean"=mean,"var"=variance,"corr"=correlation,"mincorr"=left.h,"maxcorr"=right.h)
+            return(output)
+          }
         }
       }
     }
@@ -196,20 +202,20 @@ dCorrBin<-function(x,n,p,cov)
 #'
 #' The cumulative probability function is the summation of probability function values
 #'
-#' \deqn{P_{Corrbin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
+#' \deqn{P_{CorrBin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
 #' \eqn{x = 0,1,2,3,...n}
 #' \eqn{n = 1,2,3,...}
 #' \eqn{0 < p < 1}
 #' \eqn{-\infty < cov < +\infty }
 #'
-#' The Correlation is inbetween
-#' \deqn{\frac{-2}{n(n-1)} min(\frac{p}{1-p},\frac{p}{1-p}) \le cov \le \frac{2p(1-p)}{(n-1)p(1-p)+0.25-fo} }
+#' The Correlation is in between
+#' \deqn{\frac{-2}{n(n-1)} min(\frac{p}{1-p},\frac{1-p}{p}) \le cov \le \frac{2p(1-p)}{(n-1)p(1-p)+0.25-fo} }
 #' where \eqn{fo=min (x-(n-1)p-0.5)^2 }
 #'
 #' The mean and the variance are denoted as
-#' \deqn{E_{Corrbin}[x]= np}
-#' \deqn{Var_{Corrbin}[x]= np(1-p)(1+(n-1)cov)}
-#' \deqn{Corr_{Corrbin}[x]=\frac{cov}{p(1-p)}}
+#' \deqn{E_{CorrBin}[x]= np}
+#' \deqn{Var_{CorrBin}[x]= n(p(1-p)+(n-1)cov)}
+#' \deqn{Corr_{CorrBin}[x]=\frac{cov}{p(1-p)}}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
 #' necessary error messages will be provided to go further
@@ -224,8 +230,6 @@ dCorrBin<-function(x,n,p,cov)
 #'
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
-#'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
 #'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
@@ -244,7 +248,7 @@ dCorrBin<-function(x,n,p,cov)
 #' a<-c(0.58,0.59,0.6,0.61,0.62)
 #' b<-c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
-#' ylab="Probaility function values",xlim = c(0,10),ylim = c(0,0.5))
+#' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
 #' {
 #' lines(0:10,dCorrBin(0:10,10,a[i],b[i])$pdf,col = col[i],lwd=2.85)
@@ -257,12 +261,12 @@ dCorrBin<-function(x,n,p,cov)
 #' dCorrBin(0:10,10,0.58,0.022)$mincorr  #extracting the minimum correlation value
 #' dCorrBin(0:10,10,0.58,0.022)$maxcorr  #extracting the maximum correlation value
 #'
-#' #plotting the random variables and cumulative proability values
+#' #plotting the random variables and cumulative probability values
 #' col<-rainbow(5)
 #' a<-c(0.58,0.59,0.6,0.61,0.62)
 #' b<-c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
-#' ylab="Probaility function values",xlim = c(0,10),ylim = c(0,1))
+#' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
 #' {
 #' lines(0:10,pCorrBin(0:10,10,a[i],b[i]),col = col[i],lwd=2.85)
@@ -318,8 +322,6 @@ pCorrBin<-function(x,n,p,cov)
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -338,6 +340,7 @@ NegLLCorrBin<-function(x,freq,p,cov)
   #constructing the data set using the random variables vector and frequency vector
   n<-max(x)
   data<-rep(x,freq)
+  correlation<-cov/(p*(1-p))
   #checking if inputs consist NA(not assigned)values, infinite values or NAN(not a number)values
   #if so creating an error message as well as stopping the function progress.
   if(any(is.na(c(x,freq,p,cov))) | any(is.infinite(c(x,freq,p,cov))) |
@@ -354,7 +357,7 @@ NegLLCorrBin<-function(x,freq,p,cov)
       stop("Binomial random variable or frequency values cannot be negative")
     }
     #checking the probability value is inbetween zero and one or covariance is greater than zero
-    else if( p < 0 | p > 1)
+    else if( p <= 0 | p >= 1)
     {
       stop("Probability value doesnot satisfy conditions")
     }
@@ -367,45 +370,52 @@ NegLLCorrBin<-function(x,freq,p,cov)
       con<-min(constant)
       left.h<-(-2/(n*(n-1)))*min(p/(1-p),(1-p)/p)
       right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-con)
-
-      #constructing the probability values for all random variables
-      y<-0:n
-      value1<-NULL
-      for(i in 1:length(y))
+      # checking if the correlation output satisfies conditions mentioned above
+      if(correlation < -1 | correlation > 1 | correlation < left.h | correlation > right.h)
       {
-        value1[i]<-((choose(n,y[i]))*(p^y[i])*((1-p)^(n-y[i]))*
-                      (1+(cov/(2*(p^2)*((1-p)^2)))*(((y[i]-n*p)^2)+(y[i]*(2*p-1))-(n*(p^2)))))
-      }
-      check1<-sum(value1)
-
-      #checking if the sum of all probability values leads upto one
-      #if not providing an error message and stopping the function progress
-      if(check1 < 0.9999 | check1 >1.0001 | any(value1 < 0) | any(value1 >1))
-      {
-        stop("Input parameter combinations of probability of success and covariance does
-             not create proper probability function")
+        stop("Correlation cannot be greater than 1 or Lesser than -1 or it cannot be greater than Maximum Correlation or Lesser than Minimum Correlation")
       }
       else
       {
-        j<-1:sum(freq)
-        term1<-sum(log(choose(n,data[j])))
-        term2<-log(p)*sum(data[j])
-        term3<-log(1-p)*sum(n-data[j])
-        for (i in 1:sum(freq))
+        #constructing the probability values for all random variables
+        y<-0:n
+        value1<-NULL
+        for(i in 1:length(y))
         {
-          value[i]<-log(1+((cov/(2*(p^2)*((1-p)^2)))*(((data[i]-n*p)^2)+(data[i]*(2*p-1))-(n*(p^2)))))
+          value1[i]<-((choose(n,y[i]))*(p^y[i])*((1-p)^(n-y[i]))*
+                        (1+(cov/(2*(p^2)*((1-p)^2)))*(((y[i]-n*p)^2)+(y[i]*(2*p-1))-(n*(p^2)))))
         }
-        term4<-sum(value)
+        check1<-sum(value1)
+
+        #checking if the sum of all probability values leads upto one
+        #if not providing an error message and stopping the function progress
+        if(check1 < 0.9999 | check1 >1.0001 | any(value1 < 0) | any(value1 >1))
+        {
+          stop("Input parameter combinations of probability of success and covariance does
+               not create proper probability function")
+        }
+        else
+        {
+          j<-1:sum(freq)
+          term1<-sum(log(choose(n,data[j])))
+          term2<-log(p)*sum(data[j])
+          term3<-log(1-p)*sum(n-data[j])
+          for (i in 1:sum(freq))
+          {
+            value[i]<-log(1+((cov/(2*(p^2)*((1-p)^2)))*(((data[i]-n*p)^2)+(data[i]*(2*p-1))-(n*(p^2)))))
+          }
+          term4<-sum(value)
+          CorrBinLL<-term1+term2+term3+term4
+          #calculating the negative log likelihood value and representing as a single output value
+          return(-CorrBinLL)
+        }
       }
-      CorrBinLL<-term1+term2+term3+term4
-      #calculating the negative log likelihood value and representing as a single output value
-      return(-CorrBinLL)
     }
   }
 }
 
 #' Estimating the probability of success and correlation for Correlated Binomial
-#' Distributon
+#' Distribution
 #'
 #' The function will estimate the probability of success and correlation using the maximum log
 #' likelihood method for the Correlated Binomial distribution when the binomial random
@@ -440,8 +450,6 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -455,7 +463,7 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #'
 #' @examples
 #' No.D.D=0:7               #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corrresponding frequencies
+#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
@@ -485,12 +493,12 @@ EstMLECorrBin<-function(x,freq,p,cov)
   return(-CorrBinLL)
 }
 
-#' Fitting the Correlated Binomial Distributon when binomial
+#' Fitting the Correlated Binomial Distribution when binomial
 #' random variable, frequency, probability of success and covariance are given
 #'
 #' The function will fit the Correlated binomial Distribution
 #' when random variables, corresponding frequencies, probability of success and covariance are given.
-#' It will provide the the expected frequencies, chi-squared test statistics value, p value,
+#' It will provide the expected frequencies, chi-squared test statistics value, p value,
 #' and degree of freedom so that it can be seen if this distribution fits the data.
 #'
 #' @usage
@@ -535,8 +543,6 @@ EstMLECorrBin<-function(x,freq,p,cov)
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -551,12 +557,12 @@ EstMLECorrBin<-function(x,freq,p,cov)
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
 #'            data = list(x=No.D.D,freq=Obs.fre.1)))
-#' pCorrbin=bbmle::coef(parameters)[1]
-#' covCorrbin=bbmle::coef(parameters)[2]
+#' pCorrBin=bbmle::coef(parameters)[1]
+#' covCorrBin=bbmle::coef(parameters)[2]
 #' #fitting when the random variable,frequencies,probability and covariance are given
-#' fitCorrBin(No.D.D,Obs.fre.1,pCorrbin,covCorrbin)
+#' fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin)
 #' #extracting the expected frequencies
-#' fitCorrBin(No.D.D,Obs.fre.1,pCorrbin,covCorrbin,FALSE)$exp.freq
+#' fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin,FALSE)$exp.freq
 #' @export
 fitCorrBin<-function(x,obs.freq,p,cov,print=T)
 {
@@ -569,7 +575,7 @@ fitCorrBin<-function(x,obs.freq,p,cov,print=T)
   }
   else
   {
-    #for given random variables and mode parameter calculating the estimated probability values
+    #for given random variables and parameters calculating the estimated probability values
     est.prob<-dCorrBin(x,max(x),p,cov)$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
@@ -594,6 +600,11 @@ fitCorrBin<-function(x,obs.freq,p,cov,print=T)
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
       warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results

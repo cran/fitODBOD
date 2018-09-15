@@ -61,7 +61,7 @@
 #' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' a<-c(1,2,5,10)
-#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,6))
 #' for (i in 1:4)
 #' {
@@ -82,7 +82,7 @@
 #' }
 #' pKUM(seq(0,1,by=0.01),2,3)    #acquiring the cumulative probability values
 #' mazKUM(1.4,3,2)               #acquiring the moment about zero values
-#' mazKUM(2,2,3)-mazKUM(1,2,3)^2  #acquiring the variace for a=2,b=3
+#' mazKUM(2,2,3)-mazKUM(1,2,3)^2  #acquiring the variance for a=2,b=3
 #' #only the integer value of moments is taken here because moments cannot be decimal
 #' mazKUM(1.9,5.5,6)
 #'
@@ -184,7 +184,7 @@ dKUM<-function(p,a,b)
 #' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' a<-c(1,2,5,10)
-#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,6))
 #' for (i in 1:4)
 #' {
@@ -205,7 +205,7 @@ dKUM<-function(p,a,b)
 #' }
 #' pKUM(seq(0,1,by=0.01),2,3)    #acquiring the cumulative probability values
 #' mazKUM(1.4,3,2)               #acquiring the moment about zero values
-#' mazKUM(2,2,3)-mazKUM(1,2,3)^2  #acquiring the variace for a=2,b=3
+#' mazKUM(2,2,3)-mazKUM(1,2,3)^2  #acquiring the variance for a=2,b=3
 #' #only the integer value of moments is taken here because moments cannot be decimal
 #' mazKUM(1.9,5.5,6)
 #'
@@ -304,7 +304,7 @@ pKUM<-function(p,a,b)
 #' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' a<-c(1,2,5,10)
-#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,6))
 #' for (i in 1:4)
 #' {
@@ -325,7 +325,7 @@ pKUM<-function(p,a,b)
 #' }
 #' pKUM(seq(0,1,by=0.01),2,3)    #acquiring the cumulative probability values
 #' mazKUM(1.4,3,2)               #acquiring the moment about zero values
-#' mazKUM(2,2,3)-mazKUM(1,2,3)^2  #acquiring the variace for a=2,b=3
+#' mazKUM(2,2,3)-mazKUM(1,2,3)^2  #acquiring the variance for a=2,b=3
 #'  #only the integer value of moments is taken here because moments cannot be decimal
 #' mazKUM(1.9,5.5,6)
 #'
@@ -391,7 +391,7 @@ mazKUM<-function(r,a,b)
 #' Kumaraswamy Binomial distribution.  The probability function and cumulative
 #' probability function can be constructed and are denoted below.
 #'
-#' The cumulative proability function is the summation of probability
+#' The cumulative probability function is the summation of probability
 #' function values
 #'
 #' \deqn{P_{KumBin}(x)= ab{n \choose x} \sum_{j=0}^{it} (-1)^j{b-1 \choose j}B(x+a+aj,n-x+1) }
@@ -428,34 +428,38 @@ mazKUM<-function(r,a,b)
 #' of Applied Probability and Statistics, 27(5), 511-521.
 #'
 #' @examples
+#' \dontrun{
 #' #plotting the random variables and probability values
 #' col<-rainbow(5)
 #' a<-c(1,2,5,10,.85)
 #' plot(0,0,main="Kumaraswamy binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
-#' \dontrun{
+#'
 #' for (i in 1:5)
 #' {
 #' lines(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],pch=16)
+#' }
 #' }
 #' dKumBin(0:10,10,4,2)$pdf  #extracting the pdf values
 #' dKumBin(0:10,10,4,2)$mean #extracting the mean
 #' dKumBin(0:10,10,4,2)$var  #extracting the variance
 #' dKumBin(0:10,10,4,2)$over.dis.para #extracting the over dispersion value
 #'
+#' \dontrun{
 #' #plotting the random variables and cumulative probability values
 #' col<-rainbow(5)
 #' a<-c(1,2,5,10,.85)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
+#'
 #' for (i in 1:5)
 #' {
 #' lines(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' }
-#' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
 #' }
+#' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
 #'
 #' @export
 dKumBin<-function(x,n,a,b,it=25000)
@@ -561,7 +565,7 @@ dKumBin<-function(x,n,a,b,it=25000)
 #' Kumaraswamy Binomial distribution.  The probability function and cumulative
 #' probability function can be constructed and are denoted below.
 #'
-#' The cumulative proability function is the summation of probability
+#' The cumulative probability function is the summation of probability
 #' function values
 #'
 #' \deqn{P_{KumBin}(x)= ab{n \choose x} \sum_{j=0}^{it} (-1)^j{b-1 \choose j}B(x+a+aj,n-x+1) }
@@ -591,22 +595,25 @@ dKumBin<-function(x,n,a,b,it=25000)
 #' of Applied Probability and Statistics, 27(5), 511-521.
 #'
 #' @examples
+#' \dontrun{
 #' #plotting the random variables and probability values
 #' col<-rainbow(5)
 #' a<-c(1,2,5,10,.85)
 #' plot(0,0,main="Kumaraswamy binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
-#' \dontrun{
+#'
 #' for (i in 1:5)
 #' {
 #' lines(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],pch=16)
+#' }
 #' }
 #' dKumBin(0:10,10,4,2)$pdf  #extracting the pdf values
 #' dKumBin(0:10,10,4,2)$mean #extracting the mean
 #' dKumBin(0:10,10,4,2)$var  #extracting the variance
 #' dKumBin(0:10,10,4,2)$over.dis.para #extracting the over dispersion value
 #'
+#' \dontrun{
 #' #plotting the random variables and cumulative probability values
 #' col<-rainbow(5)
 #' a<-c(1,2,5,10,.85)
@@ -617,13 +624,14 @@ dKumBin<-function(x,n,a,b,it=25000)
 #' lines(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' }
-#' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
 #' }
+#' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
+#'
 #' @export
 pKumBin<-function(x,n,a,b,it=25000)
 {
   ans<-NULL
-  #for each binomial random variable in the input vector the cumulative proability function
+  #for each binomial random variable in the input vector the cumulative probability function
   #values are calculated
   for(i in 1:length(x))
   {
@@ -744,7 +752,7 @@ NegLLKumBin<-function(x,freq,a,b,it=25000)
   }
 }
 
-#' Estimating the shape parameters a and b and iterations for  Kumaraswamy Binomial Distributon
+#' Estimating the shape parameters a and b and iterations for  Kumaraswamy Binomial Distribution
 #'
 #' The function will estimate the shape parameters using the maximum log likelihood method  for
 #' the Kumaraswamy binomial distribution when the binomial random variables and
@@ -787,14 +795,11 @@ NegLLKumBin<-function(x,freq,a,b,it=25000)
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' \dontrun{
-#' parameters1=suppressWarnings(bbmle::mle2(EstMLEKumBin,start = list(a=10.1,b=1.1,it=1000),
+#' parameters1=suppressWarnings(bbmle::mle2(EstMLEKumBin,start = list(a=10.1,b=1.1,it=10000),
 #' data = list(x=No.D.D,freq=Obs.fre.1)))
 #' bbmle::coef(parameters1)   #extracting the parameters
-#'
-#' parameters2=suppressWarnings(bbmle::mle2(EstMLEKumBin,start = list(a=10.1,b=1.1,it=5000),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
-#' bbmle::coef(parameters2)   #extracting the parameters
 #' }
+#'
 #' @export
 EstMLEKumBin<-function(x,freq,a,b,it)
 {
@@ -816,7 +821,7 @@ EstMLEKumBin<-function(x,freq,a,b,it)
   return(-KumBinLL)
 }
 
-#' Fitting the Kumaraswamy Binomial Distributon when binomial random variable, frequency and shape
+#' Fitting the Kumaraswamy Binomial Distribution when binomial random variable, frequency and shape
 #' parameters \code{a} and \code{b}, iterations parameter \code{it} are given
 #'
 #' The function will fit the Kumaraswamy binomial distribution when random variables,
@@ -873,7 +878,7 @@ EstMLEKumBin<-function(x,freq,a,b,it)
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' \dontrun{
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEKumBin,start = list(a=10.1,b=1.1,it=5000),
+#' parameters=suppressWarnings(bbmle::mle2(EstMLEKumBin,start = list(a=10.1,b=1.1,it=10000),
 #'           data = list(x=No.D.D,freq=Obs.fre.1)))
 #' bbmle::coef(parameters)    #extracting the parameters
 #' aKumBin=bbmle::coef(parameters)[1] #assigning the estimated a
@@ -881,11 +886,9 @@ EstMLEKumBin<-function(x,freq,a,b,it)
 #' itKumBin=bbmle::coef(parameters)[3] #assigning the estimated iterations
 #'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
-#' fitKumBin(No.D.D,Obs.fre.1,aKumBin,bKumBin,itKumBin*1000)
-#'
-#' #extracting the expected frequencies
-#' fitKumBin(No.D.D,Obs.fre.1,aKumBin,bKumBin,itKumBin*1000,FALSE)$exp.freq
+#' fitKumBin(No.D.D,Obs.fre.1,aKumBin,bKumBin,itKumBin*100)
 #' }
+#'
 #' @export
 fitKumBin<-function(x,obs.freq,a,b,it,print=T)
 {
@@ -898,7 +901,7 @@ fitKumBin<-function(x,obs.freq,a,b,it,print=T)
   }
   else
   {
-    #for given random variables and mode parameter calculating the estimated probability values
+    #for given random variables and parameters calculating the estimated probability values
     est.prob<-dKumBin(x,max(x),a,b,it)$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
@@ -917,6 +920,11 @@ fitKumBin<-function(x,obs.freq,a,b,it,print=T)
                  expected Frequency : ",exp.freq,"\n
                  X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n
                 over dispersion =",dKumBin(x,max(x),a,b,it)$over.dis.para,"\n")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results

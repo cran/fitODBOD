@@ -2,7 +2,7 @@
 % Please edit documentation in R/AddBin.R
 \name{fitAddBin}
 \alias{fitAddBin}
-\title{Fitting the Additive Binomial Distributon when binomial
+\title{Fitting the Additive Binomial Distribution when binomial
 random variable, frequency, probability of success and alpha are given}
 \usage{
 fitAddBin(x,obs.freq,p,alpha,print)
@@ -19,7 +19,7 @@ fitAddBin(x,obs.freq,p,alpha,print)
 \item{print}{logical value for print or not}
 }
 \value{
-THe output of \code{fitAddBin} gives a list format consisting
+The output of \code{fitAddBin} gives a list format consisting
 
 \code{bin.ran.var} binomial random variables
 
@@ -36,7 +36,7 @@ THe output of \code{fitAddBin} gives a list format consisting
 \description{
 The function will fit the Additive binomial distribution when random variables,
 corresponding frequencies, probability of success and alpha are given.
-It will provide the the expected frequencies, chi-squared test statistics value, p value,
+It will provide the expected frequencies, chi-squared test statistics value, p value,
 and degree of freedom value so that it can be seen if this distribution fits the data.
 }
 \details{
@@ -67,8 +67,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.

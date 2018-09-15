@@ -1,13 +1,13 @@
 #' Alcohol data
 #'
-#' Lemmens , Knibbe and Tan(1988) described a study o self reported alcohol frequencies.
-#' The no of alcohol cosumption datas in two reference weeks is separately self reported
-#' by a randomly selected sample of 399 respondents in the netherlands in 1983.
-#' Number of days a  given individual consumes alcohol out of 7 days a wek can be treated as a binomial
+#' Lemmens , Knibbe and Tan(1988) described a study of self reported alcohol frequencies.
+#' The no of alcohol consumption data in two reference weeks is separately self reported
+#' by a randomly selected sample of 399 respondents in the Netherlands in 1983.
+#' Number of days a  given individual consumes alcohol out of 7 days a week can be treated as a binomial
 #' variable.
-#' The collection of all such variables from all respondents would be defined as "binomial outcome data".
+#' The collection of all such variables from all respondents would be defined as "Binomial Outcome Data".
 #'
-#' @format A data frame with 3 variables and 8 observations
+#' @format A data frame with 3 columns and 8 rows.
 #' \describe{
 #' \item{\code{Days}}{No of Days Drunk}
 #' \item{\code{week1}}{Observed frequencies for week1}
@@ -29,6 +29,34 @@
 #'
  "Alcohol_data"
 
+#' Male children data
+#'
+#' The number of male children among the first 12 children of family size 13 in 6115 families taken
+#' from the hospital records in the nineteenth century Saxony (Sokal & Rohlf(1994), Lindsey (1995),
+#' p. 59). The thirteenth child is ignored to assuage the effect of families non-randomly stopping
+#' when a desired gender is reached.
+#'
+#' @format A data frame with 2 columns and 13 rows.
+#' \describe{
+#' \item{\code{No_of_Males}}{No of Male children among first 12 children of family size 13}
+#' \item{\code{freq}}{Observed frequencies for corresponding male children}
+#' }
+#'
+#' @examples
+#' Male_Children$No_of_Males   # extracting the binomial random variables
+#' sum(Male_Children$freq)     # summing all the frequencies
+#'
+#' @source
+#' Extracted from
+#'
+#' Borges, P., Rodrigues, J., Balakrishnan, N. and Bazan, J., 2014. A COM-Poisson type
+#' generalization of the binomial distribution and its properties and applications.
+#' Statistics & Probability Letters, 87, pp.158-166.
+#'
+#' Available at: \url{http://conteudo.icmc.usp.br/CMS/Arquivos/arquivos_enviados/BIBLIOTECA_113_NSE_90.pdf}
+#'
+ "Male_Children"
+
 
 #' Plant Disease Incidence data
 #'
@@ -38,13 +66,13 @@
 #' quadrat.
 #' Number of infected plants out of 9 plants per quadrat can be treated as a binomial variable.
 #' the collection of all such responses from all 160 quadrats would form "binomial outcome data"
-#' below provided is a data set similar to cochran plant disease incidence data.
+#' below provided is a data set similar to Cochran plant disease incidence data.
 #' Marcus R(1984). orange trees infected with citrus tristeza virus (CTV) in an orchard in central
 #' Israel.
 #' We divided the field map into 84 "quadrats" of 4 rows x 3 columns and counted the total number
 #' (1981 + 1982) of infected trees out of a maximum of n = 12 in each quadrat
 #'
-#' @format A data frame with 2 variables and 10 observations
+#' @format A data frame with 2 columns and 10 rows
 #' \describe{
 #' \item{\code{Dis.plant}}{Diseased Plants}
 #' \item{\code{fre}}{Observed frequencies}
@@ -67,12 +95,12 @@
 
 #' Course Data
 #'
-#' The data refer to the numbers of coursesaken by a class of 65 students from the first year of the
+#' The data refer to the numbers of courses taken by a class of 65 students from the first year of the
 #' Department of Statistics of Athens University of Economics. The students enrolled in this class
 #' attended 8 courses during the first year of their study. The total numbers of successful
 #' examinations (including resits) were recorded.
 #'
-#' @format A data frame with 2 variables and 9 observations
+#' @format A data frame with 2 columns and 9 rows
 #' \describe{
 #' \item{\code{sub.pass}}{subjects passed}
 #' \item{\code{fre}}{Observed frequencies}
@@ -99,7 +127,7 @@
 #' association of chromosomes in Brassika; n , which is now the number of
 #' chromosomes, equals 3 and X is the number of pairs of bivalents showing association.
 #'
-#' @format A data frame with 2 variables and 4 observations
+#' @format A data frame with 2 columns and 4 rows
 #' \describe{
 #' \item{\code{No.of.Asso}}{No of Associations}
 #' \item{\code{fre}}{Observed frequencies}
@@ -132,7 +160,7 @@
 #' was awarded. So we treat 9 as the "litter size", and the dichotomous response
 #' is whether or not he got an alpha on the question.
 #'
-#' @format A data frame with 2 variables and 10 observations
+#' @format A data frame with 2 columns and 10 rows
 #' \describe{
 #' \item{\code{No.of.alpha}}{No of Alphas}
 #' \item{\code{fre}}{Observed frequencies}
@@ -156,12 +184,12 @@
 #' Terror Data USA
 #'
 #' Jenkins and Johnson (1975) compiled a chronology of incidents of international terrorism from 1/1968
-#' through 04/1974. During this period 507 incidents are recorded in the world,where 64 incidents occured
-#' in the united states and 65 ones in argentina.
+#' through 04/1974. During this period 507 incidents are recorded in the world, where 64 incidents occurred
+#' in the United States and 65 ones in Argentina.
 #'
-#' @format A data frame with 2 variables and 9 observations
+#' @format A data frame with 2 columns and 9 rows
 #' \describe{
-#' \item{\code{Incidents}}{No of Incidents Occured}
+#' \item{\code{Incidents}}{No of Incidents Occurred}
 #' \item{\code{fre}}{Observed frequencies}
 #' }
 #'
@@ -181,12 +209,12 @@
 #' Terror Data ARG
 #'
 #' Jenkins and Johnson (1975) compiled a chronology of incidents of international terrorism from 1/1968
-#' through 04/1974. During this period 507 incidents are recorded in the world,where 64 incidents occured
-#' in the united states and 65 ones in argentina.
+#' through 04/1974. During this period 507 incidents are recorded in the world, where 64 incidents occurred
+#' in the United States and 65 ones in Argentina.
 #'
-#' @format A data frame with 2 variables and 9 observations
+#' @format A data frame with 2 columns and 9 rows
 #' \describe{
-#' \item{\code{Incidents}}{No of Incidents Occured}
+#' \item{\code{Incidents}}{No of Incidents Occurred}
 #' \item{\code{fre}}{Observed frequencies}
 #' }
 #'
@@ -271,7 +299,7 @@ BODextract<-function(data)
   }
 }
 
-#' Fitting the Binomial Distributon when binomial random variable, frequency and probability
+#' Fitting the Binomial Distribution when binomial random variable, frequency and probability
 #' value are given
 #'
 #' The function will fit the binomial distribution when random variables, corresponding
@@ -307,7 +335,7 @@ BODextract<-function(data)
 #'
 #' \code{df} degree of freedom
 #'
-#' \code{p.value} prboability value by chi-squared test statistic
+#' \code{p.value} probability value by chi-squared test statistic
 #'
 #' @examples
 #' No.D.D=0:7      #assigning the random variables
@@ -365,6 +393,11 @@ fitBin<-function(x,obs.freq,p=0,print=T)
                 expected Frequency : ",exp.freq,"\n
                 X-squared =",round(statistic,4),"df =",df,"p-value =",round(p.value,4),"\n")
         }
+        #checking if df is less than or equal to zero
+        if(df<0 | df==0)
+        {
+          warning("Degrees of freedom cannot be less than or equal to zero")
+        }
         #checking if any of the expected frequencies are less than five and greater than zero, if so
         #a warning message is provided in interpreting the results
         if(min(exp.freq)<5 && min(exp.freq) > 0)
@@ -399,7 +432,6 @@ fitBin<-function(x,obs.freq,p=0,print=T)
               X-squared =",round(ans$statistic,4),"df =",ans$parameter,
               "p-value =",round(ans$p.value,4),"\n")
         }
-
         #checking if any of the expected frequencies are less than five and greater than zero, if so
         #a warning message is provided in interpreting the results
         if(min(exp.freq)<5 && min(exp.freq) > 0)

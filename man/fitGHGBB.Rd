@@ -2,7 +2,7 @@
 % Please edit documentation in R/GHGbeta.R
 \name{fitGHGBB}
 \alias{fitGHGBB}
-\title{Fitting the Gaussian Hypergeometric Generalized Beta  Binomial Distributon when binomial
+\title{Fitting the Gaussian Hypergeometric Generalized Beta  Binomial Distribution when binomial
 random variable, frequency and shape parameters a,b and c are given}
 \usage{
 fitGHGBB(x,obs.freq,a,b,c,print)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/Gbeta1.R
 \name{fitMcGBB}
 \alias{fitMcGBB}
-\title{Fitting the McDonald Generalized beta  binomial distributon when binomial
+\title{Fitting the McDonald Generalized beta  binomial distribution when binomial
 random variable, frequency and shape parameters are given}
 \usage{
 fitMcGBB(x,obs.freq,a,b,c,print)

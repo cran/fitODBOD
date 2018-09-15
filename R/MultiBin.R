@@ -34,7 +34,11 @@
 #' @return
 #' The output of \code{dMultiBin} gives a list format consisting
 #'
-#' \code{pdf} probability function values in vector form
+#' \code{pdf}         probability function values in vector form
+#'
+#' \code{mean}        mean of Multiplicative Binomial Distribution
+#'
+#' \code{var}        variance of Multiplicative Binomial Distribution
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -42,8 +46,6 @@
 #'
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
-#'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
 #'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
@@ -63,6 +65,9 @@
 #' points(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],pch=16)
 #' }
 #' dMultiBin(0:10,10,.58,10.022)$pdf   #extracting the pdf values
+#' dMultiBin(0:10,10,.58,10.022)$mean   #extracting the mean
+#' dMultiBin(0:10,10,.58,10.022)$var   #extracting the variance
+#'
 #'
 #' #plotting random variables and cumulative probability values
 #' col<-rainbow(5)
@@ -75,7 +80,7 @@
 #' lines(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],pch=16)
 #' }
-#' pMultiBin(0:10,10,.58,10.022)     #acquring the cumulative probability values
+#' pMultiBin(0:10,10,.58,10.022)     #acquiring the cumulative probability values
 #'
 #' @export
 dMultiBin<-function(x,n,p,theta)
@@ -105,7 +110,7 @@ dMultiBin<-function(x,n,p,theta)
     {
       #checking the probability value is inbetween zero and one if so providig an error message
       #and stopping the function progress
-      if( p < 0 | p > 1)
+      if( p <= 0 | p >= 1)
       {
         stop("Probability value doesnot satisfy conditions")
       }
@@ -142,8 +147,10 @@ dMultiBin<-function(x,n,p,theta)
           {
             value[i]<-choose(n,x[i])*(p^x[i])*((1-p)^(n-x[i]))*(theta^(x[i]*(n-x[i])))/func1
           }
-          # generating an output in list format consisting pdf
-          output<-list("pdf"=value)
+          # generating an output in list format consisting pdf,mean and variance
+          mean<-sum((0:n)*value1)
+          variance<-sum(((0:n)^2)*value1)-mean^2
+          output<-list("pdf"=value,"mean"=mean,"var"=variance)
           return(output)
         }
       }
@@ -194,8 +201,6 @@ dMultiBin<-function(x,n,p,theta)
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -214,6 +219,8 @@ dMultiBin<-function(x,n,p,theta)
 #' points(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],pch=16)
 #' }
 #' dMultiBin(0:10,10,.58,10.022)$pdf   #extracting the pdf values
+#' dMultiBin(0:10,10,.58,10.022)$mean   #extracting the mean
+#' dMultiBin(0:10,10,.58,10.022)$var   #extracting the variance
 #'
 #' #plotting random variables and cumulative probability values
 #' col<-rainbow(5)
@@ -226,7 +233,7 @@ dMultiBin<-function(x,n,p,theta)
 #' lines(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],pch=16)
 #' }
-#' pMultiBin(0:10,10,.58,10.022)     #acquring the cumulative probability values
+#' pMultiBin(0:10,10,.58,10.022)     #acquiring the cumulative probability values
 #'
 #' @export
 pMultiBin<-function(x,n,p,theta)
@@ -272,8 +279,6 @@ pMultiBin<-function(x,n,p,theta)
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
 #'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
-#'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
@@ -318,7 +323,7 @@ NegLLMultiBin<-function(x,freq,p,theta)
     #checking if probability value is less than zero or greater than one and
     #theta value greater than zero or equal to zero
     #if so creating an error message as well as stopping the function progress
-    else if( p < 0 | p > 1 | theta <= 0)
+    else if( p <= 0 | p >= 1 | theta <= 0)
     {
       stop("Probability or Theta parameter value doesnot satisfy conditions")
     }
@@ -346,7 +351,7 @@ NegLLMultiBin<-function(x,freq,p,theta)
 }
 
 #' Estimating the probability of success and theta for Multiplicative Binomial
-#' Distributon
+#' Distribution
 #'
 #' The function will estimate the probability of success and theta parameter using the
 #' maximum log likelihood method for the Multiplicative Binomial distribution when the binomial random
@@ -376,8 +381,6 @@ NegLLMultiBin<-function(x,freq,p,theta)
 #'
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
-#'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
 #'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
@@ -415,12 +418,12 @@ EstMLEMultiBin<-function(x,freq,p,theta)
   return(-MultiBinLL)
 }
 
-#' Fitting the Multiplicative Binomial Distributon when binomial
+#' Fitting the Multiplicative Binomial Distribution when binomial
 #' random variable, frequency, probability of success and theta parameter are given
 #'
 #' The function will fit the Multiplicative binomial distribution
 #' when random variables, corresponding frequencies, probability of success and theta parameter
-#' are given. It will provide the the expected frequencies, chi-squared test statistics value,
+#' are given. It will provide the expected frequencies, chi-squared test statistics value,
 #' p value and degree of freedom  value so that it can be seen if this distribution
 #' fits the data.
 #'
@@ -451,7 +454,7 @@ EstMLEMultiBin<-function(x,freq,p,theta)
 #'
 #' \code{df} degree of freedom
 #'
-#' \code{p.value} proability value by chi-squared test statistic
+#' \code{p.value} probability value by chi-squared test statistic
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -459,8 +462,6 @@ EstMLEMultiBin<-function(x,freq,p,theta)
 #'
 #' L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 #' Experiments. Biometrics, 34(1), pp.69-76.
-#'
-#' Available at: \url{http://www.jstor.org/stable/2529589} .
 #'
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
@@ -497,7 +498,7 @@ fitMultiBin<-function(x,obs.freq,p,theta,print=T)
   }
   else
   {
-    #for given random variables and mode parameter calculating the estimated probability values
+    #for given random variables and parameters calculating the estimated probability values
     est.prob<-dMultiBin(x,max(x),p,theta)$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
@@ -515,6 +516,11 @@ fitMultiBin<-function(x,obs.freq,p,theta,print=T)
                  Observed Frequency : ",obs.freq,"\n
                  expected Frequency : ",exp.freq,"\n
                  X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results

@@ -692,7 +692,7 @@ NegLLMcGBB<-function(x,freq,a,b,c)
 }
 
 #' Estimating the shape parameters a,b and c for McDonald Generalized Beta Binomial
-#' distributon
+#' distribution
 #'
 #' The function will estimate the shape parameters using the maximum log likelihood method  for
 #' the McDonald Generalized Beta  Binomial distribution when the binomial random
@@ -742,10 +742,11 @@ NegLLMcGBB<-function(x,freq,a,b,c)
 #' No.D.D=0:7                   #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
 #' #estimating the parameters using maximum log likelihood value and assigning it
+#' \dontrun{
 #' parameters=suppressWarnings(bbmle::mle2(EstMLEMcGBB,start = list(a=0.1,b=0.1,c=0.2),
 #'           data = list(x=No.D.D,freq=Obs.fre.1)))
 #' bbmle::coef(parameters)         #extracting the parameters
-#'
+#' }
 #' @export
 EstMLEMcGBB<-function(x,freq,a,b,c)
 {
@@ -767,7 +768,7 @@ EstMLEMcGBB<-function(x,freq,a,b,c)
   return(-McGBBLL)
 }
 
-#' Fitting the McDonald Generalized beta  binomial distributon when binomial
+#' Fitting the McDonald Generalized beta  binomial distribution when binomial
 #' random variable, frequency and shape parameters are given
 #'
 #' The function will fit the McDonald Generalized Beta  Binomial Distribution
@@ -856,7 +857,7 @@ fitMcGBB<-function(x,obs.freq,a,b,c,print=T)
   }
   else
   {
-    #for given random variables and mode parameter calculating the estimated probability values
+    #for given random variables and parameters calculating the estimated probability values
     est.prob<-dMcGBB(x,max(x),a,b,c)$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
@@ -875,6 +876,11 @@ fitMcGBB<-function(x,obs.freq,a,b,c,print=T)
                  expected Frequency : ",exp.freq,"\n
                  X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n
                  over dispersion =",dMcGBB(x,max(x),a,b,c)$over.dis.par,"\n")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results

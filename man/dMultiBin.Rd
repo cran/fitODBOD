@@ -18,7 +18,11 @@ dMultiBin(x,n,p,theta)
 \value{
 The output of \code{dMultiBin} gives a list format consisting
 
-\code{pdf} probability function values in vector form
+\code{pdf}         probability function values in vector form
+
+\code{mean}        mean of Multiplicative Binomial Distribution
+
+\code{var}        variance of Multiplicative Binomial Distribution
 }
 \description{
 These functions provide the ability for generating probability function values and
@@ -56,6 +60,9 @@ lines(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],lwd=2.85)
 points(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],pch=16)
 }
 dMultiBin(0:10,10,.58,10.022)$pdf   #extracting the pdf values
+dMultiBin(0:10,10,.58,10.022)$mean   #extracting the mean
+dMultiBin(0:10,10,.58,10.022)$var   #extracting the variance
+
 
 #plotting random variables and cumulative probability values
 col<-rainbow(5)
@@ -68,7 +75,7 @@ for (i in 1:5)
 lines(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],lwd=2.85)
 points(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],pch=16)
 }
-pMultiBin(0:10,10,.58,10.022)     #acquring the cumulative probability values
+pMultiBin(0:10,10,.58,10.022)     #acquiring the cumulative probability values
 
 }
 \references{
@@ -77,8 +84,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.

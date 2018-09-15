@@ -4,7 +4,7 @@
 \name{Plant_DiseaseData}
 \alias{Plant_DiseaseData}
 \title{Plant Disease Incidence data}
-\format{A data frame with 2 variables and 10 observations
+\format{A data frame with 2 columns and 10 rows
 \describe{
 \item{\code{Dis.plant}}{Diseased Plants}
 \item{\code{fre}}{Observed frequencies}
@@ -27,7 +27,7 @@ tomato plants in the field trials in Australia. The field map was divided into 1
 quadrat.
 Number of infected plants out of 9 plants per quadrat can be treated as a binomial variable.
 the collection of all such responses from all 160 quadrats would form "binomial outcome data"
-below provided is a data set similar to cochran plant disease incidence data.
+below provided is a data set similar to Cochran plant disease incidence data.
 Marcus R(1984). orange trees infected with citrus tristeza virus (CTV) in an orchard in central
 Israel.
 We divided the field map into 84 "quadrats" of 4 rows x 3 columns and counted the total number

@@ -44,7 +44,7 @@ The mean, variance and over dispersion are denoted as
 \deqn{over dispersion= \frac{var_{GHGBeta}}{E_{GHGBeta}(1-E_{GHGBeta})} }
 
 Defined as \eqn{B(a,b)} is the beta function.
-Defined as \eqn{2F1(a,b;c;d)} is the gaussian hypergeometric function
+Defined as \eqn{2F1(a,b;c;d)} is the Gaussian Hypergeometric function
 
 \strong{NOTE} : If input parameters are not in given domain conditions necessary error
 messages will be provided to go further.

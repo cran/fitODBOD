@@ -53,7 +53,7 @@ messages will be provided to go further
 #plotting the random variables and probability values
 col<-rainbow(4)
 a<-c(1,2,5,10)
-plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probabiility density values",
+plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 xlim = c(0,1),ylim = c(0,4))
 for (i in 1:4)
 {

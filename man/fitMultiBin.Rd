@@ -2,7 +2,7 @@
 % Please edit documentation in R/MultiBin.R
 \name{fitMultiBin}
 \alias{fitMultiBin}
-\title{Fitting the Multiplicative Binomial Distributon when binomial
+\title{Fitting the Multiplicative Binomial Distribution when binomial
 random variable, frequency, probability of success and theta parameter are given}
 \usage{
 fitMultiBin(x,obs.freq,p,theta,print)
@@ -31,12 +31,12 @@ The output of \code{fitMultiBin} gives a list format consisting
 
 \code{df} degree of freedom
 
-\code{p.value} proability value by chi-squared test statistic
+\code{p.value} probability value by chi-squared test statistic
 }
 \description{
 The function will fit the Multiplicative binomial distribution
 when random variables, corresponding frequencies, probability of success and theta parameter
-are given. It will provide the the expected frequencies, chi-squared test statistics value,
+are given. It will provide the expected frequencies, chi-squared test statistics value,
 p value and degree of freedom  value so that it can be seen if this distribution
 fits the data.
 }
@@ -67,8 +67,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.

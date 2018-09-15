@@ -2,7 +2,7 @@
 % Please edit documentation in R/Kumaraswamy.R
 \name{fitKumBin}
 \alias{fitKumBin}
-\title{Fitting the Kumaraswamy Binomial Distributon when binomial random variable, frequency and shape
+\title{Fitting the Kumaraswamy Binomial Distribution when binomial random variable, frequency and shape
 parameters \code{a} and \code{b}, iterations parameter \code{it} are given}
 \usage{
 fitKumBin(x,obs.freq,a,b,it,print)
@@ -58,7 +58,7 @@ No.D.D=0:7   #assigning the random variables
 Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
 #estimating the parameters using maximum log likelihood value and assigning it
 \dontrun{
-parameters=suppressWarnings(bbmle::mle2(EstMLEKumBin,start = list(a=10.1,b=1.1,it=5000),
+parameters=suppressWarnings(bbmle::mle2(EstMLEKumBin,start = list(a=10.1,b=1.1,it=10000),
           data = list(x=No.D.D,freq=Obs.fre.1)))
 bbmle::coef(parameters)    #extracting the parameters
 aKumBin=bbmle::coef(parameters)[1] #assigning the estimated a
@@ -66,11 +66,9 @@ bKumBin=bbmle::coef(parameters)[2] #assigning the estimated b
 itKumBin=bbmle::coef(parameters)[3] #assigning the estimated iterations
 
 #fitting when the random variable,frequencies,shape parameter values are given.
-fitKumBin(No.D.D,Obs.fre.1,aKumBin,bKumBin,itKumBin*1000)
-
-#extracting the expected frequencies
-fitKumBin(No.D.D,Obs.fre.1,aKumBin,bKumBin,itKumBin*1000,FALSE)$exp.freq
+fitKumBin(No.D.D,Obs.fre.1,aKumBin,bKumBin,itKumBin*100)
 }
+
 }
 \references{
 Li, X. H., Huang, Y. Y., & Zhao, X. Y. (2011). The Kumaraswamy Binomial Distribution. Chinese Journal

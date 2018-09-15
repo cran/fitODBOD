@@ -3,7 +3,7 @@
 \name{EstMLEGHGBB}
 \alias{EstMLEGHGBB}
 \title{Estimating the shape parameters a,b and c for Gaussian Hypergeometric Generalized Beta  Binomial
-Distributon}
+Distribution}
 \usage{
 EstMLEGHGBB(x,freq,a,b,c)
 }

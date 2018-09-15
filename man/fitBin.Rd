@@ -2,7 +2,7 @@
 % Please edit documentation in R/Data.R
 \name{fitBin}
 \alias{fitBin}
-\title{Fitting the Binomial Distributon when binomial random variable, frequency and probability
+\title{Fitting the Binomial Distribution when binomial random variable, frequency and probability
 value are given}
 \usage{
 fitBin(x,obs.freq,p=0,print=T)
@@ -29,7 +29,7 @@ The output of \code{fitBin} gives a list format consisting
 
 \code{df} degree of freedom
 
-\code{p.value} prboability value by chi-squared test statistic
+\code{p.value} probability value by chi-squared test statistic
 }
 \description{
 The function will fit the binomial distribution when random variables, corresponding

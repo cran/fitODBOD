@@ -4,9 +4,9 @@
 \name{Terror_data_ARG}
 \alias{Terror_data_ARG}
 \title{Terror Data ARG}
-\format{A data frame with 2 variables and 9 observations
+\format{A data frame with 2 columns and 9 rows
 \describe{
-\item{\code{Incidents}}{No of Incidents Occured}
+\item{\code{Incidents}}{No of Incidents Occurred}
 \item{\code{fre}}{Observed frequencies}
 }}
 \source{
@@ -20,8 +20,8 @@ Terror_data_ARG
 }
 \description{
 Jenkins and Johnson (1975) compiled a chronology of incidents of international terrorism from 1/1968
-through 04/1974. During this period 507 incidents are recorded in the world,where 64 incidents occured
-in the united states and 65 ones in argentina.
+through 04/1974. During this period 507 incidents are recorded in the world, where 64 incidents occurred
+in the United States and 65 ones in Argentina.
 }
 \examples{
 Terror_data_ARG$Incidents        #extracting the binomial random variables

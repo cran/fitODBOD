@@ -3,7 +3,7 @@
 \name{EstMLEMultiBin}
 \alias{EstMLEMultiBin}
 \title{Estimating the probability of success and theta for Multiplicative Binomial
-Distributon}
+Distribution}
 \usage{
 EstMLEMultiBin(x,freq,p,theta)
 }
@@ -46,8 +46,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.

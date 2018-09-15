@@ -39,20 +39,20 @@ The probability function and cumulative function can be constructed and are deno
 
 The cumulative probability function is the summation of probability function values
 
-\deqn{P_{Corrbin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
+\deqn{P_{CorrBin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
 \deqn{x = 0,1,2,3,...n}
 \deqn{n = 1,2,3,...}
 \deqn{0 < p < 1}
 \deqn{-\infty < cov < +\infty }
 
-The Correlation is inbetween
-\deqn{\frac{-2}{n(n-1)} min(\frac{p}{1-p},\frac{p}{1-p}) \le correlation \le \frac{2p(1-p)}{(n-1)p(1-p)+0.25-fo} }
+The Correlation is in between
+\deqn{\frac{-2}{n(n-1)} min(\frac{p}{1-p},\frac{1-p}{p}) \le correlation \le \frac{2p(1-p)}{(n-1)p(1-p)+0.25-fo} }
 where \eqn{fo=min [(x-(n-1)p-0.5)^2] }
 
 The mean and the variance are denoted as
-\deqn{E_{Corrbin}[x]= np}
-\deqn{Var_{Corrbin}[x]= np(1-p)(1+(n-1)cov)}
-\deqn{Corr_{Corrbin}[x]=\frac{cov}{p(1-p)}}
+\deqn{E_{CorrBin}[x]= np}
+\deqn{Var_{CorrBin}[x]= n(p(1-p)+(n-1)cov)}
+\deqn{Corr_{CorrBin}[x]=\frac{cov}{p(1-p)}}
 
 \strong{NOTE} : If input parameters are not in given domain conditions
 necessary error messages will be provided to go further
@@ -63,7 +63,7 @@ col<-rainbow(5)
 a<-c(0.58,0.59,0.6,0.61,0.62)
 b<-c(0.022,0.023,0.024,0.025,0.026)
 plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
-ylab="Probaility function values",xlim = c(0,10),ylim = c(0,0.5))
+ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 for (i in 1:5)
 {
 lines(0:10,dCorrBin(0:10,10,a[i],b[i])$pdf,col = col[i],lwd=2.85)
@@ -76,12 +76,12 @@ dCorrBin(0:10,10,0.58,0.022)$corr     #extracting the correlation
 dCorrBin(0:10,10,0.58,0.022)$mincorr  #extracting the minimum correlation value
 dCorrBin(0:10,10,0.58,0.022)$maxcorr  #extracting the maximum correlation value
 
-#plotting the random variables and cumulative proability values
+#plotting the random variables and cumulative probability values
 col<-rainbow(5)
 a<-c(0.58,0.59,0.6,0.61,0.62)
 b<-c(0.022,0.023,0.024,0.025,0.026)
 plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
-ylab="Probaility function values",xlim = c(0,10),ylim = c(0,1))
+ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 for (i in 1:5)
 {
 lines(0:10,pCorrBin(0:10,10,a[i],b[i]),col = col[i],lwd=2.85)
@@ -96,8 +96,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.

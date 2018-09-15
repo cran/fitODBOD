@@ -55,7 +55,7 @@ necessary error messages will be provided to go further.
 #plotting the random variables and probability values
 col<-rainbow(5)
 a<-c(.1,.2,.3,1.5,2.15)
-plot(0,0,main="Proability density graph",xlab="Random variable",ylab="Proabiility density values",
+plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 xlim = c(0,1),ylim = c(0,10))
 for (i in 1:5)
 {

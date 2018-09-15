@@ -63,7 +63,7 @@
 #' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' a<-c(1,2,5,10)
-#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
 #' {
@@ -190,7 +190,7 @@ dBETA<-function(p,a,b)
 #' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' a<-c(1,2,5,10)
-#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
 #' {
@@ -322,7 +322,7 @@ pBETA<-function(p,a,b)
 #' #plotting the random variables and probability values
 #' col<-rainbow(4)
 #' a<-c(1,2,5,10)
-#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
 #' {
@@ -454,7 +454,7 @@ mazBETA<-function(r,a,b)
 #' col<-rainbow(5)
 #' a<-c(1,2,5,10,0.2)
 #' plot(0,0,main="Beta-binomial probability function graph",xlab="Binomial random variable",
-#' ylab="Probaility function values",xlim = c(0,10),ylim = c(0,0.5))
+#' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
 #' {
 #' lines(0:10,dBetaBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)
@@ -582,7 +582,7 @@ dBetaBin<-function(x,n,a,b)
 #' col<-rainbow(5)
 #' a<-c(1,2,5,10,0.2)
 #' plot(0,0,main="Beta-binomial probability function graph",xlab="Binomial random variable",
-#' ylab="Probaility function values",xlim = c(0,10),ylim = c(0,0.5))
+#' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
 #' {
 #' lines(0:10,dBetaBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)
@@ -706,7 +706,7 @@ NegLLBetaBin<-function(x,freq,a,b)
   }
 }
 
-#' Estimating the shape parameters a and b for Beta-Binomial Distributon
+#' Estimating the shape parameters a and b for Beta-Binomial Distribution
 #'
 #' The functions will estimate the shape parameters using the maximum log likelihood method and
 #' moment generating function method for the beta-binomial distribution when the binomial
@@ -780,7 +780,7 @@ EstMLEBetaBin<-function(x,freq,a,b)
   return(-BetaBinLL)
 }
 
-#' Estimating the shape parameters a and b for Beta-Binomial Distributon
+#' Estimating the shape parameters a and b for Beta-Binomial Distribution
 #'
 #' The functions will estimate the shape parameters using the maximum log likelihood method and
 #' moment generating function method for the beta-binomial distribution when the binomial
@@ -865,11 +865,11 @@ EstMGFBetaBin<-function(x,freq)
   }
 }
 
-#' Fitting the Beta-Binomial Distributon when binomial random variable, frequency and shape
+#' Fitting the Beta-Binomial Distribution when binomial random variable, frequency and shape
 #' parameters a and b are given
 #'
 #' The function will fit the beta-binomial distribution when random variables, corresponding
-#' frequencies and shape parameters are given. It will provide the the expected frequencies, chi-squared
+#' frequencies and shape parameters are given. It will provide the expected frequencies, chi-squared
 #' test statistics value, p value, degree of freedom and over dispersion value so that it can be
 #' seen if this distribution fits the data.
 #'
@@ -957,7 +957,7 @@ fitBetaBin<-function(x,obs.freq,a,b,print=T)
   }
   else
   {
-    #for given random variables and mode parameter calculating the estimated probability values
+    #for given random variables and parameters calculating the estimated probability values
     est.prob<-dBetaBin(x,max(x),a,b)$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
@@ -976,6 +976,11 @@ fitBetaBin<-function(x,obs.freq,a,b,print=T)
                  expected Frequency : ",exp.freq,"\n
                  X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n
                  over dispersion =",dBetaBin(x,max(x),a,b)$over.dis.para,"\n")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results

@@ -43,7 +43,7 @@ Moments about zero is denoted as
 necessary error messages will be provided to go further
 }
 \examples{
-#plotting the random variables and probabililty values
+#plotting the random variables and probability values
 col<-rainbow(4)
 x<-seq(0.2,0.8,by=0.2)
 plot(0,0,main="Probability density graph",xlab="Random variable",

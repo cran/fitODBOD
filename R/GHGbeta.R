@@ -63,7 +63,7 @@
 #' #plotting the random variables and probability values
 #' col<-rainbow(5)
 #' a<-c(.1,.2,.3,1.5,2.15)
-#' plot(0,0,main="Proability density graph",xlab="Random variable",ylab="Proabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,10))
 #' for (i in 1:5)
 #' {
@@ -218,7 +218,7 @@
 #' #plotting the random variables and probability values
 #' col<-rainbow(5)
 #' a<-c(.1,.2,.3,1.5,2.15)
-#' plot(0,0,main="Proability density graph",xlab="Random variable",ylab="Proabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,10))
 #' for (i in 1:5)
 #' {
@@ -374,7 +374,7 @@ pGHGBeta<-function(p,n,a,b,c)
 #' #plotting the random variables and probability values
 #' col<-rainbow(5)
 #' a<-c(.1,.2,.3,1.5,2.15)
-#' plot(0,0,main="Proability density graph",xlab="Random variable",ylab="Proabiility density values",
+#' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,10))
 #' for (i in 1:5)
 #' {
@@ -507,7 +507,7 @@ mazGHGBeta<-function(r,n,a,b,c)
 #' \deqn{over dispersion= \frac{var_{GHGBeta}}{E_{GHGBeta}(1-E_{GHGBeta})} }
 #'
 #' Defined as \eqn{B(a,b)} is the beta function.
-#' Defined as \eqn{2F1(a,b;c;d)} is the gaussian hypergeometric function
+#' Defined as \eqn{2F1(a,b;c;d)} is the Gaussian Hypergeometric function
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
 #' messages will be provided to go further.
@@ -663,7 +663,7 @@ dGHGBB<-function(x,n,a,b,c)
 #' \deqn{over dispersion= \frac{var_{GHGBeta}}{E_{GHGBeta}(1-E_{GHGBeta})} }
 #'
 #' Defined as \eqn{B(a,b)} is the beta function.
-#' Defined as \eqn{2F1(a,b;c;d)} is the gaussian hypergeometric function
+#' Defined as \eqn{2F1(a,b;c;d)} is the Gaussian Hypergeometric function
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
 #' messages will be provided to go further.
@@ -768,7 +768,7 @@ pGHGBB<-function(x,n,a,b,c)
 #' @examples
 #' No.D.D=0:7                    #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
-#' NegLLGHGBB(No.D.D,Obs.fre.1,.2,.3,1)     #acquiring the negative log likelihodd value
+#' NegLLGHGBB(No.D.D,Obs.fre.1,.2,.3,1)     #acquiring the negative log likelihood value
 #'
 #' @export
 NegLLGHGBB<-function(x,freq,a,b,c)
@@ -821,7 +821,7 @@ NegLLGHGBB<-function(x,freq,a,b,c)
 }
 
 #' Estimating the shape parameters a,b and c for Gaussian Hypergeometric Generalized Beta  Binomial
-#' Distributon
+#' Distribution
 #'
 #' The function will estimate the shape parameters using the maximum log likelihood method  for
 #' the Gaussian Hypergeometric Generalized Beta  Binomial distribution when the binomial random
@@ -887,7 +887,7 @@ EstMLEGHGBB<-function(x,freq,a,b,c)
   return(-GHGBBLL)
 }
 
-#' Fitting the Gaussian Hypergeometric Generalized Beta  Binomial Distributon when binomial
+#' Fitting the Gaussian Hypergeometric Generalized Beta  Binomial Distribution when binomial
 #' random variable, frequency and shape parameters a,b and c are given
 #'
 #' The function will fit the Gaussian Hypergeometric Generalized Beta Binomial Distribution
@@ -973,7 +973,7 @@ fitGHGBB<-function(x,obs.freq,a,b,c,print=T)
   }
   else
   {
-    #for given random variables and mode parameter calculating the estimated probability values
+    #for given random variables and parameters calculating the estimated probability values
     est.prob<-dGHGBB(x,max(x),a,b,c)$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
@@ -992,6 +992,11 @@ fitGHGBB<-function(x,obs.freq,a,b,c,print=T)
                  expected Frequency : ",exp.freq,"\n
                  X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n
                  over dispersion =",dGHGBB(x,max(x),a,b,c)$over.dis.para,"\n")
+    }
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      warning("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results

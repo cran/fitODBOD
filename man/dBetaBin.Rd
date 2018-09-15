@@ -54,7 +54,7 @@ Defined as  \code{B(a,b)} is the beta function.
 col<-rainbow(5)
 a<-c(1,2,5,10,0.2)
 plot(0,0,main="Beta-binomial probability function graph",xlab="Binomial random variable",
-ylab="Probaility function values",xlim = c(0,10),ylim = c(0,0.5))
+ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 for (i in 1:5)
 {
 lines(0:10,dBetaBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)

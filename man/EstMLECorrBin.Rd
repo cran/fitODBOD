@@ -3,7 +3,7 @@
 \name{EstMLECorrBin}
 \alias{EstMLECorrBin}
 \title{Estimating the probability of success and correlation for Correlated Binomial
-Distributon}
+Distribution}
 \usage{
 EstMLECorrBin(x,freq,p,cov)
 }
@@ -36,7 +36,7 @@ necessary error messages will be provided to go further
 }
 \examples{
 No.D.D=0:7               #assigning the random variables
-Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corrresponding frequencies
+Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 
 #estimating the parameters using maximum log likelihood value and assigning it
 parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
@@ -50,8 +50,6 @@ Hoboken, NJ: Wiley-Interscience.
 
 L. L. Kupper, J.K.H., 1978. The Use of a Correlated Binomial Model for the Analysis of Certain Toxicological
 Experiments. Biometrics, 34(1), pp.69-76.
-
-Available at: \url{http://www.jstor.org/stable/2529589} .
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 - Theory and Methods, 14(6), pp.1497-1506.
