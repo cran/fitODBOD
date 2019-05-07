@@ -1,4 +1,3 @@
-#'
 #' Additive  Binomial Distribution
 #'
 #' These functions provide the ability for generating probability function values and
@@ -7,15 +6,15 @@
 #' @usage
 #' dAddBin(x,n,p,alpha)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
 #' @param p        single value for probability of success
-#' @param alpha    single value for alpha parameter
+#' @param alpha    single value for alpha parameter.
 #'
 #' @details
 #' The probability function and cumulative function can be constructed and are denoted below
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{AddBin}(x)= {n \choose x} p^x (1-p)^{n-x}(\frac{alpha}{2}(\frac{x(x-1)}{p}+\frac{(n-x)(n-x-1)}{(1-p)}-\frac{alpha(n-1)n}{2})+1)}
 #'
@@ -32,16 +31,16 @@
 #' \deqn{Var_{Addbin}[x]=np(1-p)(1+(n-1)alpha)}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
 #' The output of \code{dAddBin} gives a list format consisting
 #'
-#' \code{pdf} probability function values in vector form
+#' \code{pdf} probability function values in vector form.
 #'
-#' \code{mean} mean of Additive Binomial Distribution
+#' \code{mean} mean of Additive Binomial Distribution.
 #'
-#' \code{var} variance of Additive Binomial Distribution
+#' \code{var} variance of Additive Binomial Distribution.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -69,6 +68,7 @@
 #'   lines(0:10,dAddBin(0:10,10,a[i],b[i])$pdf,col = col[i],lwd=2.85)
 #'   points(0:10,dAddBin(0:10,10,a[i],b[i])$pdf,col = col[i],pch=16)
 #' }
+#'
 #' dAddBin(0:10,10,0.58,0.022)$pdf     #extracting the probability values
 #' dAddBin(0:10,10,0.58,0.022)$mean    #extracting the mean
 #' dAddBin(0:10,10,0.58,0.022)$var     #extracting the variance
@@ -84,6 +84,7 @@
 #' lines(0:10,pAddBin(0:10,10,a[i],b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pAddBin(0:10,10,a[i],b[i]),col = col[i],pch=16)
 #' }
+#'
 #' pAddBin(0:10,10,0.58,0.022)       #acquiring the cumulative probability values
 #'
 #' @export
@@ -173,15 +174,15 @@ dAddBin<-function(x,n,p,alpha)
 #' @usage
 #' pAddBin(x,n,p,alpha)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
-#' @param p        single value for probability of success
-#' @param alpha    single value for alpha parameter
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
+#' @param p        single value for probability of success.
+#' @param alpha    single value for alpha parameter.
 #'
 #' @details
 #' The probability function and cumulative function can be constructed and are denoted below
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{AddBin}(x)= {n \choose x} p^x (1-p)^{n-x}(\frac{alpha}{2}(\frac{x(x-1)}{p}+\frac{(n-x)(n-x-1)}{(1-p)}-\frac{alpha n(n-1)}{2})+1)}
 #'
@@ -198,10 +199,9 @@ dAddBin<-function(x,n,p,alpha)
 #' \deqn{Var_{Addbin}[x]=np(1-p)(1+(n-1)alpha)}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
-#'
 #' The output of \code{pAddBin} gives  cumulative probability  values in vector form.
 #'
 #' @references
@@ -230,6 +230,7 @@ dAddBin<-function(x,n,p,alpha)
 #'   lines(0:10,dAddBin(0:10,10,a[i],b[i])$pdf,col = col[i],lwd=2.85)
 #'   points(0:10,dAddBin(0:10,10,a[i],b[i])$pdf,col = col[i],pch=16)
 #' }
+#'
 #' dAddBin(0:10,10,0.58,0.022)$pdf     #extracting the probability values
 #' dAddBin(0:10,10,0.58,0.022)$mean    #extracting the mean
 #' dAddBin(0:10,10,0.58,0.022)$var     #extracting the variance
@@ -245,6 +246,7 @@ dAddBin<-function(x,n,p,alpha)
 #' lines(0:10,pAddBin(0:10,10,a[i],b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pAddBin(0:10,10,a[i],b[i]),col = col[i],pch=16)
 #' }
+#'
 #' pAddBin(0:10,10,0.58,0.022)       #acquiring the cumulative probability values
 #'
 #' @export
@@ -270,10 +272,10 @@ pAddBin<-function(x,n,p,alpha)
 #' @usage
 #' NegLLAddBin(x,freq,p,alpha)
 #'
-#' @param x                 vector of binomial random variables
-#' @param freq              vector of frequencies
-#' @param p                 single value for probability of success
-#' @param alpha             single value for alpha parameter
+#' @param x                 vector of binomial random variables.
+#' @param freq              vector of frequencies.
+#' @param p                 single value for probability of success.
+#' @param alpha             single value for alpha parameter.
 #'
 #' @details
 #' \deqn{freq \ge 0}
@@ -282,7 +284,7 @@ pAddBin<-function(x,n,p,alpha)
 #' \deqn{-1 < alpha < 1}
 #'
 #' @return
-#' The output of \code{NegLLAddBin} will produce a single  numeric value
+#' The output of \code{NegLLAddBin} will produce a single  numeric value.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -301,6 +303,7 @@ pAddBin<-function(x,n,p,alpha)
 #' @examples
 #' No.D.D=0:7          #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)         #assigning the corresponding frequencies
+#'
 #' NegLLAddBin(No.D.D,Obs.fre.1,.5,.03)         #acquiring the negative log likelihood value
 #'
 #' @export
@@ -382,27 +385,35 @@ NegLLAddBin<-function(x,freq,p,alpha)
 #'
 #' The function will estimate the probability of success and alpha using the maximum log likelihood method
 #' for the Additive Binomial distribution when the binomial random
-#' variables and corresponding frequencies are given
+#' variables and corresponding frequencies are given.
 #'
 #' @usage
 #' EstMLEAddBin(x,freq)
 #'
-#' @param x                vector of binomial random variables
-#' @param freq             vector of frequencies
+#' @param x                vector of binomial random variables.
+#' @param freq             vector of frequencies.
 #'
 #' @details
 #' \deqn{freq \ge 0}
 #' \deqn{x = 0,1,2,..}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
-#' The output of \code{EstMLEAddBin} will produce a list consisting
+#' The output of \code{EstMLEAddBin} will produce the class \code{mlAB} and \code{ml} with a list consisting
 #'
-#' \code{p} probability of success
+#' \code{min} Negative Log Likelihood value.
 #'
-#' \code{alpha} alpha
+#' \code{p} estimated probability of success.
+#'
+#' \code{alpha} estimated alpha parameter.
+#'
+#' \code{AIC}  AIC value.
+#'
+#' \code{call} the inputs for the function.
+#'
+#' Methods \code{print}, \code{summary}, \code{coef} and \code{AIC} can be used to extract specific outputs.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -421,13 +432,18 @@ NegLLAddBin<-function(x,freq,p,alpha)
 #' @examples
 #' No.D.D=0:7         #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#'
 #' \dontrun{
 #' #estimating the probability value and alpha value
-#' suppressWarnings(EstMLEAddBin(No.D.D,Obs.fre.1))
+#' results<-suppressWarnings(EstMLEAddBin(No.D.D,Obs.fre.1))
 #'
-#' #extracting the estimated probability value
-#' suppressWarnings(EstMLEAddBin(No.D.D,Obs.fre.1)$p)
-#' }
+#' #printing the summary of results
+#' summary(results)
+#'
+#' #extracting the estimated parameters
+#' coef(results)
+#'         }
+#'
 #' @export
 EstMLEAddBin<-function(x,freq)
 {
@@ -531,27 +547,66 @@ EstMLEAddBin<-function(x,freq)
     #generate the output as the list format where NegLLAddBin is the minimum negative loglikelihood
     #value and alpha and probability are the corresponding estimated alpha and probability
     #value
-    output<-list("NegLLAddBin"=NegLLAddBinfin,"p"=pfin,"alpha"=alphafin)
+    AICvalue<-2*2+(2*NegLLAddBinfin)
+    argument<-match.call()
+    output<-list("min"=NegLLAddBinfin,"p"=pfin,"alpha"=alphafin,"AIC"=AICvalue,"call"=argument)
+    class(output)<-c("mlAB","ml")
     return(output)
 
   }
 }
 
+#' @method EstMLEAddBin default
+#' @export
+EstMLEAddBin.default<-function(x,freq)
+{
+  est<-EstMLEAddBin(x,freq)
+  #class(est)<-"mlAB"
+  return(est)
+}
+
+#' @method print mlAB
+#' @export
+print.mlAB<-function(x,...)
+{
+  cat("Call: \n")
+  print(x$call)
+  cat("\nCoefficients: \n")
+  coeff<-c(x$p,x$alpha)
+  names(coeff)<-c("p","alpha")
+  print(coeff)
+}
+
+#' @method summary mlAB
+#' @export
+summary.mlAB<-function(object,...)
+{
+  cat("Coefficients: \n \t p \t alpha \n", object$p,object$alpha)
+  cat("\n\nNegative Log-likelihood : ",object$min)
+  cat("\n\nAIC : ",object$AIC)
+}
+
+#' @method coef mlAB
+#' @export
+coef.mlAB<-function(object,...)
+{
+  cat(" \t p  \t alpha  \n", object$p, object$alpha)
+}
+
 #' Fitting the Additive Binomial Distribution when binomial
 #' random variable, frequency, probability of success and alpha are given
 #'
-#' The function will fit the Additive binomial distribution when random variables,
+#' The function will fit the Additive Binomial distribution when random variables,
 #' corresponding frequencies, probability of success and alpha are given.
 #' It will provide the expected frequencies, chi-squared test statistics value, p value,
 #' and degree of freedom value so that it can be seen if this distribution fits the data.
 #'
-#' @usage fitAddBin(x,obs.freq,p,alpha,print)
+#' @usage fitAddBin(x,obs.freq,p,alpha)
 #'
-#' @param x                  vector of binomial random variables
-#' @param obs.freq           vector of frequencies
-#' @param p                  single value for probability of success
-#' @param alpha               single value for alpha
-#' @param print              logical value for print or not
+#' @param x                  vector of binomial random variables.
+#' @param obs.freq           vector of frequencies.
+#' @param p                  single value for probability of success.
+#' @param alpha              single value for alpha.
 #'
 #' @details
 #' \deqn{obs.freq \ge 0}
@@ -560,19 +615,34 @@ EstMLEAddBin<-function(x,freq)
 #' \deqn{-1 < alpha < 1}
 #'
 #' @return
-#' The output of \code{fitAddBin} gives a list format consisting
+#' The output of \code{fitAddBin} gives the class format \code{fitAB} and \code{fit} consisting a list
 #'
-#' \code{bin.ran.var} binomial random variables
+#' \code{bin.ran.var} binomial random variables.
 #'
-#' \code{obs.freq} corresponding observed frequencies
+#' \code{obs.freq} corresponding observed frequencies.
 #'
-#' \code{exp.freq} corresponding expected frequencies
+#' \code{exp.freq} corresponding expected frequencies.
 #'
-#' \code{statistic} chi-squared test statistics
+#' \code{statistic} chi-squared test statistics.
 #'
-#' \code{df} degree of freedom
+#' \code{df} degree of freedom.
 #'
-#' \code{p.value} probability value by chi-squared test statistic
+#' \code{p.value} probability value by chi-squared test statistic.
+#'
+#' \code{fitAB} fitted probability values of \code{dAddBin}.
+#'
+#' \code{NegLL} Negative Log Likelihood value.
+#'
+#' \code{p} estimated probability value.
+#'
+#' \code{alpha} estimated alpha parameter value.
+#'
+#' \code{AIC} AIC value.
+#'
+#' \code{call} the inputs of the function.
+#'
+#' Methods \code{summary}, \code{print}, \code{AIC}, \code{residuals} and \code{fitted}
+#' can be used to extract specific outputs.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -591,20 +661,28 @@ EstMLEAddBin<-function(x,freq)
 #' @examples
 #' No.D.D=0:7         #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)            #assigning the corresponding the frequencies
+#'
 #' #assigning the estimated probability value
+#'
 #' \dontrun{
 #' paddbin=suppressWarnings(EstMLEAddBin(No.D.D,Obs.fre.1)$p)
+#'
 #' #assigning the estimated alpha value
 #' alphaaddbin=suppressWarnings(EstMLEAddBin(No.D.D,Obs.fre.1)$alpha)
 #'
 #' #fitting when the random variable,frequencies,probability and alpha are given
-#' fitAddBin(No.D.D,Obs.fre.1,paddbin,alphaaddbin)
+#' results<-fitAddBin(No.D.D,Obs.fre.1,paddbin,alphaaddbin)
+#' results
 #'
-#' #extracting the expected frequencies
-#' fitAddBin(No.D.D,Obs.fre.1,paddbin,alphaaddbin,FALSE)$exp.freq
-#' }
+#' #extracting the AIC value
+#' AIC(results)
+#'
+#' #extract fitted values
+#' fitted(results)
+#'        }
+#'
 #' @export
-fitAddBin<-function(x,obs.freq,p,alpha,print=T)
+fitAddBin<-function(x,obs.freq,p,alpha)
 {
   #checking if inputs consist NA(not assigned)values, infinite values or NAN(not a number)values
   #if so creating an error message as well as stopping the function progress.
@@ -615,8 +693,9 @@ fitAddBin<-function(x,obs.freq,p,alpha,print=T)
   }
   else
   {
+    est<-dAddBin(x,max(x),p,alpha)
     #for given random variables and parameters calculating the estimated probability values
-    est.prob<-dAddBin(x,max(x),p,alpha)$pdf
+    est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
     #chi-squared test statistics is calculated with observed frequency and expected frequency
@@ -625,15 +704,7 @@ fitAddBin<-function(x,obs.freq,p,alpha,print=T)
     df<-length(x)-3
     #p value of chi-squared test statistic is calculated
     p.value<-1-stats::pchisq(statistic,df)
-    #all the above information is mentioned as a message below
-    #and if the user wishes they can print or not to
-    if(print==TRUE)
-    {
-    cat("\nChi-squared test for Additive Binomial Distribution\n\n
-                 Observed Frequency : ",obs.freq,"\n
-                 expected Frequency : ",exp.freq,"\n
-                 X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n")
-    }
+
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
@@ -651,9 +722,54 @@ fitAddBin<-function(x,obs.freq,p,alpha,print=T)
     {
       warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
+
+    #calculating Negative log likelihood value and AIC
+    NegLL<-NegLLAddBin(x,obs.freq,p,alpha)
+    AICvalue<-2*2+NegLL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
-                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4))
+                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
+                "fitAB"=est,"NegLL"=NegLL,"p"=p,"alpha"=alpha,"AIC"=AICvalue,
+                "call"=match.call())
+    class(final)<-c("fitAB","fit")
+    return(final)
     }
   }
+
+#' @method fitAddBin default
+#' @export
+fitAddBin.default<-function(x,obs.freq,p,alpha)
+{
+  est<-fitAddBin(x,obs.freq,p,alpha)
+  return(est)
+}
+
+#' @method print fitAB
+#' @export
+print.fitAB<-function(x,...)
+{
+  cat("Call: \n")
+  print(x$call)
+  cat("\nChi-squared test for Additive Binomial Distribution \n\t
+      Observed Frequency : ",x$obs.freq,"\n\t
+      expected Frequency : ",x$exp.freq,"\n\t
+      estimated p value :",x$p," ,estimated alpha parameter :",x$alpha,"\n\t
+      X-squared :",x$statistic,"  ,df :",x$df,"  ,p-value :",x$p.value,"\n")
+}
+
+#' @method summary fitAB
+#' @export
+summary.fitAB<-function(object,...)
+{
+  cat("Call: \n")
+  print(object$call)
+  cat("\nChi-squared test for Additive Binomial Distribution \n\t
+      Observed Frequency : ",object$obs.freq,"\n\t
+      expected Frequency : ",object$exp.freq,"\n\t
+      estimated p value :",object$p," ,estimated alpha parameter :",object$alpha,"\n\t
+      X-squared :",object$statistic,"  ,df :",object$df,"  ,p-value :",object$p.value,"\n\t
+      Negative Loglikehood value :",object$NegLL,"\n\t
+      AIC value :",object$AIC,"\n")
+}
+
 #' @importFrom stats pchisq

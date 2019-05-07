@@ -6,15 +6,15 @@
 #' @usage
 #' dCorrBin(x,n,p,cov)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
-#' @param p        single value for probability of success
-#' @param cov      single value for covariance
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
+#' @param p        single value for probability of success.
+#' @param cov      single value for covariance.
 #'
 #' @details
 #' The probability function and cumulative function can be constructed and are denoted below
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{CorrBin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
 #' \deqn{x = 0,1,2,3,...n}
@@ -32,22 +32,22 @@
 #' \deqn{Corr_{CorrBin}[x]=\frac{cov}{p(1-p)}}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
 #' The output of \code{dCorrBin} gives a list format consisting
 #'
-#' \code{pdf}           probability function values in vector form
+#' \code{pdf}           probability function values in vector form.
 #'
-#' \code{mean}          mean of Correlated  Binomial Distribution
+#' \code{mean}          mean of Correlated  Binomial Distribution.
 #'
-#' \code{var}           variance of Correlated  Binomial Distribution
+#' \code{var}           variance of Correlated  Binomial Distribution.
 #'
-#' \code{corr}          correlation of Correlated Binomial Distribution
+#' \code{corr}          correlation of Correlated Binomial Distribution.
 #'
-#' \code{mincorr}       minimum correlation value possible
+#' \code{mincorr}       minimum correlation value possible.
 #'
-#' \code{maxcorr}       maximum correlation value possible
+#' \code{maxcorr}       maximum correlation value possible.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -66,7 +66,6 @@
 #' @seealso
 #' \code{\link[BinaryEPPM]{CBprob}}
 #'
-#'
 #' @examples
 #' #plotting the random variables and probability values
 #' col<-rainbow(5)
@@ -79,6 +78,7 @@
 #' lines(0:10,dCorrBin(0:10,10,a[i],b[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dCorrBin(0:10,10,a[i],b[i])$pdf,col = col[i],pch=16)
 #' }
+#'
 #' dCorrBin(0:10,10,0.58,0.022)$pdf      #extracting the pdf values
 #' dCorrBin(0:10,10,0.58,0.022)$mean     #extracting the mean
 #' dCorrBin(0:10,10,0.58,0.022)$var      #extracting the variance
@@ -97,6 +97,7 @@
 #' lines(0:10,pCorrBin(0:10,10,a[i],b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pCorrBin(0:10,10,a[i],b[i]),col = col[i],pch=16)
 #' }
+#'
 #' pCorrBin(0:10,10,0.58,0.022)      #acquiring the cumulative probability values
 #'
 #' @export
@@ -192,15 +193,15 @@ dCorrBin<-function(x,n,p,cov)
 #' @usage
 #' pCorrBin(x,n,p,cov)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
-#' @param p        single value for probability of success
-#' @param cov      single value for covariance
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
+#' @param p        single value for probability of success.
+#' @param cov      single value for covariance.
 #'
 #' @details
 #' The probability function and cumulative function can be constructed and are denoted below
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{CorrBin}(x) = {n \choose x}(p^x)(1-p)^{n-x}(1+(\frac{cov}{2p^2(1-p)^2})((x-np)^2+x(2p-1)-np^2)) }
 #' \eqn{x = 0,1,2,3,...n}
@@ -218,10 +219,9 @@ dCorrBin<-function(x,n,p,cov)
 #' \deqn{Corr_{CorrBin}[x]=\frac{cov}{p(1-p)}}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
-#'
 #' The output of \code{pCorrBin} gives cumulative probability  values in vector form.
 #'
 #' @references
@@ -234,13 +234,12 @@ dCorrBin<-function(x,n,p,cov)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
 #' @seealso
 #' \code{\link[BinaryEPPM]{CBprob}}
-#'
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -254,6 +253,7 @@ dCorrBin<-function(x,n,p,cov)
 #' lines(0:10,dCorrBin(0:10,10,a[i],b[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dCorrBin(0:10,10,a[i],b[i])$pdf,col = col[i],pch=16)
 #' }
+#'
 #' dCorrBin(0:10,10,0.58,0.022)$pdf      #extracting the pdf values
 #' dCorrBin(0:10,10,0.58,0.022)$mean     #extracting the mean
 #' dCorrBin(0:10,10,0.58,0.022)$var      #extracting the variance
@@ -272,8 +272,8 @@ dCorrBin<-function(x,n,p,cov)
 #' lines(0:10,pCorrBin(0:10,10,a[i],b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pCorrBin(0:10,10,a[i],b[i]),col = col[i],pch=16)
 #' }
-#' pCorrBin(0:10,10,0.58,0.022)      #acquiring the cumulative probability values
 #'
+#' pCorrBin(0:10,10,0.58,0.022)      #acquiring the cumulative probability values
 #'
 #' @export
 pCorrBin<-function(x,n,p,cov)
@@ -298,10 +298,10 @@ pCorrBin<-function(x,n,p,cov)
 #' @usage
 #' NegLLCorrBin(x,freq,p,cov)
 #'
-#' @param x                 vector of binomial random variables
-#' @param freq              vector of frequencies
-#' @param p                 single value for probability of success
-#' @param cov               single value for covariance
+#' @param x                 vector of binomial random variables.
+#' @param freq              vector of frequencies.
+#' @param p                 single value for probability of success.
+#' @param cov               single value for covariance.
 #'
 #' @details
 #' \deqn{freq \ge 0}
@@ -310,10 +310,10 @@ pCorrBin<-function(x,n,p,cov)
 #' \deqn{-\infty < cov < +\infty}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
-#' The output of \code{NegLLCorrBin} will produce a single numeric value
+#' The output of \code{NegLLCorrBin} will produce a single numeric value.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -332,6 +332,7 @@ pCorrBin<-function(x,n,p,cov)
 #' @examples
 #' No.D.D=0:7         #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
+#'
 #' NegLLCorrBin(No.D.D,Obs.fre.1,.5,.03)     #acquiring the negative log likelihood value
 #'
 #' @export
@@ -419,16 +420,16 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #'
 #' The function will estimate the probability of success and correlation using the maximum log
 #' likelihood method for the Correlated Binomial distribution when the binomial random
-#' variables and corresponding frequencies are given
+#' variables and corresponding frequencies are given.
 #'
 #' @usage
 #' EstMLECorrBin(x,freq,p,cov)
 #'
 #'
-#' @param x       vector of binomial random variables
-#' @param freq    vector of frequencies
-#' @param p       single value for probability of success
-#' @param cov     single value for covariance
+#' @param x       vector of binomial random variables.
+#' @param freq    vector of frequencies.
+#' @param p       single value for probability of success.
+#' @param cov     single value for covariance.
 #'
 #' @details
 #' \deqn{x = 0,1,2,...}
@@ -437,7 +438,7 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' \deqn{-\infty < cov < +\infty}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
 #' \code{EstMLECorrBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle} package
@@ -460,7 +461,6 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
 #'
-#'
 #' @examples
 #' No.D.D=0:7               #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
@@ -468,6 +468,7 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
 #'                        data = list(x=No.D.D,freq=Obs.fre.1)))
+#'
 #' bbmle::coef(parameters)           #extracting the parameters
 #'
 #' @export
@@ -496,19 +497,18 @@ EstMLECorrBin<-function(x,freq,p,cov)
 #' Fitting the Correlated Binomial Distribution when binomial
 #' random variable, frequency, probability of success and covariance are given
 #'
-#' The function will fit the Correlated binomial Distribution
+#' The function will fit the Correlated Binomial Distribution
 #' when random variables, corresponding frequencies, probability of success and covariance are given.
 #' It will provide the expected frequencies, chi-squared test statistics value, p value,
 #' and degree of freedom so that it can be seen if this distribution fits the data.
 #'
 #' @usage
-#' fitCorrBin(x,obs.freq,p,cov,print)
+#' fitCorrBin(x,obs.freq,p,cov)
 #'
-#' @param x                  vector of binomial random variables
-#' @param obs.freq           vector of frequencies
-#' @param p                  single value for probability of success
-#' @param cov                single value for covariance
-#' @param print              logical value for print or not
+#' @param x                  vector of binomial random variables.
+#' @param obs.freq           vector of frequencies.
+#' @param p                  single value for probability of success.
+#' @param cov                single value for covariance.
 #'
 #' @details
 #' \deqn{obs.freq \ge 0}
@@ -517,24 +517,35 @@ EstMLECorrBin<-function(x,freq,p,cov)
 #' \deqn{-\infty < cov < +\infty}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
-#' The output of \code{fitCorrBin} gives a list format consisting
+#' The output of \code{fitCorrBin} gives the class format \code{fitCB} and \code{fit} consisting a list
 #'
-#' \code{bin.ran.var} binomial random variables
+#' \code{bin.ran.var} binomial random variables.
 #'
-#' \code{obs.freq} corresponding observed frequencies
+#' \code{obs.freq} corresponding observed frequencies.
 #'
-#' \code{exp.freq} corresponding expected frequencies
+#' \code{exp.freq} corresponding expected frequencies.
 #'
-#' \code{statistic} chi-squared test statistics
+#' \code{statistic} chi-squared test statistics.
 #'
-#' \code{df} degree of freedom
+#' \code{df} degree of freedom.
 #'
-#' \code{p.value} probability value by chi-squared test statistic
+#' \code{p.value} probability value by chi-squared test statistic.
 #'
-#' \code{corr}    Correlation value
+#' \code{corr}    Correlation value.
+#'
+#' \code{fitCB} fitted probability values of \code{dCorrBin}.
+#'
+#' \code{NegLL} Negative Log Likelihood value.
+#'
+#' \code{AIC} AIC value.
+#'
+#' \code{call} the inputs of the function.
+#'
+#' Methods \code{summary}, \code{print}, \code{AIC}, \code{residuals} and \code{fitted}
+#' can be used to extract specific outputs.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -546,25 +557,33 @@ EstMLECorrBin<-function(x,freq,p,cov)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
 #' @examples
-#' No.D.D=0:7                    #assigning the random variables
+#' No.D.D=0:7       #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
 #'            data = list(x=No.D.D,freq=Obs.fre.1)))
+#'
 #' pCorrBin=bbmle::coef(parameters)[1]
 #' covCorrBin=bbmle::coef(parameters)[2]
+#'
 #' #fitting when the random variable,frequencies,probability and covariance are given
-#' fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin)
-#' #extracting the expected frequencies
-#' fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin,FALSE)$exp.freq
+#' results<-fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin)
+#' results
+#'
+#' #extracting the AIC value
+#' AIC(results)
+#'
+#' #extract fitted values
+#' fitted(results)
+#'
 #' @export
-fitCorrBin<-function(x,obs.freq,p,cov,print=T)
+fitCorrBin<-function(x,obs.freq,p,cov)
 {
   #checking if inputs consist NA(not assigned)values, infinite values or NAN(not a number)values
   #if so creating an error message as well as stopping the function progress.
@@ -575,8 +594,9 @@ fitCorrBin<-function(x,obs.freq,p,cov,print=T)
   }
   else
   {
+    est<-dCorrBin(x,max(x),p,cov)
     #for given random variables and parameters calculating the estimated probability values
-    est.prob<-dCorrBin(x,max(x),p,cov)$pdf
+    est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
     #chi-squared test statistics is calculated with observed frequency and expected frequency
@@ -585,16 +605,7 @@ fitCorrBin<-function(x,obs.freq,p,cov,print=T)
     df<-length(x)-3
     #p value of chi-squared test statistic is calculated
     p.value<-1-stats::pchisq(statistic,df)
-    #all the above information is mentioned as a message below
-    #and if the user wishes they can print or not to
-    if(print==TRUE)
-    {
-    cat("\nChi-squared test for Correlated Binomial Distribution\n\n
-                 Observed Frequency : ",obs.freq,"\n
-                 expected Frequency : ",exp.freq,"\n
-                 X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n
-                 Correlation  =",dCorrBin(x,max(x),p,cov)$corr,"\n")
-    }
+
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
@@ -612,10 +623,54 @@ fitCorrBin<-function(x,obs.freq,p,cov,print=T)
     {
       warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
+    #calculating Negative log likelihood value and AIC
+    NegLL<-NegLLCorrBin(x,obs.freq,p,cov)
+    AICvalue<-2*2+NegLL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,"statistic"=round(statistic,4),
-                "df"=df,"p.value"=round(p.value,4),"corr"=dCorrBin(x,max(x),p,cov)$corr)
+                "df"=df,"p.value"=round(p.value,4),"corr"=est$corr,"fitCB"=est,"NegLL"=NegLL,
+                "p"=p,"cov"=cov,"AIC"=AICvalue,"call"=match.call())
+    class(final)<-c("fitCB","fit")
+    return(final)
     }
   }
+
+#' @method fitCorrBin default
+#' @export
+fitCorrBin.default<-function(x,obs.freq,p,cov)
+{
+  est<-fitCorrBin(x,obs.freq,p,cov)
+  return(est)
+}
+
+#' @method print fitCB
+#' @export
+print.fitCB<-function(x,...)
+{
+  cat("Call: \n")
+  print(x$call)
+  cat("\nChi-squared test for Correlated Binomial Distribution \n\t
+      Observed Frequency : ",x$obs.freq,"\n\t
+      expected Frequency : ",x$exp.freq,"\n\t
+      estimated p value :",x$p," ,estimated cov value :",x$cov,"\n\t
+      X-squared :",x$statistic,"  ,df :",x$df,"  ,p-value :",x$p.value,"\n")
+}
+
+#' @method summary fitCB
+#' @export
+summary.fitCB<-function(object,...)
+{
+  cat("Call: \n")
+  print(object$call)
+  cat("\nChi-squared test for Correlated Binomial Distribution \n\t
+      Observed Frequency : ",object$obs.freq,"\n\t
+      expected Frequency : ",object$exp.freq,"\n\t
+      estimated p value :",object$p," ,estimated cov value :",object$cov,"\n\t
+      X-squared :",object$statistic,"  ,df :",object$df,"  ,p-value :",object$p.value,"\n\t
+      Negative Loglikehood value :",object$NegLL,"\n\t
+      AIC value :",object$AIC,"\n")
+}
+
+
 #' @importFrom bbmle mle2
 #' @importFrom stats pchisq

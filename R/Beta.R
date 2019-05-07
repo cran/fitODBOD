@@ -1,4 +1,3 @@
-#'
 #' Beta Distribution
 #'
 #' These functions provide the ability for generating probability density values,
@@ -8,13 +7,13 @@
 #' @usage
 #' dBETA(p,a,b)
 #'
-#' @param p              vector of probabilities
-#' @param a              single value for shape parameter alpha representing as a
-#' @param b              single value for shape parameter beta representing as b
+#' @param p              vector of probabilities.
+#' @param a              single value for shape parameter alpha representing as a.
+#' @param b              single value for shape parameter beta representing as b.
 #'
 #' @details
 #' The probability density function and cumulative density function of a unit
-#' bounded beta distribution with random variable P are given by
+#' bounded Beta distribution with random variable P are given by
 #'
 #' \deqn{g_{P}(p)= \frac{p^{a-1}(1-p)^{b-1}}{B(a,b)} } ;            \eqn{0 \le p \le 1}
 #' \deqn{G_{P}(p)= \frac{B_p(a,b)}{B(a,b)} } ;                   \eqn{0 \le p \le 1}
@@ -32,25 +31,25 @@
 #' incomplete beta integrals  and \eqn{B(a,b)} is the beta function.
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
-#' messages will be provided to go further
+#' messages will be provided to go further.
 #'
 #' @return
 #' The output of \code{dBETA} gives a list format consisting
 #'
-#' \code{pdf}            probability density values in vector form
+#' \code{pdf}            probability density values in vector form.
 #'
-#' \code{mean}           mean of the beta distribution
+#' \code{mean}           mean of the Beta distribution.
 #'
-#' \code{var}            variance of the beta distribution
+#' \code{var}            variance of the Beta distribution.
 #'
 #' @references
 #' Johnson, N. L., Kotz, S. and Balakrishnan, N. (1994) Continuous Univariate Distributions, Vol. 2,
-#' Wiley Series in Probability and Mathematical Statistics, Wiley
+#' Wiley Series in Probability and Mathematical Statistics, Wiley.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis,
 #' 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' @seealso
 #' \code{\link[stats]{Beta}}
@@ -87,6 +86,7 @@
 #' pBETA(seq(0,1,by=0.01),2,3)   #acquiring the cumulative probability values
 #' mazBETA(1.4,3,2)              #acquiring the moment about zero values
 #' mazBETA(2,3,2)-mazBETA(1,3,2)^2 #acquiring the variance for a=3,b=2
+#'
 #' #only the integer value of moments is taken here because moments cannot be decimal
 #' mazBETA(1.9,5.5,6)
 #'
@@ -135,14 +135,14 @@ dBETA<-function(p,a,b)
 #'
 #' These functions provide the ability for generating probability density values,
 #' cumulative probability density values and moment about zero values for the
-#' Beta Distribution bounded between [0,1]
+#' Beta Distribution bounded between [0,1].
 #'
 #' @usage
 #' pBETA(p,a,b)
 #'
-#' @param p              vector of probabilities
-#' @param a              single value for shape parameter alpha representing as a
-#' @param b              single value for shape parameter beta representing as b
+#' @param p              vector of probabilities.
+#' @param a              single value for shape parameter alpha representing as a.
+#' @param b              single value for shape parameter beta representing as b.
 #'
 #' @details
 #' The probability density function and cumulative density function of a unit
@@ -164,20 +164,19 @@ dBETA<-function(p,a,b)
 #' incomplete beta integrals  and \eqn{B(a,b)} is the beta function.
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
-#' messages will be provided to go further
+#' messages will be provided to go further.
 #'
 #' @return
-#'
 #' The output of \code{pBETA} gives the cumulative density values in vector form.
 #'
 #' @references
 #' Johnson, N. L., Kotz, S. and Balakrishnan, N. (1994) Continuous Univariate Distributions, Vol. 2,
-#' Wiley Series in Probability and Mathematical Statistics, Wiley
+#' Wiley Series in Probability and Mathematical Statistics, Wiley.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis,
 #' 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' @seealso
 #' \code{\link[stats]{Beta}}
@@ -214,6 +213,7 @@ dBETA<-function(p,a,b)
 #' pBETA(seq(0,1,by=0.01),2,3)   #acquiring the cumulative probability values
 #' mazBETA(1.4,3,2)              #acquiring the moment about zero values
 #' mazBETA(2,3,2)-mazBETA(1,3,2)^2 #acquiring the variance for a=3,b=2
+#'
 #' #only the integer value of moments is taken here because moments cannot be decimal
 #' mazBETA(1.9,5.5,6)
 #'
@@ -267,14 +267,14 @@ pBETA<-function(p,a,b)
 #'
 #' These functions provide the ability for generating probability density values,
 #' cumulative probability density values and moment about zero values for the
-#' Beta Distribution bounded between [0,1]
+#' Beta Distribution bounded between [0,1].
 #'
 #' @usage
 #' mazBETA(r,a,b)
 #'
-#' @param a              single value for shape parameter alpha representing as a
-#' @param b              single value for shape parameter beta representing as b
-#' @param r              vector of moments
+#' @param a              single value for shape parameter alpha representing as a.
+#' @param b              single value for shape parameter beta representing as b.
+#' @param r              vector of moments.
 #'
 #' @details
 #' The probability density function and cumulative density function of a unit
@@ -296,20 +296,19 @@ pBETA<-function(p,a,b)
 #' incomplete beta integrals  and \eqn{B(a,b)} is the beta function.
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
-#' messages will be provided to go further
+#' messages will be provided to go further.
 #'
 #' @return
-#'
 #' The output of \code{mazBETA} gives the moments about zero in vector form.
 #'
 #' @references
 #' Johnson, N. L., Kotz, S. and Balakrishnan, N. (1994) Continuous Univariate Distributions, Vol. 2,
-#' Wiley Series in Probability and Mathematical Statistics, Wiley
+#' Wiley Series in Probability and Mathematical Statistics, Wiley.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis,
 #' 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' @seealso
 #' \code{\link[stats]{Beta}}
@@ -346,6 +345,7 @@ pBETA<-function(p,a,b)
 #' pBETA(seq(0,1,by=0.01),2,3)   #acquiring the cumulative probability values
 #' mazBETA(1.4,3,2)              #acquiring the moment about zero values
 #' mazBETA(2,3,2)-mazBETA(1,3,2)^2 #acquiring the variance for a=3,b=2
+#'
 #' #only the integer value of moments is taken here because moments cannot be decimal
 #' mazBETA(1.9,5.5,6)
 #'
@@ -400,17 +400,17 @@ mazBETA<-function(r,a,b)
 #' @usage
 #' dBetaBin(x,n,a,b)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
-#' @param a        single value for shape parameter alpha representing as a
-#' @param b        single value for shape parameter beta representing as b
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
+#' @param a        single value for shape parameter alpha representing as a.
+#' @param b        single value for shape parameter beta representing as b.
 #'
 #' @details
-#' Mixing beta distribution with binomial distribution will create the Beta-Binomial
+#' Mixing Beta distribution with Binomial distribution will create the Beta-Binomial
 #' distribution. The probability function and cumulative probability function can be
 #' constructed and are denoted below.
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{BetaBin}(x)= {n \choose x} \frac{B(a+x,n+b-x)}{B(a,b)} }
 #' \deqn{a,b > 0}
@@ -427,23 +427,23 @@ mazBETA<-function(r,a,b)
 #' @return
 #' The output of \code{dBetaBin} gives a list format consisting
 #'
-#' \code{pdf}              probability function values in vector form
+#' \code{pdf}              probability function values in vector form.
 #'
-#' \code{mean}             mean of the Beta-Binomial Distribution
+#' \code{mean}             mean of the Beta-Binomial Distribution.
 #'
-#' \code{var}              variance of the Beta-Binomial Distribution
+#' \code{var}              variance of the Beta-Binomial Distribution.
 #'
-#' \code{over.dis.para}    over dispersion value of the Beta-Binomial Distribution
+#' \code{over.dis.para}    over dispersion value of the Beta-Binomial Distribution.
 #'
 #' @references
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract} .
+#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
@@ -476,6 +476,7 @@ mazBETA<-function(r,a,b)
 #' lines(0:10,pBetaBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pBetaBin(0:10,10,a[i],a[i]),col = col[i])
 #' }
+#'
 #' pBetaBin(0:10,10,4,.2)   #acquiring the cumulative probability values
 #'
 #' @export
@@ -534,17 +535,17 @@ dBetaBin<-function(x,n,a,b)
 #' @usage
 #' pBetaBin(x,n,a,b)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
-#' @param a        single value for shape parameter alpha representing as a
-#' @param b        single value for shape parameter beta representing as b
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
+#' @param a        single value for shape parameter alpha representing as a.
+#' @param b        single value for shape parameter beta representing as b.
 #'
 #' @details
-#' Mixing beta distribution with binomial distribution will create the Beta-Binomial
+#' Mixing Beta distribution with Binomial distribution will create the Beta-Binomial
 #' distribution. The probability function and cumulative probability function can be
 #' constructed and are denoted below.
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{BetaBin}(x)= {n \choose x} \frac{B(a+x,n+b-x)}{B(a,b)} }
 #' \deqn{a,b > 0}
@@ -559,18 +560,17 @@ dBetaBin<-function(x,n,a,b)
 #' Defined as  \code{B(a,b)} is the beta function.
 #'
 #' @return
-#'
 #' The output of \code{pBetaBin} gives cumulative probability  values in vector form.
 #'
 #' @references
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract} .
+#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
@@ -604,6 +604,7 @@ dBetaBin<-function(x,n,a,b)
 #' lines(0:10,pBetaBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pBetaBin(0:10,10,a[i],a[i]),col = col[i])
 #' }
+#'
 #' pBetaBin(0:10,10,4,.2)   #acquiring the cumulative probability values
 #'
 #' @export
@@ -623,16 +624,16 @@ pBetaBin<-function(x,n,a,b)
 
 #' Negative Log Likelihood value of Beta-Binomial Distribution
 #'
-#' This function will calculate the negative log likelihood value when the vector of binomial random
+#' This function will calculate the Negative Log Likelihood value when the vector of binomial random
 #' variables and vector of corresponding frequencies are given with the shape parameters a and b.
 #'
 #' @usage
 #' NegLLBetaBin(x,freq,a,b)
 #'
-#' @param x              vector of binomial random variables
-#' @param freq           vector of frequencies
-#' @param a              single value for shape parameter alpha representing as a
-#' @param b              single value for shape parameter beta representing as b
+#' @param x              vector of binomial random variables.
+#' @param freq           vector of frequencies.
+#' @param a              single value for shape parameter alpha representing as a.
+#' @param b              single value for shape parameter beta representing as b.
 #'
 #' @details
 #' \deqn{0 < a,b }
@@ -640,20 +641,20 @@ pBetaBin<-function(x,n,a,b)
 #' \deqn{x = 0,1,2,...}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
-#' messages will be provided to go further
+#' messages will be provided to go further.
 #'
 #' @return
-#' The output of \code{NegLLBetaBin} will produce a single numeric value
+#' The output of \code{NegLLBetaBin} will produce a single numeric value.
 #'
 #' @references
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract} .
+#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
@@ -661,9 +662,9 @@ pBetaBin<-function(x,n,a,b)
 #' Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}
 #'
 #' @examples
-#'
 #' No.D.D=0:7       #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#'
 #' NegLLBetaBin(No.D.D,Obs.fre.1,.3,.4)   #acquiring the negative log likelihood value
 #'
 #' @export
@@ -709,17 +710,17 @@ NegLLBetaBin<-function(x,freq,a,b)
 #' Estimating the shape parameters a and b for Beta-Binomial Distribution
 #'
 #' The functions will estimate the shape parameters using the maximum log likelihood method and
-#' moment generating function method for the beta-binomial distribution when the binomial
-#' random variables and corresponding frequencies are given
+#' moment generating function method for the Beta-Binomial distribution when the binomial
+#' random variables and corresponding frequencies are given.
 #'
 #' @usage
 #' EstMLEBetaBin(x,freq,a,b)
 #'
 #'
-#' @param x                  vector of binomial random variables
-#' @param freq               vector of frequencies
-#' @param a                  single value for shape parameter alpha representing as a
-#' @param b                  single value for shape parameter beta representing as b
+#' @param x                  vector of binomial random variables.
+#' @param freq               vector of frequencies.
+#' @param a                  single value for shape parameter alpha representing as a.
+#' @param b                  single value for shape parameter beta representing as b.
 #'
 #'
 #' @details
@@ -728,7 +729,7 @@ NegLLBetaBin<-function(x,freq,a,b)
 #' \deqn{freq \ge 0}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
-#'  messages will be provided to go further
+#'  messages will be provided to go further.
 #'
 #' @return
 #' \code{EstMLEBetaBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle} package
@@ -738,11 +739,11 @@ NegLLBetaBin<-function(x,freq,a,b)
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract} .
+#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
@@ -752,14 +753,14 @@ NegLLBetaBin<-function(x,freq,a,b)
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
 #'
-#'
-#'
 #' @examples
 #' No.D.D=0:7        #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#'
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaBin,start = list(a=0.1,b=0.1),
 #' data = list(x=No.D.D,freq=Obs.fre.1)))
+#'
 #' bbmle::coef(parameters)   #extracting the parameters
 #'
 #' #estimating the parameters using moment generating function methods
@@ -783,14 +784,14 @@ EstMLEBetaBin<-function(x,freq,a,b)
 #' Estimating the shape parameters a and b for Beta-Binomial Distribution
 #'
 #' The functions will estimate the shape parameters using the maximum log likelihood method and
-#' moment generating function method for the beta-binomial distribution when the binomial
-#' random variables and corresponding frequencies are given
+#' moment generating function method for the Beta-Binomial distribution when the binomial
+#' random variables and corresponding frequencies are given.
 #'
 #' @usage
 #' EstMGFBetaBin(x,freq)
 #'
-#' @param x                  vector of binomial random variables
-#' @param freq               vector of frequencies
+#' @param x                  vector of binomial random variables.
+#' @param freq               vector of frequencies.
 #'
 #' @details
 #' \deqn{a,b > 0}
@@ -798,25 +799,33 @@ EstMLEBetaBin<-function(x,freq,a,b)
 #' \deqn{freq \ge 0}
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions necessary error
-#' messages will be provided to go further
+#' messages will be provided to go further.
 #'
 #' @return
-#'
-#' The output of \code{EstMGFBetaBin} will produce a list format consisting
+#' The output of \code{EstMGFBetaBin} will produce the class \code{mgf} format consisting
 #'
 #' \code{a} shape parameter of beta distribution representing for alpha
 #'
 #' \code{b} shape parameter of beta distribution representing for beta
 #'
+#' \code{min} Negative loglikelihood value
+#'
+#' \code{AIC} AIC value
+#'
+#' \code{call} the inputs for the function
+#'
+#' Methods \code{print}, \code{summary}, \code{coef} and \code{AIC} can be used to extract
+#' specific outputs.
+#'
 #' @references
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract} .
+#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
@@ -826,18 +835,24 @@ EstMLEBetaBin<-function(x,freq,a,b)
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
 #'
-#'
-#'
 #' @examples
 #' No.D.D=0:7        #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#'
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaBin,start = list(a=0.1,b=0.1),
 #' data = list(x=No.D.D,freq=Obs.fre.1)))
+#'
 #' bbmle::coef(parameters)   #extracting the parameters
 #'
 #' #estimating the parameters using moment generating function methods
-#' EstMGFBetaBin(No.D.D,Obs.fre.1)
+#' results<-EstMGFBetaBin(No.D.D,Obs.fre.1)
+#'
+#' # extract the estimated parameters and summary
+#' coef(results)
+#' summary(results)
+#'
+#' AIC(results) #show the AIC value
 #'
 #' @export
 EstMGFBetaBin<-function(x,freq)
@@ -860,26 +875,73 @@ EstMGFBetaBin<-function(x,freq)
     a<-((n*m1-m2)*m1)/(n*(m2-m1-m1^2)+m1^2)
     b<-((n*m1-m2)*(n-m1))/(n*(m2-m1-m1^2)+m1^2)
     #generating an output of list for shape parameters a(alpha) and b(beta)
-    ans<-list("a"=a,"b"=b)
+    NegLL<-NegLLBetaBin(x,freq,a,b)
+    AICvalue<-2*2+(2*NegLL)
+    argument<-match.call()
+    ans<-list("a"=a,"b"=b,"min"=NegLL,"AIC"=AICvalue,"call"=argument)
+    class(ans)<-"mgf"
     return(ans)
   }
 }
 
+#' @method EstMGFBetaBin default
+#' @export
+EstMGFBetaBin.default<-function(x,freq)
+{
+  est<-EstMGFBetaBin(x,freq)
+  return(est)
+}
+
+#' @method print mgf
+#' @export
+print.mgf<-function(x,...)
+{
+  cat("Call: \n")
+  print(x$call)
+  cat("\nCoefficients: \n")
+  coeff<-c(x$a,x$b)
+  names(coeff)<-c("a","b")
+  print(coeff)
+}
+
+#' @method summary mgf
+#' @export
+summary.mgf<-function(object,...)
+{
+  cat("Coefficients: \n a \t  b \n", object$a,object$b)
+  cat("\n\nNegative Log-likelihood : ",object$min)
+  cat("\n\nAIC : ",object$AIC)
+}
+
+#' @method coef mgf
+#' @export
+coef.mgf<-function(object,...)
+{
+  cat(" \t  a \t  b \n", object$a,object$b)
+}
+
+#' @method AIC mgf
+#' @export
+AIC.mgf<-function(object,...)
+{
+  return(object$AIC)
+}
+
+
 #' Fitting the Beta-Binomial Distribution when binomial random variable, frequency and shape
 #' parameters a and b are given
 #'
-#' The function will fit the beta-binomial distribution when random variables, corresponding
+#' The function will fit the Beta-Binomial distribution when random variables, corresponding
 #' frequencies and shape parameters are given. It will provide the expected frequencies, chi-squared
 #' test statistics value, p value, degree of freedom and over dispersion value so that it can be
 #' seen if this distribution fits the data.
 #'
-#' @usage fitBetaBin(x,obs.freq,a,b,print)
+#' @usage fitBetaBin(x,obs.freq,a,b)
 #'
-#' @param x                  vector of binomial random variables
-#' @param obs.freq           vector of frequencies
-#' @param a                  single value for shape parameter alpha representing as a
-#' @param b                  single value for shape parameter beta representing as b
-#' @param print              logical value for print or not
+#' @param x                  vector of binomial random variables.
+#' @param obs.freq           vector of frequencies.
+#' @param a                  single value for shape parameter alpha representing as a.
+#' @param b                  single value for shape parameter beta representing as b.
 #'
 #' @details
 #' \deqn{0 < a,b}
@@ -890,31 +952,46 @@ EstMGFBetaBin<-function(x,freq)
 #' necessary error messages will be provided to go further.
 #'
 #' @return
-#' The output of \code{fitBetaBin} gives a list format consisting
+#' The output of \code{fitBetaBin} gives the class format \code{fitBB} and \code{fit} consisting a list
 #'
-#' \code{bin.ran.var} binomial random variables
+#' \code{bin.ran.var} binomial random variables.
 #'
-#' \code{obs.freq} corresponding observed frequencies
+#' \code{obs.freq} corresponding observed frequencies.
 #'
-#' \code{exp.freq} corresponding expected frequencies
+#' \code{exp.freq} corresponding expected frequencies.
 #'
-#' \code{statistic} chi-squared test statistics
+#' \code{statistic} chi-squared test statistics.
 #'
-#' \code{df} degree of freedom
+#' \code{df} degree of freedom.
 #'
-#' \code{p.value} probability value by chi-squared test statistic
+#' \code{p.value} probability value by chi-squared test statistic.
+#'
+#' \code{fitBB} fitted values of \code{dBetaBin}.
+#'
+#' \code{NegLL} Negative Log Likelihood value.
+#'
+#' \code{a} estimated value for alpha parameter as a.
+#'
+#' \code{b} estimated value for alpha parameter as b.
+#'
+#' \code{AIC} AIC value.
 #'
 #' \code{over.dis.para} over dispersion value.
+#'
+#' \code{call} the inputs of the function.
+#'
+#' Methods \code{summary}, \code{print}, \code{AIC}, \code{residuals} and \code{fitted} can be
+#' used to extract specific outputs.
 #'
 #' @references
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract} .
+#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158} .
+#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
@@ -924,29 +1001,39 @@ EstMGFBetaBin<-function(x,freq)
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
 #'
-#'
 #' @examples
 #' No.D.D=0:7    #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
+#'
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaBin,start = list(a=0.1,b=0.1),
 #' data = list(x=No.D.D,freq=Obs.fre.1)))
+#'
 #' bbmle::coef(parameters)   #extracting the parameters a and b
 #' aBetaBin=bbmle::coef(parameters)[1]  #assigning the parameter a
 #' bBetaBin=bbmle::coef(parameters)[2]  #assigning the parameter b
+#'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
 #' fitBetaBin(No.D.D,Obs.fre.1,aBetaBin,bBetaBin)
 #'
 #' #estimating the parameters using moment generating function methods
-#' EstMGFBetaBin(No.D.D,Obs.fre.1)
-#' aBetaBin1=EstMGFBetaBin(No.D.D,Obs.fre.1)$a  #assigning the estimated a
-#' bBetaBin1=EstMGFBetaBin(No.D.D,Obs.fre.1)$b  #assigning the estimated b
+#' results<-EstMGFBetaBin(No.D.D,Obs.fre.1)
+#' results
+#'
+#' aBetaBin1=results$a  #assigning the estimated a
+#' bBetaBin1=results$b  #assigning the estimated b
+#'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
-#' fitBetaBin(No.D.D,Obs.fre.1,aBetaBin1,bBetaBin1)
+#' BB<-fitBetaBin(No.D.D,Obs.fre.1,aBetaBin1,bBetaBin1)
+#'
 #' #extracting the expected frequencies
-#' fitBetaBin(No.D.D,Obs.fre.1,aBetaBin1,bBetaBin1,FALSE)$exp.freq
+#' fitted(BB)
+#'
+#' #extracting the residuals
+#' residuals(BB)
+#'
 #' @export
-fitBetaBin<-function(x,obs.freq,a,b,print=T)
+fitBetaBin<-function(x,obs.freq,a,b)
 {
   #checking if inputs consist NA(not assigned)values, infinite values or NAN(not a number)values
   #if so creating an error message as well as stopping the function progress.
@@ -957,8 +1044,9 @@ fitBetaBin<-function(x,obs.freq,a,b,print=T)
   }
   else
   {
+    est<-dBetaBin(x,max(x),a,b)
     #for given random variables and parameters calculating the estimated probability values
-    est.prob<-dBetaBin(x,max(x),a,b)$pdf
+    est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
     #chi-squared test statistics is calculated with observed frequency and expected frequency
@@ -969,14 +1057,7 @@ fitBetaBin<-function(x,obs.freq,a,b,print=T)
     p.value<-1-stats::pchisq(statistic,df)
     #all the above information is mentioned as a message below
     #and if the user wishes they can print or not to
-    if(print==TRUE)
-    {
-    cat("\nChi-squared test for Beta-Binomial Distribution \n\n
-                 Observed Frequency : ",obs.freq,"\n
-                 expected Frequency : ",exp.freq,"\n
-                 X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n
-                 over dispersion =",dBetaBin(x,max(x),a,b)$over.dis.para,"\n")
-    }
+
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
@@ -994,12 +1075,58 @@ fitBetaBin<-function(x,obs.freq,a,b,print=T)
     {
       warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
+    #calculating Negative Log Likelihood value and AIC
+    NegLL<-NegLLBetaBin(x,obs.freq,a,b)
+    AICvalue<-2*2+NegLL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "over.dis.para"=dBetaBin(x,max(x),a,b)$over.dis.para)
+                "fitBB"=est,"NegLL"=NegLL,"a"=a,"b"=b, "AIC"=AICvalue,
+                "over.dis.para"=est$over.dis.para,"call"=match.call())
+    class(final)<-c("fitBB","fit")
+    return(final)
     }
   }
+
+#' @method fitBetaBin default
+#' @export
+fitBetaBin.default<-function(x,obs.freq,a,b)
+{
+  est<-fitBetaBin(x,obs.freq,a,b)
+  return(est)
+}
+
+#' @method print fitBB
+#' @export
+print.fitBB<-function(x,...)
+{
+  cat("Call: \n")
+  print(x$call)
+  cat("\nChi-squared test for Beta-Binomial Distribution \n\t
+          Observed Frequency : ",x$obs.freq,"\n\t
+          expected Frequency : ",x$exp.freq,"\n\t
+          estimated a parameter :",x$a, "  ,estimated b parameter :",x$b,"\n\t
+          X-squared :",x$statistic,"  ,df :",x$df,"  ,p-value :",x$p.value,"\n\t
+          over dispersion :",x$over.dis.para,"\n")
+}
+
+#' @method summary fitBB
+#' @export
+summary.fitBB<-function(object,...)
+{
+  cat("Call: \n")
+  print(object$call)
+  cat("\nChi-squared test for Beta-Binomial Distribution \n\t
+      Observed Frequency : ",object$obs.freq,"\n\t
+      expected Frequency : ",object$exp.freq,"\n\t
+      estimated a parameter :",object$a,"  ,estimated b parameter :",object$b,"\n\t
+      X-squared :",object$statistic,"  ,df :",object$df,"  ,p-value :",object$p.value,"\n\t
+      over dispersion :",object$over.dis.para,"\n\t
+      Negative Loglikehood value :",object$NegLL,"\n\t
+      AIC value :",object$AIC,"\n")
+}
+
+
 #' @importFrom bbmle mle2
 #' @importFrom stats integrate
 #' @importFrom stats pchisq

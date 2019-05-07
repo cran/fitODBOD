@@ -1,4 +1,3 @@
-#'
 #' Multiplicative  Binomial Distribution
 #'
 #' These functions provide the ability for generating probability function values and
@@ -7,15 +6,15 @@
 #' @usage
 #' dMultiBin(x,n,p,theta)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
-#' @param p        single value for probability of success
-#' @param theta    single value for theta
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
+#' @param p        single value for probability of success.
+#' @param theta    single value for theta.
 #'
 #' @details
 #' The probability function and cumulative function can be constructed and are denoted below
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{MultiBin}(x)= {n \choose x} p^x (1-p)^{n-x} \frac{(theta^{x(n-x)}}{f(p,theta,n)} }
 #'
@@ -29,16 +28,16 @@
 #' \deqn{0 < theta }
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
 #' The output of \code{dMultiBin} gives a list format consisting
 #'
-#' \code{pdf}         probability function values in vector form
+#' \code{pdf}         probability function values in vector form.
 #'
-#' \code{mean}        mean of Multiplicative Binomial Distribution
+#' \code{mean}        mean of Multiplicative Binomial Distribution.
 #'
-#' \code{var}        variance of Multiplicative Binomial Distribution
+#' \code{var}        variance of Multiplicative Binomial Distribution.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -50,7 +49,7 @@
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -64,6 +63,7 @@
 #' lines(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],pch=16)
 #' }
+#'
 #' dMultiBin(0:10,10,.58,10.022)$pdf   #extracting the pdf values
 #' dMultiBin(0:10,10,.58,10.022)$mean   #extracting the mean
 #' dMultiBin(0:10,10,.58,10.022)$var   #extracting the variance
@@ -80,6 +80,7 @@
 #' lines(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],pch=16)
 #' }
+#'
 #' pMultiBin(0:10,10,.58,10.022)     #acquiring the cumulative probability values
 #'
 #' @export
@@ -166,15 +167,15 @@ dMultiBin<-function(x,n,p,theta)
 #' @usage
 #' pMultiBin(x,n,p,theta)
 #'
-#' @param x        vector of binomial random variables
-#' @param n        single value for no of binomial trials
-#' @param p        single value for probability of success
-#' @param theta    single value for theta
+#' @param x        vector of binomial random variables.
+#' @param n        single value for no of binomial trials.
+#' @param p        single value for probability of success.
+#' @param theta    single value for theta.
 #'
 #' @details
 #' The probability function and cumulative function can be constructed and are denoted below
 #'
-#' The cumulative probability function is the summation of probability function values
+#' The cumulative probability function is the summation of probability function values.
 #'
 #' \deqn{P_{MultiBin}(x)= {n \choose x} p^x (1-p)^{n-x} \frac{(theta^{x(n-x)}}{f(p,theta,n)} }
 #'
@@ -188,10 +189,9 @@ dMultiBin<-function(x,n,p,theta)
 #' \deqn{0 < theta }
 #'
 #' \strong{NOTE} : If input parameters are not in given domain conditions
-#' necessary error messages will be provided to go further
+#' necessary error messages will be provided to go further.
 #'
 #' @return
-#'
 #' The output of \code{pMultiBin} gives cumulative probability values in vector form.
 #'
 #' @references
@@ -204,7 +204,7 @@ dMultiBin<-function(x,n,p,theta)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -218,6 +218,7 @@ dMultiBin<-function(x,n,p,theta)
 #' lines(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dMultiBin(0:10,10,a[i],1+b[i])$pdf,col = col[i],pch=16)
 #' }
+#'
 #' dMultiBin(0:10,10,.58,10.022)$pdf   #extracting the pdf values
 #' dMultiBin(0:10,10,.58,10.022)$mean   #extracting the mean
 #' dMultiBin(0:10,10,.58,10.022)$var   #extracting the variance
@@ -233,6 +234,7 @@ dMultiBin<-function(x,n,p,theta)
 #' lines(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],lwd=2.85)
 #' points(0:10,pMultiBin(0:10,10,a[i],1+b[i]),col = col[i],pch=16)
 #' }
+#'
 #' pMultiBin(0:10,10,.58,10.022)     #acquiring the cumulative probability values
 #'
 #' @export
@@ -258,10 +260,10 @@ pMultiBin<-function(x,n,p,theta)
 #' @usage
 #' NegLLMultiBin(x,freq,p,theta)
 #'
-#' @param x                 vector of binomial random variables
-#' @param freq              vector of frequencies
-#' @param p                 single value for probability of success
-#' @param theta             single value for theta parameter
+#' @param x                 vector of binomial random variables.
+#' @param freq              vector of frequencies.
+#' @param p                 single value for probability of success.
+#' @param theta             single value for theta parameter.
 #'
 #' @details
 #' \deqn{freq \ge 0}
@@ -270,7 +272,7 @@ pMultiBin<-function(x,n,p,theta)
 #' \deqn{0 < theta }
 #'
 #' @return
-#' The output of \code{NegLLMultiBin} will produce a single numeric value
+#' The output of \code{NegLLMultiBin} will produce a single numeric value.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -282,11 +284,12 @@ pMultiBin<-function(x,n,p,theta)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
 #'
 #' @examples
 #' No.D.D=0:7       #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
+#'
 #' NegLLMultiBin(No.D.D,Obs.fre.1,.5,3)    #acquiring the negative log likelihood value
 #'
 #' @export
@@ -355,15 +358,15 @@ NegLLMultiBin<-function(x,freq,p,theta)
 #'
 #' The function will estimate the probability of success and theta parameter using the
 #' maximum log likelihood method for the Multiplicative Binomial distribution when the binomial random
-#' variables and corresponding frequencies are given
+#' variables and corresponding frequencies are given.
 #'
 #' @usage
 #' EstMLEMultiBin(x,freq,p,theta)
 #'
-#' @param x                 vector of binomial random variables
-#' @param freq              vector of frequencies
-#' @param p                 single value for probability of success
-#' @param theta             single value for theta parameter
+#' @param x                 vector of binomial random variables.
+#' @param freq              vector of frequencies.
+#' @param p                 single value for probability of success.
+#' @param theta             single value for theta parameter.
 #'
 #' @details
 #' \deqn{freq \ge 0}
@@ -390,13 +393,14 @@ NegLLMultiBin<-function(x,freq,p,theta)
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
 #'
-#'
 #' @examples
 #' No.D.D=0:7         #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
+#'
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLEMultiBin,start = list(p=0.5,theta=15),
 #'            data = list(x=No.D.D,freq=Obs.fre.1)))
+#'
 #' bbmle::coef(parameters)           #extracting the parameters
 #'
 #' @export
@@ -421,19 +425,18 @@ EstMLEMultiBin<-function(x,freq,p,theta)
 #' Fitting the Multiplicative Binomial Distribution when binomial
 #' random variable, frequency, probability of success and theta parameter are given
 #'
-#' The function will fit the Multiplicative binomial distribution
+#' The function will fit the Multiplicative Binomial distribution
 #' when random variables, corresponding frequencies, probability of success and theta parameter
 #' are given. It will provide the expected frequencies, chi-squared test statistics value,
 #' p value and degree of freedom  value so that it can be seen if this distribution
 #' fits the data.
 #'
-#' @usage fitMultiBin(x,obs.freq,p,theta,print)
+#' @usage fitMultiBin(x,obs.freq,p,theta)
 #'
-#' @param x                  vector of binomial random variables
-#' @param obs.freq           vector of frequencies
-#' @param p                  single value for probability of success
-#' @param theta              single value for theta parameter
-#' @param print              logical value for print or not
+#' @param x                  vector of binomial random variables.
+#' @param obs.freq           vector of frequencies.
+#' @param p                  single value for probability of success.
+#' @param theta              single value for theta parameter.
 #'
 #' @details
 #' \deqn{obs.freq \ge 0}
@@ -442,19 +445,34 @@ EstMLEMultiBin<-function(x,freq,p,theta)
 #' \deqn{0 < theta }
 #'
 #' @return
-#' The output of \code{fitMultiBin} gives a list format consisting
+#' The output of \code{fitMultiBin} gives the class format \code{fitMuB} and \code{fit} consisting a list
 #'
-#' \code{bin.ran.var} binomial random variables
+#' \code{bin.ran.var} binomial random variables.
 #'
-#' \code{obs.freq} corresponding observed frequencies
+#' \code{obs.freq} corresponding observed frequencies.
 #'
-#' \code{exp.freq} corresponding expected frequencies
+#' \code{exp.freq} corresponding expected frequencies.
 #'
-#' \code{statistic} chi-squared test statistics
+#' \code{statistic} chi-squared test statistics.
 #'
-#' \code{df} degree of freedom
+#' \code{df} degree of freedom.
 #'
-#' \code{p.value} probability value by chi-squared test statistic
+#' \code{p.value} probability value by chi-squared test statistic.
+#'
+#' \code{fitMuB} fitted probability values of \code{dMultiBin}.
+#'
+#' \code{NegLL} Negative Log Likelihood value.
+#'
+#' \code{p} estimated probability value.
+#'
+#' \code{theta} estimated theta parameter value.
+#'
+#' \code{AIC} AIC value.
+#'
+#' \code{call} the inputs of the function.
+#'
+#' Methods \code{summary}, \code{print}, \code{AIC}, \code{residuals} and \code{fitted}
+#' can be used to extract specific outputs.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -466,28 +484,34 @@ EstMLEMultiBin<-function(x,freq,p,theta)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
 #'
-#'
 #' @examples
 #' No.D.D=0:7       #assigning the random variables
 #' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#'
 #' #estimating the parameters using maximum log likelihood value and assigning it
 #' parameters=suppressWarnings(bbmle::mle2(EstMLEMultiBin,start = list(p=0.1,theta=.3),
 #'           data = list(x=No.D.D,freq=Obs.fre.1)))
+#'
 #' pMultiBin=bbmle::coef(parameters)[1]    #assigning the estimated probability value
 #' thetaMultiBin=bbmle::coef(parameters)[2]  #assigning the estimated theta value
 #'
 #' #fitting when the random variable,frequencies,probability and theta are given
-#' fitMultiBin(No.D.D,Obs.fre.1,pMultiBin,thetaMultiBin)
+#' results<-fitMultiBin(No.D.D,Obs.fre.1,pMultiBin,thetaMultiBin)
+#' results
 #'
-#' #extracting the expected frequencies
-#' fitMultiBin(No.D.D,Obs.fre.1,pMultiBin,thetaMultiBin,FALSE)$exp.freq
+#' #extracting the AIC value
+#' AIC(results)
+#'
+#' #extract fitted values
+#' fitted(results)
+#'
 #' @export
-fitMultiBin<-function(x,obs.freq,p,theta,print=T)
+fitMultiBin<-function(x,obs.freq,p,theta)
 {
   #checking if inputs consist NA(not assigned)values, infinite values or NAN(not a number)values
   #if so creating an error message as well as stopping the function progress.
@@ -498,8 +522,9 @@ fitMultiBin<-function(x,obs.freq,p,theta,print=T)
   }
   else
   {
+    est<-dMultiBin(x,max(x),p,theta)
     #for given random variables and parameters calculating the estimated probability values
-    est.prob<-dMultiBin(x,max(x),p,theta)$pdf
+    est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
     exp.freq<-round((sum(obs.freq)*est.prob),2)
     #chi-squared test statistics is calculated with observed frequency and expected frequency
@@ -508,15 +533,7 @@ fitMultiBin<-function(x,obs.freq,p,theta,print=T)
     df<-length(x)-3
     #p value of chi-squared test statistic is calculated
     p.value<-1-stats::pchisq(statistic,df)
-    #all the above information is mentioned as a message below
-    #and if the user wishes they can print or not to
-    if(print==TRUE)
-    {
-      cat("\nChi-squared test for Multiplicative Binomial Distribution\n\n
-                 Observed Frequency : ",obs.freq,"\n
-                 expected Frequency : ",exp.freq,"\n
-                 X-squared =",round(statistic,4),"df =",df,"  p-value =",round(p.value,4),"\n")
-    }
+
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
@@ -534,10 +551,54 @@ fitMultiBin<-function(x,obs.freq,p,theta,print=T)
     {
       warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
+    #calculating Negative log likelihood value and AIC
+    NegLL<-NegLLMultiBin(x,obs.freq,p,theta)
+    AICvalue<-2*2+NegLL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
-                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4))
+                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
+                "fitMuB"=est,"NegLL"=NegLL,"p"=p,"theta"=theta,"AIC"=AICvalue,
+                "call"=match.call())
+    class(final)<-c("fitMuB","fit")
+    return(final)
   }
 }
+
+#' @method fitMultiBin default
+#' @export
+fitMultiBin.default<-function(x,obs.freq,p,theta)
+{
+  est<-fitMultiBin(x,obs.freq,p,theta)
+  return(est)
+}
+
+#' @method print fitMuB
+#' @export
+print.fitMuB<-function(x,...)
+{
+  cat("Call: \n")
+  print(x$call)
+  cat("\nChi-squared test for Multiplicative Binomial Distribution \n\t
+      Observed Frequency : ",x$obs.freq,"\n\t
+      expected Frequency : ",x$exp.freq,"\n\t
+      estimated p value :",x$p," ,estimated theta parameter :",x$theta,"\n\t
+      X-squared :",x$statistic,"  ,df :",x$df,"  ,p-value :",x$p.value,"\n")
+}
+
+#' @method summary fitMuB
+#' @export
+summary.fitMuB<-function(object,...)
+{
+  cat("Call: \n")
+  print(object$call)
+  cat("\nChi-squared test for Multiplicative Binomial Distribution \n\t
+      Observed Frequency : ",object$obs.freq,"\n\t
+      expected Frequency : ",object$exp.freq,"\n\t
+      estimated p value :",object$p," ,estimated theta parameter :",object$theta,"\n\t
+      X-squared :",object$statistic,"  ,df :",object$df,"  ,p-value :",object$p.value,"\n\t
+      Negative Loglikehood value :",object$NegLL,"\n\t
+      AIC value :",object$AIC,"\n")
+}
+
 #' @importFrom bbmle mle2
 #' @importFrom stats pchisq

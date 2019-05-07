@@ -5,36 +5,49 @@
 \title{Fitting the COM Poisson Binomial Distribution when binomial
 random variable, frequency, probability of success and v parameter are given}
 \usage{
-fitCOMPBin(x,obs.freq,p,v,print)
+fitCOMPBin(x,obs.freq,p,v)
 }
 \arguments{
-\item{x}{vector of binomial random variables}
+\item{x}{vector of binomial random variables.}
 
-\item{obs.freq}{vector of frequencies}
+\item{obs.freq}{vector of frequencies.}
 
-\item{p}{single value for probability of success}
+\item{p}{single value for probability of success.}
 
-\item{v}{single value for v}
-
-\item{print}{logical value for print or not}
+\item{v}{single value for v.}
 }
 \value{
-The output of \code{fitCOMPBin} gives a list format consisting
+The output of \code{fitCOMPBin} gives the class format \code{fitCPB} and \code{fit} consisting a list
 
-\code{bin.ran.var} binomial random variables
+\code{bin.ran.var} binomial random variables.
 
-\code{obs.freq} corresponding observed frequencies
+\code{obs.freq} corresponding observed frequencies.
 
-\code{exp.freq} corresponding expected frequencies
+\code{exp.freq} corresponding expected frequencies.
 
-\code{statistic} chi-squared test statistics
+\code{statistic} chi-squared test statistics.
 
-\code{df} degree of freedom
+\code{df} degree of freedom.
 
-\code{p.value} probability value by chi-squared test statistic
+\code{p.value} probability value by chi-squared test statistic.
+
+\code{fitCPB} fitted probability values of \code{dCOMPBin}.
+
+\code{NegLL} Negative Log Likelihood value.
+
+\code{p} estimated probability value.
+
+\code{v} estimated v parameter value.
+
+\code{AIC} AIC value.
+
+\code{call} the inputs of the function.
+
+Methods \code{summary}, \code{print}, \code{AIC}, \code{residuals} and \code{fitted}
+can be used to extract specific outputs.
 }
 \description{
-The function will fit the COM Poisson binomial Distribution
+The function will fit the COM Poisson Binomial Distribution
 when random variables, corresponding frequencies, probability of success and v parameter are given.
 It will provide the expected frequencies, chi-squared test statistics value, p value,
 and degree of freedom so that it can be seen if this distribution fits the data.
@@ -46,7 +59,7 @@ and degree of freedom so that it can be seen if this distribution fits the data.
 \deqn{-\infty < v < +\infty}
 
 \strong{NOTE} : If input parameters are not in given domain conditions
-necessary error messages will be provided to go further
+necessary error messages will be provided to go further.
 }
 \examples{
 No.D.D=0:7                    #assigning the random variables
@@ -55,12 +68,20 @@ Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequenci
 #estimating the parameters using maximum log likelihood value and assigning it
 parameters=suppressWarnings(bbmle::mle2(EstMLECOMPBin,start = list(p=0.5,v=0.050),
            data = list(x=No.D.D,freq=Obs.fre.1)))
+
 pCOMPBin=bbmle::coef(parameters)[1]
 vCOMPBin=bbmle::coef(parameters)[2]
+
 #fitting when the random variable,frequencies,probability and v parameter are given
-fitCOMPBin(No.D.D,Obs.fre.1,pCOMPBin,vCOMPBin)
-#extracting the expected frequencies
-fitCOMPBin(No.D.D,Obs.fre.1,pCOMPBin,vCOMPBin,FALSE)$exp.freq
+results<-fitCOMPBin(No.D.D,Obs.fre.1,pCOMPBin,vCOMPBin)
+results
+
+#extracting the AIC value
+AIC(results)
+
+#extract fitted values
+fitted(results)
+
 }
 \references{
 Borges, P., Rodrigues, J., Balakrishnan, N. and Bazan, J., 2014. A COM-Poisson type
