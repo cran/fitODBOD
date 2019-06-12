@@ -445,12 +445,10 @@ mazKUM<-function(r,a,b)
 #' points(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],pch=16)
 #' }
 #'
-#'
 #' dKumBin(0:10,10,4,2)$pdf  #extracting the pdf values
 #' dKumBin(0:10,10,4,2)$mean #extracting the mean
 #' dKumBin(0:10,10,4,2)$var  #extracting the variance
 #' dKumBin(0:10,10,4,2)$over.dis.para #extracting the over dispersion value
-#'
 #'
 #' #plotting the random variables and cumulative probability values
 #' col<-rainbow(5)
@@ -462,9 +460,9 @@ mazKUM<-function(r,a,b)
 #' lines(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' }
-#'           }
 #'
 #' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
+#'       }
 #'
 #' @export
 dKumBin<-function(x,n,a,b,it=25000)
@@ -611,12 +609,10 @@ dKumBin<-function(x,n,a,b,it=25000)
 #' points(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],pch=16)
 #' }
 #'
-#'
 #' dKumBin(0:10,10,4,2)$pdf  #extracting the pdf values
 #' dKumBin(0:10,10,4,2)$mean #extracting the mean
 #' dKumBin(0:10,10,4,2)$var  #extracting the variance
 #' dKumBin(0:10,10,4,2)$over.dis.para #extracting the over dispersion value
-#'
 #'
 #' #plotting the random variables and cumulative probability values
 #' col<-rainbow(5)
@@ -628,9 +624,9 @@ dKumBin<-function(x,n,a,b,it=25000)
 #' lines(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' }
-#'            }
 #'
 #' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
+#'       }
 #'
 #' @export
 pKumBin<-function(x,n,a,b,it=25000)
@@ -686,6 +682,7 @@ pKumBin<-function(x,n,a,b,it=25000)
 #' \dontrun{
 #' NegLLKumBin(No.D.D,Obs.fre.1,1.3,4.4) #acquiring the negative log likelihood value
 #'         }
+#'
 #' @export
 NegLLKumBin<-function(x,freq,a,b,it=25000)
 {
@@ -918,7 +915,7 @@ EstMLEKumBin<-function(x,freq,a,b,it)
 #'
 #' #extracting the residuals
 #' residuals(results)
-#'         }
+#'       }
 #'
 #' @export
 fitKumBin<-function(x,obs.freq,a,b,it)

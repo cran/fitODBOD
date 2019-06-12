@@ -679,7 +679,7 @@ coef.mlAB<-function(object,...)
 #'
 #' #extract fitted values
 #' fitted(results)
-#'        }
+#'       }
 #'
 #' @export
 fitAddBin<-function(x,obs.freq,p,alpha)

@@ -42,6 +42,7 @@ Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
 \dontrun{
 NegLLKumBin(No.D.D,Obs.fre.1,1.3,4.4) #acquiring the negative log likelihood value
         }
+
 }
 \references{
 Li, X. H., Huang, Y. Y., & Zhao, X. Y. (2011). The Kumaraswamy Binomial Distribution. Chinese Journal
