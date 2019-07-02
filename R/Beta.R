@@ -60,8 +60,8 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
@@ -74,8 +74,8 @@
 #' dBETA(seq(0,1,by=0.01),2,3)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:4)
@@ -187,8 +187,8 @@ dBETA<-function(p,a,b)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
@@ -201,8 +201,8 @@ dBETA<-function(p,a,b)
 #' dBETA(seq(0,1,by=0.01),2,3)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:4)
@@ -319,8 +319,8 @@ pBETA<-function(p,a,b)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
@@ -333,8 +333,8 @@ pBETA<-function(p,a,b)
 #' dBETA(seq(0,1,by=0.01),2,3)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:4)
@@ -451,8 +451,8 @@ mazBETA<-function(r,a,b)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(1,2,5,10,0.2)
+#' col <- rainbow(5)
+#' a <- c(1,2,5,10,0.2)
 #' plot(0,0,main="Beta-binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -467,8 +467,8 @@ mazBETA<-function(r,a,b)
 #' dBetaBin(0:10,10,4,.2)$over.dis.para  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:4)
@@ -579,8 +579,8 @@ dBetaBin<-function(x,n,a,b)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(1,2,5,10,0.2)
+#' col <- rainbow(5)
+#' a <- c(1,2,5,10,0.2)
 #' plot(0,0,main="Beta-binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -595,8 +595,8 @@ dBetaBin<-function(x,n,a,b)
 #' dBetaBin(0:10,10,4,.2)$over.dis.para  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:4)
@@ -662,8 +662,8 @@ pBetaBin<-function(x,n,a,b)
 #' Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
 #'
 #' NegLLBetaBin(No.D.D,Obs.fre.1,.3,.4)   #acquiring the negative log likelihood value
 #'
@@ -714,13 +714,14 @@ NegLLBetaBin<-function(x,freq,a,b)
 #' random variables and corresponding frequencies are given.
 #'
 #' @usage
-#' EstMLEBetaBin(x,freq,a,b)
+#' EstMLEBetaBin(x,freq,a,b,...)
 #'
 #'
-#' @param x                  vector of binomial random variables.
-#' @param freq               vector of frequencies.
-#' @param a                  single value for shape parameter alpha representing as a.
-#' @param b                  single value for shape parameter beta representing as b.
+#' @param x             vector of binomial random variables.
+#' @param freq          vector of frequencies.
+#' @param a             single value for shape parameter alpha representing as a.
+#' @param b             single value for shape parameter beta representing as b.
+#' @param ...           mle2 function inputs except data and estimating parameter.
 #'
 #'
 #' @details
@@ -732,7 +733,7 @@ NegLLBetaBin<-function(x,freq,a,b)
 #'  messages will be provided to go further.
 #'
 #' @return
-#' \code{EstMLEBetaBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle} package
+#' \code{EstMLEBetaBin} here is used as a wrapper for the \code{mle2} function of \pkg{bbmle} package
 #' therefore output is of class of mle2.
 #'
 #' @references
@@ -754,20 +755,35 @@ NegLLBetaBin<-function(x,freq,a,b)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7        #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#' No.D.D <- 0:7        #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaBin,start = list(a=0.1,b=0.1),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' estimate <- EstMLEBetaBin(No.D.D,Obs.fre.1,a=0.1,b=0.1)
 #'
-#' bbmle::coef(parameters)   #extracting the parameters
+#' bbmle::coef(estimate)   #extracting the parameters
 #'
 #' #estimating the parameters using moment generating function methods
 #' EstMGFBetaBin(No.D.D,Obs.fre.1)
 #'
-#' @export
-EstMLEBetaBin<-function(x,freq,a,b)
+#'@export
+EstMLEBetaBin<-function(x,freq,a,b,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  suppressWarnings2(bbmle::mle2(.EstMLEBetaBin,data=list(x=x,freq=freq),
+                      start = list(a=a,b=b),...),"NaN")
+}
+
+.EstMLEBetaBin<-function(x,freq,a,b)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -836,17 +852,16 @@ EstMLEBetaBin<-function(x,freq,a,b)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7        #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#' No.D.D <- 0:7        #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaBin,start = list(a=0.1,b=0.1),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' estimate <- EstMLEBetaBin(No.D.D,Obs.fre.1,a=0.1,b=0.1)
 #'
-#' bbmle::coef(parameters)   #extracting the parameters
+#' bbmle::coef(estimate)   #extracting the parameters
 #'
 #' #estimating the parameters using moment generating function methods
-#' results<-EstMGFBetaBin(No.D.D,Obs.fre.1)
+#' results <- EstMGFBetaBin(No.D.D,Obs.fre.1)
 #'
 #' # extract the estimated parameters and summary
 #' coef(results)
@@ -1002,29 +1017,28 @@ AIC.mgf<-function(object,...)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7    #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
+#' No.D.D <- 0:7    #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaBin,start = list(a=0.1,b=0.1),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEBetaBin(No.D.D,Obs.fre.1,0.1,0.1)
 #'
 #' bbmle::coef(parameters)   #extracting the parameters a and b
-#' aBetaBin=bbmle::coef(parameters)[1]  #assigning the parameter a
-#' bBetaBin=bbmle::coef(parameters)[2]  #assigning the parameter b
+#' aBetaBin <- bbmle::coef(parameters)[1]  #assigning the parameter a
+#' bBetaBin <- bbmle::coef(parameters)[2]  #assigning the parameter b
 #'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
 #' fitBetaBin(No.D.D,Obs.fre.1,aBetaBin,bBetaBin)
 #'
 #' #estimating the parameters using moment generating function methods
-#' results<-EstMGFBetaBin(No.D.D,Obs.fre.1)
+#' results <- EstMGFBetaBin(No.D.D,Obs.fre.1)
 #' results
 #'
-#' aBetaBin1=results$a  #assigning the estimated a
-#' bBetaBin1=results$b  #assigning the estimated b
+#' aBetaBin1 <- results$a  #assigning the estimated a
+#' bBetaBin1 <- results$b  #assigning the estimated b
 #'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
-#' BB<-fitBetaBin(No.D.D,Obs.fre.1,aBetaBin1,bBetaBin1)
+#' BB <- fitBetaBin(No.D.D,Obs.fre.1,aBetaBin1,bBetaBin1)
 #'
 #' #extracting the expected frequencies
 #' fitted(BB)
@@ -1061,19 +1075,19 @@ fitBetaBin<-function(x,obs.freq,a,b)
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      stop("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative Log Likelihood value and AIC
     NegLL<-NegLLBetaBin(x,obs.freq,a,b)
@@ -1125,8 +1139,3 @@ summary.fitBB<-function(object,...)
       Negative Loglikehood value :",object$NegLL,"\n\t
       AIC value :",object$AIC,"\n")
 }
-
-
-#' @importFrom bbmle mle2
-#' @importFrom stats integrate
-#' @importFrom stats pchisq

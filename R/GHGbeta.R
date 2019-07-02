@@ -60,8 +60,8 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(.1,.2,.3,1.5,2.15)
+#' col <- rainbow(5)
+#' a <- c(.1,.2,.3,1.5,2.15)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,10))
 #' for (i in 1:5)
@@ -74,8 +74,8 @@
 #' dGHGBeta(seq(0,1,by=0.01),7,1.6312,0.3913,0.6659)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(6)
-#' a<-c(.1,.2,.3,1.5,2.1,3)
+#' col <- rainbow(6)
+#' a <- c(.1,.2,.3,1.5,2.1,3)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:6)
@@ -215,8 +215,8 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(.1,.2,.3,1.5,2.15)
+#' col <- rainbow(5)
+#' a <- c(.1,.2,.3,1.5,2.15)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,10))
 #' for (i in 1:5)
@@ -229,8 +229,8 @@
 #' dGHGBeta(seq(0,1,by=0.01),7,1.6312,0.3913,0.6659)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(6)
-#' a<-c(.1,.2,.3,1.5,2.1,3)
+#' col <- rainbow(6)
+#' a <- c(.1,.2,.3,1.5,2.1,3)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:6)
@@ -372,8 +372,8 @@ pGHGBeta<-function(p,n,a,b,c)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(.1,.2,.3,1.5,2.15)
+#' col <- rainbow(5)
+#' a <- c(.1,.2,.3,1.5,2.15)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,10))
 #' for (i in 1:5)
@@ -386,8 +386,8 @@ pGHGBeta<-function(p,n,a,b,c)
 #' dGHGBeta(seq(0,1,by=0.01),7,1.6312,0.3913,0.6659)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(6)
-#' a<-c(.1,.2,.3,1.5,2.1,3)
+#' col <- rainbow(6)
+#' a <- c(.1,.2,.3,1.5,2.1,3)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:6)
@@ -539,8 +539,8 @@ mazGHGBeta<-function(r,n,a,b,c)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(6)
-#' a<-c(.1,.2,.3,1.5,2.1,3)
+#' col <- rainbow(6)
+#' a <- c(.1,.2,.3,1.5,2.1,3)
 #' plot(0,0,main="GHGBB probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,7),ylim = c(0,0.9))
 #' for (i in 1:6)
@@ -555,8 +555,8 @@ mazGHGBeta<-function(r,n,a,b,c)
 #' dGHGBB(0:7,7,1.3,0.3,1.3)$over.dis.par  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,7),ylim = c(0,1))
 #' for (i in 1:4)
@@ -686,8 +686,8 @@ dGHGBB<-function(x,n,a,b,c)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(6)
-#' a<-c(.1,.2,.3,1.5,2.1,3)
+#' col <- rainbow(6)
+#' a <- c(.1,.2,.3,1.5,2.1,3)
 #' plot(0,0,main="GHGBB probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,7),ylim = c(0,0.9))
 #' for (i in 1:6)
@@ -702,8 +702,8 @@ dGHGBB<-function(x,n,a,b,c)
 #' dGHGBB(0:7,7,1.3,0.3,1.3)$over.dis.par  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,7),ylim = c(0,1))
 #' for (i in 1:4)
@@ -766,8 +766,8 @@ pGHGBB<-function(x,n,a,b,c)
 #' \code{\link[hypergeo]{hypergeo_powerseries}}
 #'
 #' @examples
-#' No.D.D=0:7                    #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#' No.D.D <- 0:7                    #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 #' NegLLGHGBB(No.D.D,Obs.fre.1,.2,.3,1)     #acquiring the negative log likelihood value
 #'
 #' @export
@@ -828,13 +828,14 @@ NegLLGHGBB<-function(x,freq,a,b,c)
 #' variables and corresponding frequencies are given.
 #'
 #' @usage
-#' EstMLEGHGBB(x,freq,a,b,c)
+#' EstMLEGHGBB(x,freq,a,b,c,...)
 #'
 #' @param x                vector of binomial random variables.
 #' @param freq             vector of frequencies.
 #' @param a                single value for shape parameter alpha representing a.
 #' @param b                single value for shape parameter beta representing b.
 #' @param c                single value for shape parameter lambda representing c.
+#' @param ...              mle2 function inputs except data and estimating parameter.
 #'
 #' @details
 #' \deqn{0 < a,b,c}
@@ -845,8 +846,8 @@ NegLLGHGBB<-function(x,freq,a,b,c)
 #' error messages will be provided to go further.
 #'
 #' @return
-#' \code{EstMLEGHGBB} here is used as a input parameter for the \code{mle2} function of
-#' \pkg{bbmle} package.
+#' \code{EstMLEGHGBB} here is used as a wrapper for the \code{mle2} function of
+#' \pkg{bbmle} package therefore output is of class of mle2.
 #'
 #' @references
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
@@ -864,17 +865,34 @@ NegLLGHGBB<-function(x,freq,a,b,c)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7           #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#' No.D.D <- 0:7           #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEGHGBB,start = list(a=0.1,b=0.1,c=0.2),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEGHGBB(No.D.D,Obs.fre.1,a=0.1,b=0.2,c=0.5)
 #'
 #' bbmle::coef(parameters)   #extracting the parameters
 #'
-#' @export
-EstMLEGHGBB<-function(x,freq,a,b,c)
+#'@export
+EstMLEGHGBB<-function(x,freq,a,b,c,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  output<-suppressWarnings2(bbmle::mle2(.EstMLEGHGBB,data=list(x=x,freq=freq),
+                                        start = list(a=a,b=b,c=c),...),"NaN")
+  return(output)
+}
+
+
+.EstMLEGHGBB<-function(x,freq,a,b,c)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -961,20 +979,19 @@ EstMLEGHGBB<-function(x,freq,a,b,c)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7        #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)       #assigning the corresponding frequencies
+#' No.D.D <- 0:7        #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)       #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEGHGBB,start = list(a=0.1,b=0.1,c=0.2),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEGHGBB(No.D.D,Obs.fre.1,0.1,20,1.3)
 #'
 #' bbmle::coef(parameters)         #extracting the parameters
-#' aGHGBB=bbmle::coef(parameters)[1]  #assigning the estimated a
-#' bGHGBB=bbmle::coef(parameters)[2]  #assigning the estimated b
-#' cGHGBB=bbmle::coef(parameters)[3]  #assigning the estimated c
+#' aGHGBB <- bbmle::coef(parameters)[1]  #assigning the estimated a
+#' bGHGBB <- bbmle::coef(parameters)[2]  #assigning the estimated b
+#' cGHGBB <- bbmle::coef(parameters)[3]  #assigning the estimated c
 #'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
-#' results<-fitGHGBB(No.D.D,Obs.fre.1,aGHGBB,bGHGBB,cGHGBB)
+#' results <- fitGHGBB(No.D.D,Obs.fre.1,aGHGBB,bGHGBB,cGHGBB)
 #' results
 #'
 #' #extracting the expected frequencies
@@ -1012,19 +1029,19 @@ fitGHGBB<-function(x,obs.freq,a,b,c)
       #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      stop("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLGHGBB(x,obs.freq,a,b,c)
@@ -1056,7 +1073,8 @@ print.fitGB<-function(x,...)
   cat("\nChi-squared test for Gaussian Hypergeometric Generalized Beta-Binomial Distribution \n\t
       Observed Frequency : ",x$obs.freq,"\n\t
       expected Frequency : ",x$exp.freq,"\n\t
-      estimated a parameter :",x$a, "  ,estimated b parameter :",x$b," ,estimated c parameter :",x$c,"\n\t
+      estimated a parameter :",x$a, "  ,estimated b parameter :",x$b,",\n\t
+      estimated c parameter :",x$c,"\n\t
       X-squared :",x$statistic,"  ,df :",x$df,"  ,p-value :",x$p.value,"\n\t
       over dispersion :",x$over.dis.para,"\n")
 }
@@ -1070,12 +1088,10 @@ summary.fitGB<-function(object,...)
   cat("\nChi-squared test for Gaussian Hypergeometric Generalized Beta-Binomial Distribution \n\t
       Observed Frequency : ",object$obs.freq,"\n\t
       expected Frequency : ",object$exp.freq,"\n\t
-      estimated a parameter :",object$a," ,estimated b parameter :",object$b," ,estimated c value :",object$it,"\n\t
+      estimated a parameter :",object$a," ,estimated b parameter :",object$b,",\n\t
+      estimated c parameter :",object$c,"\n\t
       X-squared :",object$statistic,"  ,df :",object$df,"  ,p-value :",object$p.value,"\n\t
       over dispersion :",object$over.dis.para,"\n\t
       Negative Loglikehood value :",object$NegLL,"\n\t
       AIC value :",object$AIC,"\n")
 }
-
-#' @importFrom bbmle mle2
-#' @import hypergeo

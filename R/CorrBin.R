@@ -68,9 +68,9 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -87,9 +87,9 @@
 #' dCorrBin(0:10,10,0.58,0.022)$maxcorr  #extracting the maximum correlation value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
@@ -243,9 +243,9 @@ dCorrBin<-function(x,n,p,cov)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -262,9 +262,9 @@ dCorrBin<-function(x,n,p,cov)
 #' dCorrBin(0:10,10,0.58,0.022)$maxcorr  #extracting the maximum correlation value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
@@ -330,8 +330,8 @@ pCorrBin<-function(x,n,p,cov)
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
 #' @examples
-#' No.D.D=0:7         #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
+#' No.D.D <- 0:7         #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
 #'
 #' NegLLCorrBin(No.D.D,Obs.fre.1,.5,.03)     #acquiring the negative log likelihood value
 #'
@@ -423,13 +423,14 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' variables and corresponding frequencies are given.
 #'
 #' @usage
-#' EstMLECorrBin(x,freq,p,cov)
+#' EstMLECorrBin(x,freq,p,cov,...)
 #'
 #'
 #' @param x       vector of binomial random variables.
 #' @param freq    vector of frequencies.
 #' @param p       single value for probability of success.
 #' @param cov     single value for covariance.
+#' @param ...     mle2 function inputs except data and estimating parameter.
 #'
 #' @details
 #' \deqn{x = 0,1,2,...}
@@ -441,7 +442,7 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' necessary error messages will be provided to go further.
 #'
 #' @return
-#' \code{EstMLECorrBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle} package
+#' \code{EstMLECorrBin} here is used as a wrapper for the \code{mle2} function of \pkg{bbmle} package
 #' therefore output is of class of mle2.
 #'
 #' @references
@@ -462,17 +463,34 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7               #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#' No.D.D <- 0:7               #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
-#'                        data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLECorrBin(x=No.D.D,freq=Obs.fre.1,p=0.5,cov=0.0050)
 #'
 #' bbmle::coef(parameters)           #extracting the parameters
 #'
-#' @export
-EstMLECorrBin<-function(x,freq,p,cov)
+#'@export
+EstMLECorrBin<-function(x,freq,p,cov,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  output<-suppressWarnings2(bbmle::mle2(.EstMLECorrBin,data=list(x=x,freq=freq),
+                                        start = list(p=p,cov=cov),...),"NaN")
+  return(output)
+}
+
+
+.EstMLECorrBin<-function(x,freq,p,cov)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -562,18 +580,17 @@ EstMLECorrBin<-function(x,freq,p,cov)
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLECorrBin,start = list(p=0.5,cov=0.0050),
-#'            data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLECorrBin(x=No.D.D,freq=Obs.fre.1,p=0.5,cov=0.0050)
 #'
-#' pCorrBin=bbmle::coef(parameters)[1]
-#' covCorrBin=bbmle::coef(parameters)[2]
+#' pCorrBin <- bbmle::coef(parameters)[1]
+#' covCorrBin <- bbmle::coef(parameters)[2]
 #'
 #' #fitting when the random variable,frequencies,probability and covariance are given
-#' results<-fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin)
+#' results <- fitCorrBin(No.D.D,Obs.fre.1,pCorrBin,covCorrBin)
 #' results
 #'
 #' #extracting the AIC value
@@ -606,22 +623,22 @@ fitCorrBin<-function(x,obs.freq,p,cov)
     #p value of chi-squared test statistic is calculated
     p.value<-1-stats::pchisq(statistic,df)
 
+    #checking if df is less than or equal to zero
+    if(df<0 | df==0)
+    {
+      stop("Degrees of freedom cannot be less than or equal to zero")
+    }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
-    }
-    #checking if df is less than or equal to zero
-    if(df<0 | df==0)
-    {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative log likelihood value and AIC
     NegLL<-NegLLCorrBin(x,obs.freq,p,cov)

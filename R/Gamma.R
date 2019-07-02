@@ -52,8 +52,8 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
@@ -66,8 +66,8 @@
 #' dGAMMA(seq(0,1,by=0.01),5,6)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:4)
@@ -172,8 +172,8 @@ dGAMMA<-function(p,c,l)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
@@ -186,8 +186,8 @@ dGAMMA<-function(p,c,l)
 #' dGAMMA(seq(0,1,by=0.01),5,6)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:4)
@@ -296,8 +296,8 @@ pGAMMA<-function(p,c,l)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Probability density graph",xlab="Random variable",ylab="Probability density values",
 #' xlim = c(0,1),ylim = c(0,4))
 #' for (i in 1:4)
@@ -310,8 +310,8 @@ pGAMMA<-function(p,c,l)
 #' dGAMMA(seq(0,1,by=0.01),5,6)$var   #extracting the variance
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative density graph",xlab="Random variable",ylab="Cumulative density values",
 #' xlim = c(0,1),ylim = c(0,1))
 #' for (i in 1:4)
@@ -416,8 +416,8 @@ mazGAMMA<-function(r,c,l)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(1,2,5,10,0.2)
+#' col <- rainbow(5)
+#' a <- c(1,2,5,10,0.2)
 #' plot(0,0,main="Gamma Binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -432,8 +432,8 @@ mazGAMMA<-function(r,c,l)
 #' dGammaBin(0:10,10,4,.2)$over.dis.para  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:4)
@@ -533,8 +533,8 @@ dGammaBin<-function(x,n,c,l)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(1,2,5,10,0.2)
+#' col <- rainbow(5)
+#' a <- c(1,2,5,10,0.2)
 #' plot(0,0,main="Gamma-binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -549,8 +549,8 @@ dGammaBin<-function(x,n,c,l)
 #' dGammaBin(0:10,10,4,.2)$over.dis.para  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <- c(1,2,5,10)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:4)
@@ -560,6 +560,7 @@ dGammaBin<-function(x,n,c,l)
 #' }
 #'
 #' pGammaBin(0:10,10,4,.2)   #acquiring the cumulative probability values
+#'
 #' @export
 pGammaBin<-function(x,n,c,l)
 {
@@ -605,8 +606,8 @@ pGammaBin<-function(x,n,c,l)
 #' Australian Journal of Statistics, 19(2), pp.108-114.
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
 #'
 #' NegLLGammaBin(No.D.D,Obs.fre.1,.3,.4)   #acquiring the negative log likelihood value
 #'
@@ -662,12 +663,13 @@ NegLLGammaBin<-function(x,freq,c,l)
 #' are given.
 #'
 #' @usage
-#' EstMLEGammaBin(x,freq,c,l)
+#' EstMLEGammaBin(x,freq,c,l,...)
 #'
 #' @param x                   vector of binomial random variables.
 #' @param freq                vector of frequencies.
 #' @param c                   single value for shape parameter c.
 #' @param l                   single value for shape parameter l.
+#' @param ...                 mle2 function inputs except data and estimating parameter.
 #'
 #' @details
 #' \deqn{0 < c,l}
@@ -678,8 +680,8 @@ NegLLGammaBin<-function(x,freq,c,l)
 #' error messages will be provided to go further.
 #'
 #' @return
-#' \code{EstMLEGammaBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle}
-#' package.
+#' \code{EstMLEGammaBin} here is used as a wrapper for the \code{mle2} function of \pkg{bbmle} package
+#' therefore output is of class of mle2.
 #'
 #' @references
 #' Grassia, A., 1977. On a family of distributions with argument between 0 and 1
@@ -687,17 +689,34 @@ NegLLGammaBin<-function(x,freq,c,l)
 #' Australian Journal of Statistics, 19(2), pp.108-114.
 #'
 #' @examples
-#' No.D.D=0:7                   #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
+#' No.D.D <- 0:7                   #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEGammaBin,start = list(c=0.1,l=0.1),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEGammaBin(x=No.D.D,freq=Obs.fre.1,c=0.1,l=0.1)
 #'
 #' bbmle::coef(parameters)         #extracting the parameters
 #'
 #' @export
-EstMLEGammaBin<-function(x,freq,c,l)
+EstMLEGammaBin<-function(x,freq,c,l,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  output<-suppressWarnings2(bbmle::mle2(.EstMLEGammaBin,data=list(x=x,freq=freq),
+                                        start = list(c=c,l=l),...),"NaN")
+  return(output)
+}
+
+
+.EstMLEGammaBin<-function(x,freq,c,l)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -778,18 +797,17 @@ EstMLEGammaBin<-function(x,freq,c,l)
 #' Australian Journal of Statistics, 19(2), pp.108-114.
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)          #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)          #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEGammaBin,start = list(c=0.1,l=0.1),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEGammaBin(x=No.D.D,freq=Obs.fre.1,c=0.1,l=0.1)
 #'
-#' cGBin=bbmle::coef(parameters)[1]         #assigning the estimated c
-#' lGBin=bbmle::coef(parameters)[2]         #assigning the estimated l
+#' cGBin <- bbmle::coef(parameters)[1]         #assigning the estimated c
+#' lGBin <- bbmle::coef(parameters)[2]         #assigning the estimated l
 #'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
-#' results<-fitGammaBin(No.D.D,Obs.fre.1,cGBin,lGBin)
+#' results <- fitGammaBin(No.D.D,Obs.fre.1,cGBin,lGBin)
 #' results
 #'
 #' #extracting the expected frequencies
@@ -827,19 +845,19 @@ fitGammaBin<-function(x,obs.freq,c,l)
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      stop("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLGammaBin(x,obs.freq,c,l)
@@ -941,8 +959,8 @@ summary.fitGaB<-function(object,...)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(1,2,5,10,0.2)
+#' col <- rainbow(5)
+#' a <- c(1,2,5,10,0.2)
 #' plot(0,0,main="Grassia II binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -957,8 +975,8 @@ summary.fitGaB<-function(object,...)
 #' dGrassiaIIBin(0:10,10,4,.2)$over.dis.para  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(1,2,5,10)
+#' col <- rainbow(4)
+#' a <-c (1,2,5,10)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:4)
@@ -1057,8 +1075,8 @@ dGrassiaIIBin<-function(x,n,a,b)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(0.3,0.4,0.5,0.6,0.8)
+#' col <- rainbow(5)
+#' a <- c(0.3,0.4,0.5,0.6,0.8)
 #' plot(0,0,main="Grassia II binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -1073,8 +1091,8 @@ dGrassiaIIBin<-function(x,n,a,b)
 #' dGrassiaIIBin(0:10,10,4,.2)$over.dis.para  #extracting the over dispersion value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(4)
-#' a<-c(0.3,0.4,0.5,0.6)
+#' col <- rainbow(4)
+#' a <- c(0.3,0.4,0.5,0.6)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:4)
@@ -1129,8 +1147,8 @@ pGrassiaIIBin<-function(x,n,a,b)
 #' Australian Journal of Statistics, 19(2), pp.108-114.
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)   #assigning the corresponding frequencies
 #'
 #' NegLLGrassiaIIBin(No.D.D,Obs.fre.1,.3,.4)   #acquiring the negative log likelihood value
 #'
@@ -1186,12 +1204,13 @@ NegLLGrassiaIIBin<-function(x,freq,a,b)
 #' are given.
 #'
 #' @usage
-#' EstMLEGrassiaIIBin(x,freq,a,b)
+#' EstMLEGrassiaIIBin(x,freq,a,b,...)
 #'
 #' @param x                   vector of binomial random variables.
 #' @param freq                vector of frequencies.
 #' @param a                   single value for shape parameter a.
 #' @param b                   single value for shape parameter b.
+#' @param ...                 mle2 function inputs except data and estimating parameter.
 #'
 #' @details
 #' \deqn{0 < a,b}
@@ -1202,8 +1221,8 @@ NegLLGrassiaIIBin<-function(x,freq,a,b)
 #' error messages will be provided to go further.
 #'
 #' @return
-#' \code{EstMLEGrassiaIIBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle}
-#' package.
+#' \code{EstMLEGrassiaIIBin} here is used as a wrapper for the \code{mle2} function of \pkg{bbmle} package
+#' therefore output is of class of mle2.
 #'
 #' @references
 #' Grassia, A., 1977. On a family of distributions with argument between 0 and 1
@@ -1211,16 +1230,34 @@ NegLLGrassiaIIBin<-function(x,freq,a,b)
 #' Australian Journal of Statistics, 19(2), pp.108-114.
 #'
 #' @examples
-#' No.D.D=0:7                   #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
+#' No.D.D <- 0:7                   #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEGrassiaIIBin,start = list(a=0.1,b=0.1),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEGrassiaIIBin(x=No.D.D,freq=Obs.fre.1,a=0.1,b=0.1)
 #'
 #' bbmle::coef(parameters)         #extracting the parameters
+#'
 #' @export
-EstMLEGrassiaIIBin<-function(x,freq,a,b)
+EstMLEGrassiaIIBin<-function(x,freq,a,b,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  output<-suppressWarnings2(bbmle::mle2(.EstMLEGrassiaIIBin,data=list(x=x,freq=freq),
+                                        start = list(a=a,b=b),...),"NaN")
+  return(output)
+}
+
+
+.EstMLEGrassiaIIBin<-function(x,freq,a,b)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -1301,18 +1338,17 @@ EstMLEGrassiaIIBin<-function(x,freq,a,b)
 #' Australian Journal of Statistics, 19(2), pp.108-114.
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)          #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)          #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEGrassiaIIBin,start = list(a=0.1,b=0.1),
-#' data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEGrassiaIIBin(x=No.D.D,freq=Obs.fre.1,a=0.1,b=0.1)
 #'
-#' aGIIBin=bbmle::coef(parameters)[1]         #assigning the estimated a
-#' bGIIBin=bbmle::coef(parameters)[2]         #assigning the estimated b
+#' aGIIBin <- bbmle::coef(parameters)[1]         #assigning the estimated a
+#' bGIIBin <- bbmle::coef(parameters)[2]         #assigning the estimated b
 #'
 #' #fitting when the random variable,frequencies,shape parameter values are given.
-#' results<-fitGrassiaIIBin(No.D.D,Obs.fre.1,aGIIBin,bGIIBin)
+#' results <- fitGrassiaIIBin(No.D.D,Obs.fre.1,aGIIBin,bGIIBin)
 #' results
 #'
 #' #extracting the expected frequencies
@@ -1349,19 +1385,19 @@ fitGrassiaIIBin<-function(x,obs.freq,a,b)
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      stop("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLGrassiaIIBin(x,obs.freq,a,b)

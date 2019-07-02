@@ -5,7 +5,7 @@
 \title{Estimating the shape parameters a,b and c for McDonald Generalized Beta Binomial
 distribution}
 \usage{
-EstMLEMcGBB(x,freq,a,b,c)
+EstMLEMcGBB(x,freq,a,b,c,...)
 }
 \arguments{
 \item{x}{vector of binomial random variables.}
@@ -17,10 +17,12 @@ EstMLEMcGBB(x,freq,a,b,c)
 \item{b}{single value for shape parameter beta representing as b.}
 
 \item{c}{single value for shape parameter gamma representing as c.}
+
+\item{...}{mle2 function inputs except data and estimating parameter.}
 }
 \value{
-\code{EstMLEMcGBB} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle}
-package.
+\code{EstMLEMcGBB} here is used as a wrapper for the \code{mle2} function of \pkg{bbmle} package
+therefore output is of class of mle2.
 }
 \description{
 The function will estimate the shape parameters using the maximum log likelihood method  for
@@ -36,16 +38,15 @@ variables and corresponding frequencies are given.
 error messages will be provided to go further.
 }
 \examples{
-No.D.D=0:7                   #assigning the random variables
-Obs.fre.1=c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
+No.D.D <- 0:7                   #assigning the random variables
+Obs.fre.1 <- c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencies
 
+\dontrun{
 #estimating the parameters using maximum log likelihood value and assigning it
-
-parameters=suppressWarnings(bbmle::mle2(EstMLEMcGBB,start = list(a=0.1,b=0.1,c=0.2),
-data = list(x=No.D.D,freq=Obs.fre.1)))
+parameters <- EstMLEMcGBB(x=No.D.D,freq=Obs.fre.1,a=0.1,b=0.1,c=0.2)
 
 bbmle::coef(parameters)         #extracting the parameters
-
+        }
 }
 \references{
 Manoj, C., Wijekoon, P. & Yapa, R.D., 2013. The McDonald Generalized Beta-Binomial Distribution: A New

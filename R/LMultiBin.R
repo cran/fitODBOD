@@ -46,9 +46,9 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Lovinson Multiplicative binomial probability
 #'      function graph",xlab="Binomial random variable",
 #'      ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
@@ -64,9 +64,9 @@
 #'
 #'
 #' #plotting random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Lovinson Multiplicative binomial probability
 #'      function graph",xlab="Binomial random variable",
 #'      ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
@@ -159,7 +159,7 @@ dLMBin<-function(x,n,p,phi)
         }
         }
     }
-}
+  }
 }
 
 #' Lovinson Multiplicative  Binomial Distribution
@@ -204,9 +204,9 @@ dLMBin<-function(x,n,p,phi)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Lovinson Multiplicative binomial probability
 #'      function graph",xlab="Binomial random variable",
 #'      ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
@@ -221,9 +221,9 @@ dLMBin<-function(x,n,p,phi)
 #' dLMBin(0:10,10,.58,10.022)$var   #extracting the variance
 #'
 #' #plotting random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Lovinson Multiplicative binomial probability
 #'      function graph",xlab="Binomial random variable",
 #'      ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
@@ -278,8 +278,8 @@ pLMBin<-function(x,n,p,phi)
 #' Theory and Applications, 12(1), pp.92-105.
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
 #'
 #' NegLLLMBin(No.D.D,Obs.fre.1,.5,3)    #acquiring the negative log likelihood value
 #'
@@ -352,12 +352,13 @@ NegLLLMBin<-function(x,freq,p,phi)
 #' variables and corresponding frequencies are given.
 #'
 #' @usage
-#' EstMLELMBin(x,freq,p,phi)
+#' EstMLELMBin(x,freq,p,phi,...)
 #'
 #' @param x                 vector of binomial random variables.
 #' @param freq              vector of frequencies.
 #' @param p                 single value for probability of success.
 #' @param phi               single value for phi parameter.
+#' @param ...               mle2 function inputs except data and estimating parameter.
 #'
 #' @details
 #' \deqn{freq \ge 0}
@@ -366,8 +367,8 @@ NegLLLMBin<-function(x,freq,p,phi)
 #' \deqn{0 < phi }
 #'
 #' @return
-#' \code{EstMLELMBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle} package
-#' therefore output is of class of mle2.
+#' \code{EstMLELMBin} here is used as a wrapper for the \code{mle2} function of
+#' \pkg{bbmle} package therefore output is of class of mle2.
 #'
 #' @references
 #' Elamir, E.A., 2013. Multiplicative-Binomial Distribution: Some Results on
@@ -378,17 +379,34 @@ NegLLLMBin<-function(x,freq,p,phi)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7         #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
+#' No.D.D <- 0:7         #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLELMBin,start = list(p=0.5,phi=15),
-#'            data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLELMBin(x=No.D.D,freq=Obs.fre.1,p=0.5,phi=15)
 #'
 #' bbmle::coef(parameters)           #extracting the parameters
 #'
 #' @export
-EstMLELMBin<-function(x,freq,p,phi)
+EstMLELMBin<-function(x,freq,p,phi,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  output<-suppressWarnings2(bbmle::mle2(.EstMLELMBin,data=list(x=x,freq=freq),
+                                        start = list(p=p,phi=phi),...),"NaN")
+  return(output)
+}
+
+
+.EstMLELMBin<-function(x,freq,p,phi)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -467,18 +485,17 @@ EstMLELMBin<-function(x,freq,p,phi)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLELMBin,start = list(p=0.1,phi=.3),
-#'           data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLELMBin(x=No.D.D,freq=Obs.fre.1,p=0.1,phi=.3)
 #'
 #' pLMBin=bbmle::coef(parameters)[1]    #assigning the estimated probability value
-#' phiLMBin=bbmle::coef(parameters)[2]  #assigning the estimated phi value
+#' phiLMBin <- bbmle::coef(parameters)[2]  #assigning the estimated phi value
 #'
 #' #fitting when the random variable,frequencies,probability and phi are given
-#' results<-fitLMBin(No.D.D,Obs.fre.1,pLMBin,phiLMBin)
+#' results <- fitLMBin(No.D.D,Obs.fre.1,pLMBin,phiLMBin)
 #' results
 #'
 #' #extracting the AIC value
@@ -514,19 +531,19 @@ fitLMBin<-function(x,obs.freq,p,phi)
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      stop("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative log likelihood value and AIC
     NegLL<-NegLLLMBin(x,obs.freq,p,phi)

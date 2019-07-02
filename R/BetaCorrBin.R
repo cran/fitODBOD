@@ -65,9 +65,9 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(9.0,10,11,12,13)
-#' b<-c(8.0,8.1,8.2,8.3,8.4)
+#' col <- rainbow(5)
+#' a <- c(9.0,10,11,12,13)
+#' b <- c(8.0,8.1,8.2,8.3,8.4)
 #' plot(0,0,main="Beta-Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -84,9 +84,9 @@
 #' dBetaCorrBin(0:10,10,0.001,10,13)$maxcorr  #extracting the maximum correlation value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(9.0,10,11,12,13)
-#' b<-c(8.0,8.1,8.2,8.3,8.4)
+#' col <- rainbow(5)
+#' a <- c(9.0,10,11,12,13)
+#' b <- c(8.0,8.1,8.2,8.3,8.4)
 #' plot(0,0,main="Beta-Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
@@ -254,9 +254,9 @@ dBetaCorrBin<-function(x,n,cov,a,b)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(9.0,10,11,12,13)
-#' b<-c(8.0,8.1,8.2,8.3,8.4)
+#' col <- rainbow(5)
+#' a <- c(9.0,10,11,12,13)
+#' b <- c(8.0,8.1,8.2,8.3,8.4)
 #' plot(0,0,main="Beta-Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -273,9 +273,9 @@ dBetaCorrBin<-function(x,n,cov,a,b)
 #' dBetaCorrBin(0:10,10,0.001,10,13)$maxcorr  #extracting the maximum correlation value
 #'
 #' #plotting the random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(9.0,10,11,12,13)
-#' b<-c(8.0,8.1,8.2,8.3,8.4)
+#' col <- rainbow(5)
+#' a <- c(9.0,10,11,12,13)
+#' b <- c(8.0,8.1,8.2,8.3,8.4)
 #' plot(0,0,main="Beta-Correlated binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
@@ -336,8 +336,8 @@ pBetaCorrBin<-function(x,n,cov,a,b)
 #'
 #'
 #' @examples
-#' No.D.D=0:7         #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
+#' No.D.D <- 0:7         #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
 #'
 #' NegLLBetaCorrBin(No.D.D,Obs.fre.1,0.001,9.03,10)     #acquiring the negative log likelihood value
 #'
@@ -450,7 +450,7 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
 #' variables and corresponding frequencies are given.
 #'
 #' @usage
-#' EstMLEBetaCorrBin(x,freq,cov,a,b)
+#' EstMLEBetaCorrBin(x,freq,cov,a,b,...)
 #'
 #'
 #' @param x       vector of binomial random variables.
@@ -458,6 +458,7 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
 #' @param cov     single value for covariance.
 #' @param a       single value for alpha parameter.
 #' @param b       single value for beta parameter.
+#' @param ...     mle2 function inputs except data and estimating parameter.
 #'
 #' @details
 #' \deqn{x = 0,1,2,...}
@@ -469,7 +470,7 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
 #' necessary error messages will be provided to go further.
 #'
 #' @return
-#' \code{EstMLEBetaCorrBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle} package
+#' \code{EstMLEBetaCorrBin} here is used as a wrapper for the \code{mle2} function of \pkg{bbmle} package
 #' therefore output is of class of mle2.
 #'
 #' @references
@@ -482,17 +483,34 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7               #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#' No.D.D <- 0:7               #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaCorrBin,start = list(cov=0.0050,a=10,b=10),
-#'                        data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEBetaCorrBin(x=No.D.D,freq=Obs.fre.1,cov=0.0050,a=10,b=10)
 #'
 #' bbmle::coef(parameters)           #extracting the parameters
 #'
-#' @export
-EstMLEBetaCorrBin<-function(x,freq,cov,a,b)
+#'@export
+EstMLEBetaCorrBin<-function(x,freq,cov,a,b,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  output<-suppressWarnings2(bbmle::mle2(.EstMLEBetaCorrBin,data=list(x=x,freq=freq),
+                                        start = list(a=a,b=b,cov=cov),...),"NaN")
+  return(output)
+}
+
+
+.EstMLEBetaCorrBin<-function(x,freq,cov,a,b)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -590,19 +608,18 @@ EstMLEBetaCorrBin<-function(x,freq,cov,a,b)
 #' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
 #'
 #' @examples
-#' No.D.D=0:7                    #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
+#' No.D.D <- 0:7                    #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)      #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEBetaCorrBin,start = list(cov=0.0050,a=10,b=10),
-#'            data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEBetaCorrBin(x=No.D.D,freq=Obs.fre.1,cov=0.0050,a=10,b=10)
 #'
-#' covBetaCorrBin=bbmle::coef(parameters)[1]
-#' aBetaCorrBin=bbmle::coef(parameters)[2]
-#' bBetaCorrBin=bbmle::coef(parameters)[3]
+#' covBetaCorrBin <- bbmle::coef(parameters)[1]
+#' aBetaCorrBin <- bbmle::coef(parameters)[2]
+#' bBetaCorrBin <- bbmle::coef(parameters)[3]
 #'
 #' #fitting when the random variable,frequencies,covariance, a and b are given
-#' results<-fitBetaCorrBin(No.D.D,Obs.fre.1,covBetaCorrBin,aBetaCorrBin,bBetaCorrBin)
+#' results <- fitBetaCorrBin(No.D.D,Obs.fre.1,covBetaCorrBin,aBetaCorrBin,bBetaCorrBin)
 #' results
 #'
 #' #extract AIC value
@@ -638,19 +655,19 @@ fitBetaCorrBin<-function(x,obs.freq,cov,a,b)
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      stop("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative log likelihood value and AIC
     NegLL<-NegLLBetaCorrBin(x,obs.freq,cov,a,b)

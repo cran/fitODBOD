@@ -53,9 +53,9 @@
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Multiplicative binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -70,9 +70,9 @@
 #'
 #'
 #' #plotting random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Multiplicative binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
@@ -208,9 +208,9 @@ dMultiBin<-function(x,n,p,theta)
 #'
 #' @examples
 #' #plotting the random variables and probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Multiplicative binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
 #' for (i in 1:5)
@@ -224,9 +224,9 @@ dMultiBin<-function(x,n,p,theta)
 #' dMultiBin(0:10,10,.58,10.022)$var   #extracting the variance
 #'
 #' #plotting random variables and cumulative probability values
-#' col<-rainbow(5)
-#' a<-c(0.58,0.59,0.6,0.61,0.62)
-#' b<-c(0.022,0.023,0.024,0.025,0.026)
+#' col <- rainbow(5)
+#' a <- c(0.58,0.59,0.6,0.61,0.62)
+#' b <- c(0.022,0.023,0.024,0.025,0.026)
 #' plot(0,0,main="Multiplicative binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,1))
 #' for (i in 1:5)
@@ -287,8 +287,8 @@ pMultiBin<-function(x,n,p,theta)
 #' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
 #'
 #' NegLLMultiBin(No.D.D,Obs.fre.1,.5,3)    #acquiring the negative log likelihood value
 #'
@@ -361,12 +361,13 @@ NegLLMultiBin<-function(x,freq,p,theta)
 #' variables and corresponding frequencies are given.
 #'
 #' @usage
-#' EstMLEMultiBin(x,freq,p,theta)
+#' EstMLEMultiBin(x,freq,p,theta,...)
 #'
 #' @param x                 vector of binomial random variables.
 #' @param freq              vector of frequencies.
 #' @param p                 single value for probability of success.
 #' @param theta             single value for theta parameter.
+#' @param ...               mle2 function inputs except data and estimating parameter.
 #'
 #' @details
 #' \deqn{freq \ge 0}
@@ -375,8 +376,8 @@ NegLLMultiBin<-function(x,freq,p,theta)
 #' \deqn{0 < theta }
 #'
 #' @return
-#' \code{EstMLEMultiBin} here is used as a input parameter for the \code{mle2} function of \pkg{bbmle} package
-#' therefore output is of class of mle2.
+#' \code{EstMLEMultiBin} here is used as a wrapper for the \code{mle2} function of
+#' \pkg{bbmle} package therefore output is of class of mle2.
 #'
 #' @references
 #' Johnson, N. L., Kemp, A. W., & Kotz, S. (2005). Univariate discrete distributions (Vol. 444).
@@ -394,17 +395,34 @@ NegLLMultiBin<-function(x,freq,p,theta)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7         #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
+#' No.D.D <- 0:7         #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)    #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEMultiBin,start = list(p=0.5,theta=15),
-#'            data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEMultiBin(x=No.D.D,freq=Obs.fre.1,p=0.5,theta=15)
 #'
 #' bbmle::coef(parameters)           #extracting the parameters
 #'
 #' @export
-EstMLEMultiBin<-function(x,freq,p,theta)
+EstMLEMultiBin<-function(x,freq,p,theta,...)
+{
+  suppressWarnings2 <-function(expr, regex=character())
+  {
+    withCallingHandlers(expr, warning=function(w)
+    {
+      if (length(regex) == 1 && length(grep(regex, conditionMessage(w))))
+      {
+        invokeRestart("muffleWarning")
+      }
+    }                  )
+  }
+  output<-suppressWarnings2(bbmle::mle2(.EstMLEMultiBin,data=list(x=x,freq=freq),
+                                        start = list(p=p,theta=theta),...),"NaN")
+  return(output)
+}
+
+
+.EstMLEMultiBin<-function(x,freq,p,theta)
 {
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
@@ -490,18 +508,17 @@ EstMLEMultiBin<-function(x,freq,p,theta)
 #' \code{\link[bbmle]{mle2}}
 #'
 #' @examples
-#' No.D.D=0:7       #assigning the random variables
-#' Obs.fre.1=c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
+#' No.D.D <- 0:7       #assigning the random variables
+#' Obs.fre.1 <- c(47,54,43,40,40,41,39,95)     #assigning the corresponding frequencies
 #'
 #' #estimating the parameters using maximum log likelihood value and assigning it
-#' parameters=suppressWarnings(bbmle::mle2(EstMLEMultiBin,start = list(p=0.1,theta=.3),
-#'           data = list(x=No.D.D,freq=Obs.fre.1)))
+#' parameters <- EstMLEMultiBin(x=No.D.D,freq=Obs.fre.1,p=0.1,theta=.3)
 #'
-#' pMultiBin=bbmle::coef(parameters)[1]    #assigning the estimated probability value
-#' thetaMultiBin=bbmle::coef(parameters)[2]  #assigning the estimated theta value
+#' pMultiBin <- bbmle::coef(parameters)[1]    #assigning the estimated probability value
+#' thetaMultiBin <- bbmle::coef(parameters)[2]  #assigning the estimated theta value
 #'
 #' #fitting when the random variable,frequencies,probability and theta are given
-#' results<-fitMultiBin(No.D.D,Obs.fre.1,pMultiBin,thetaMultiBin)
+#' results <- fitMultiBin(No.D.D,Obs.fre.1,pMultiBin,thetaMultiBin)
 #' results
 #'
 #' #extracting the AIC value
@@ -537,19 +554,19 @@ fitMultiBin<-function(x,obs.freq,p,theta)
     #checking if df is less than or equal to zero
     if(df<0 | df==0)
     {
-      warning("Degrees of freedom cannot be less than or equal to zero")
+      stop("Degrees of freedom cannot be less than or equal to zero")
     }
     #checking if any of the expected frequencies are less than five and greater than zero, if so
     #a warning message is provided in interpreting the results
     if(min(exp.freq)<5 && min(exp.freq) > 0)
     {
-      warning("Chi-squared approximation may be doubtful because expected frequency is less than 5")
+      message("Chi-squared approximation may be doubtful because expected frequency is less than 5")
     }
     #checking if expected frequency is zero, if so providing a warning message in interpreting
     #the results
     if(min(exp.freq)==0)
     {
-      warning("Chi-squared approximation is not suitable because expected frequency approximates to zero")
+      message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
     #calculating Negative log likelihood value and AIC
     NegLL<-NegLLMultiBin(x,obs.freq,p,theta)
