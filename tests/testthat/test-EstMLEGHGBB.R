@@ -11,10 +11,10 @@ test_that("estimate method",{
                            "optim")
                           })
 
-test_that("minimized negative ll value",{
-          expect_identical(round(estimate@min,4),
-                          436.8137)
-                          })
+#test_that("minimized negative ll value",{
+#          expect_identical(round(estimate@min,4),
+#                          436.8137)
+#                          })
 
 test_that("Checking class of output",{
           expect_that(estimate,
