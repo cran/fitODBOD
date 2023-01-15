@@ -49,7 +49,7 @@
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis,
 #' 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' @seealso
 #' \code{\link[stats]{Beta}}
@@ -123,11 +123,8 @@ dBETA<-function(p,a,b)
         }
       }
     }
-    mean<-a/(a+b)             #according to theory the mean value
-    variance<-(a*b)/(((a+b)^2)*(a+b+1))     #according to theory the variance value
     # generating an output in list format consisting pdf,mean and variance
-    output<-list("pdf"=ans,"mean"=mean,"var"=variance)
-    return(output)
+    return(list("pdf"=ans,"mean"=a/(a+b),"var"=(a*b)/(((a+b)^2)*(a+b+1)) ))
   }
 }
 
@@ -176,7 +173,7 @@ dBETA<-function(p,a,b)
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis,
 #' 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' @seealso
 #' \code{\link[stats]{Beta}}
@@ -239,10 +236,7 @@ pBETA<-function(p,a,b)
       ans<-NULL
       val<-NULL
       #the equation contains partial beta integration, below is the integral function
-      Bp<-function(q)
-      {
-        (q^(a-1))*((1-q)^(b-1))
-      }
+
       #for each input values in the vector necessary calculations and conditions are applied
       for(i in 1:length(p))
       {
@@ -253,7 +247,7 @@ pBETA<-function(p,a,b)
         else
         {
           #integrating the above mentioned function under limits of zero and vector p
-          val<-stats::integrate(Bp,lower = 0,upper = p[i])
+          val<-stats::integrate(function(q){ (q^(a-1))*((1-q)^(b-1)) },lower = 0,upper = p[i])
           ans[i]<-val$value/beta(a,b)
         }
       }
@@ -308,7 +302,7 @@ pBETA<-function(p,a,b)
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis,
 #' 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' @seealso
 #' \code{\link[stats]{Beta}}
@@ -382,8 +376,7 @@ mazBETA<-function(r,a,b)
         }
         else
         {
-          j<-0:(r[i]-1)
-          ans[i]<-prod((a+j)/(a+b+j))
+          ans[i]<-prod((a+(0:(r[i]-1)))/(a+b+(0:(r[i]-1))))
         }
       }
       #generating an ouput vector of moment about zero values
@@ -439,11 +432,11 @@ mazBETA<-function(r,a,b)
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
+#' Available at: \doi{10.1186/1471-2288-8-58}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
@@ -518,13 +511,11 @@ dBetaBin<-function(x,n,a,b)
       }
     }
   }
-  mean<-n*(a/(a+b))               #according to theory the mean
-  variance<-n*((a*b)/(a+b)^2)*((a+b+n)/(a+b+1))        #according to theory variance
-  ove.dis.par<-1/(a+b+1)                               #according to theory overdispersion value
+
   # generating an output in list format consisting pdf,mean,variance and overdispersion value
-  output<-list('pdf'=ans,'mean'=mean,'var'=variance,
-               'over.dis.para'=ove.dis.par)
-  return(output)
+  return(list('pdf'=ans,'mean'=n*(a/(a+b)) ,
+              'var'=n*((a*b)/(a+b)^2)*((a+b+n)/(a+b+1)) ,
+              'over.dis.para'=1/(a+b+1)))
 }
 
 #' Beta-Binomial Distribution
@@ -566,16 +557,16 @@ dBetaBin<-function(x,n,a,b)
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
+#' Available at: \doi{10.1186/1471-2288-8-58}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
 #'
-#' Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}
+#' Available at: \doi{10.1094/PHYTO-83-759}
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -615,8 +606,7 @@ pBetaBin<-function(x,n,a,b)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dBetaBin(j,n,a,b)$pdf)
+    ans[i]<-sum(dBetaBin(0:x[i],n,a,b)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -650,16 +640,16 @@ pBetaBin<-function(x,n,a,b)
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
+#' Available at: \doi{10.1186/1471-2288-8-58}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
 #'
-#' Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}
+#' Available at: \doi{10.1094/PHYTO-83-759}
 #'
 #' @examples
 #' No.D.D <- 0:7       #assigning the random variables
@@ -694,15 +684,12 @@ NegLLBetaBin<-function(x,freq,a,b)
     else
     {
       #constructing the data set using the random variables vector and frequency vector
-      n<-max(x)
       data<-rep(x,freq)
-      i<-1:sum(freq)
-      term1<-sum(log(choose(n,data[i])))
-      term2<-sum(log(beta(a+data[i],n+b-data[i])))
 
-      BetaBinLL<-term1+term2-sum(freq)*log(beta(a,b))
       #calculating the negative log likelihood value and representing as a single output value
-      return(-BetaBinLL)
+      return(-(sum(log(choose(max(x),data[1:sum(freq)]))) +
+                 sum(log(beta(a+data[1:sum(freq)],max(x)+b-data[1:sum(freq)]))) -
+                 sum(freq)*log(beta(a,b))))
     }
   }
 }
@@ -740,16 +727,16 @@ NegLLBetaBin<-function(x,freq,a,b)
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
+#' Available at: \doi{10.1186/1471-2288-8-58}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
 #'
-#' Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}
+#' Available at: \doi{10.1094/PHYTO-83-759}
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -788,13 +775,11 @@ EstMLEBetaBin<-function(x,freq,a,b,...)
   #with respective to using bbmle package function mle2 there is no need impose any restrictions
   #therefor the output is directly a single numeric value for the negative log likelihood value of
   #beta binomial distribution
-  n<-max(x)
   data<-rep(x,freq)
-  i<-1:sum(freq)
-  term1<-sum(log(choose(n,data[i])))
-  term2<-sum(log(beta(a+data[i],n+b-data[i])))
-  BetaBinLL<-term1+term2-sum(freq)*log(beta(a,b))
-  return(-BetaBinLL)
+
+  return(-(sum(log(choose(max(x),data[1:sum(freq)]))) +
+             sum(log(beta(a+data[1:sum(freq)],max(x)+b-data[1:sum(freq)]))) -
+             sum(freq)*log(beta(a,b))))
 }
 
 #' Estimating the shape parameters a and b for Beta-Binomial Distribution
@@ -837,16 +822,16 @@ EstMLEBetaBin<-function(x,freq,a,b,...)
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
+#' Available at: \doi{10.1186/1471-2288-8-58}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
 #'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
+#' Available at: \doi{10.1016/0167-9473(96)90015-8}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
 #'
-#' Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}
+#' Available at: \doi{10.1094/PHYTO-83-759}
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -881,19 +866,17 @@ EstMGFBetaBin<-function(x,freq)
   else
   {
     #constructing the data set using the random variables vector and frequency vector
-    n<-max(x)
     data<-rep(x,freq)
     #creating necessary equations
     m1<-sum(data)/length(data)
     m2<-sum(data^2)/length(data)
     #constructing equations according to theory for a(alpha) and b(beta)
-    a<-((n*m1-m2)*m1)/(n*(m2-m1-m1^2)+m1^2)
-    b<-((n*m1-m2)*(n-m1))/(n*(m2-m1-m1^2)+m1^2)
+    a<-((max(x)*m1-m2)*m1)/(max(x)*(m2-m1-m1^2)+m1^2)
+    b<-((max(x)*m1-m2)*(max(x)-m1))/(max(x)*(m2-m1-m1^2)+m1^2)
     #generating an output of list for shape parameters a(alpha) and b(beta)
-    NegLL<-NegLLBetaBin(x,freq,a,b)
-    AICvalue<-2*2+(2*NegLL)
-    argument<-match.call()
-    ans<-list("a"=a,"b"=b,"min"=NegLL,"AIC"=AICvalue,"call"=argument)
+
+    ans<-list("a"=a,"b"=b,"min"=NegLLBetaBin(x,freq,a,b),
+              "AIC"=2*2+(2*NegLLBetaBin(x,freq,a,b)),"call"=match.call())
     class(ans)<-"mgf"
     return(ans)
   }
@@ -903,8 +886,7 @@ EstMGFBetaBin<-function(x,freq)
 #' @export
 EstMGFBetaBin.default<-function(x,freq)
 {
-  est<-EstMGFBetaBin(x,freq)
-  return(est)
+  return(EstMGFBetaBin(x,freq))
 }
 
 #' @method print mgf
@@ -1002,16 +984,14 @@ AIC.mgf<-function(object,...)
 #' Young-Xu, Y. & Chan, K.A., 2008. Pooling overdispersed binomial data to estimate event rate. BMC medical
 #' research methodology, 8(1), p.58.
 #'
-#' Available at: \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2538541&tool=pmcentrez&rendertype=abstract}.
+#' Available at: \doi{10.1186/1471-2288-8-58}.
 #'
 #' Trenkler, G., 1996. Continuous univariate distributions. Computational Statistics & Data Analysis, 21(1), p.119.
-#'
-#' Available at: \url{http://linkinghub.elsevier.com/retrieve/pii/0167947396900158}.
 #'
 #' Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease
 #' Incidence. Phytopathology, 83(9), p.759.
 #'
-#' Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}
+#' Available at: \doi{10.1094/PHYTO-83-759}
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -1059,6 +1039,7 @@ fitBetaBin<-function(x,obs.freq,a,b)
   else
   {
     est<-dBetaBin(x,max(x),a,b)
+    odp<-est$over.dis.para; names(odp)<-NULL
     #for given random variables and parameters calculating the estimated probability values
     est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
@@ -1089,14 +1070,14 @@ fitBetaBin<-function(x,obs.freq,a,b)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative Log Likelihood value and AIC
+
     NegLL<-NegLLBetaBin(x,obs.freq,a,b)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitBB"=est,"NegLL"=NegLL,"a"=a,"b"=b, "AIC"=AICvalue,
-                "over.dis.para"=est$over.dis.para,"call"=match.call())
+                "fitBB"=est,"NegLL"=NegLL,"a"=a,"b"=b, "AIC"=2*2+2*NegLL,
+                "over.dis.para"=odp,"call"=match.call())
     class(final)<-c("fitBB","fit")
     return(final)
     }
@@ -1106,8 +1087,7 @@ fitBetaBin<-function(x,obs.freq,a,b)
 #' @export
 fitBetaBin.default<-function(x,obs.freq,a,b)
 {
-  est<-fitBetaBin(x,obs.freq,a,b)
-  return(est)
+  return(fitBetaBin(x,obs.freq,a,b))
 }
 
 #' @method print fitBB

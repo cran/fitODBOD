@@ -4,18 +4,20 @@
 \name{Chromosome_data}
 \alias{Chromosome_data}
 \title{Chromosome Data}
-\format{A data frame with 2 columns and 4 rows
+\format{
+A data frame with 2 columns and 4 rows
 \describe{
 \item{\code{No.of.Asso}}{No of Associations}
 \item{\code{fre}}{Observed frequencies}
-}}
+}
+}
 \source{
 Extracted from
 
 Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in
 Statistics - Theory and Methods, 14(6), pp.1497-1506.
 
-Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+Available at: \doi{10.1080/03610928508828990}
 }
 \usage{
 Chromosome_data

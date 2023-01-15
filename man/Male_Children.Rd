@@ -4,11 +4,13 @@
 \name{Male_Children}
 \alias{Male_Children}
 \title{Male children data}
-\format{A data frame with 2 columns and 13 rows.
+\format{
+A data frame with 2 columns and 13 rows.
 \describe{
 \item{\code{No_of_Males}}{No of Male children among first 12 children of family size 13}
 \item{\code{freq}}{Observed frequencies for corresponding male children}
-}}
+}
+}
 \source{
 Extracted from
 
@@ -16,7 +18,7 @@ Borges, P., Rodrigues, J., Balakrishnan, N. and Bazan, J., 2014. A COM-Poisson t
 generalization of the binomial distribution and its properties and applications.
 Statistics & Probability Letters, 87, pp.158-166.
 
-Available at: \url{http://conteudo.icmc.usp.br/CMS/Arquivos/arquivos_enviados/BIBLIOTECA_113_NSE_90.pdf}
+Available at: \doi{10.1016/j.spl.2014.01.019}
 }
 \usage{
 Male_Children

@@ -4,18 +4,20 @@
 \name{Plant_DiseaseData}
 \alias{Plant_DiseaseData}
 \title{Plant Disease Incidence data}
-\format{A data frame with 2 columns and 10 rows
+\format{
+A data frame with 2 columns and 10 rows
 \describe{
 \item{\code{Dis.plant}}{Diseased Plants}
 \item{\code{fre}}{Observed frequencies}
-}}
+}
+}
 \source{
 Extracted from
 
 Hughes, G., 1993. Using the Beta-Binomial Distribution to Describe Aggregated Patterns of Disease Incidence.
 Phytopathology, 83(9), p.759.
 
-Available at: \url{http://www.apsnet.org/publications/phytopathology/backissues/Documents/1993Abstracts/Phyto_83_759.htm}.
+Available at: \doi{10.1094/Phyto-83-759}.
 }
 \usage{
 Plant_DiseaseData

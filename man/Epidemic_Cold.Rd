@@ -4,7 +4,8 @@
 \name{Epidemic_Cold}
 \alias{Epidemic_Cold}
 \title{Family Epidemics}
-\format{A data frame with 6 columns and 5 rows
+\format{
+A data frame with 6 columns and 5 rows
 \describe{
 \item{\code{Cases}}{No of Further Cases}
 \item{\code{Families}}{No of Families}
@@ -12,7 +13,8 @@
 \item{\code{Mother}}{Mother with Status of Introducing Cases}
 \item{\code{SChild}}{School Child with Status of Introducing Cases}
 \item{\code{PSChild}}{Pre-School Child with Status of Introducing Cases}
-}}
+}
+}
 \source{
 Extracted from
 

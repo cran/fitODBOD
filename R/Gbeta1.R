@@ -48,7 +48,7 @@
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491} .
+#' Available at: \doi{10.5539/ijsp.v2n2p24} .
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -56,7 +56,7 @@
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -114,11 +114,9 @@ dGBeta1<-function(p,a,b,c)
       }
     }
   }
-  mean<-beta(a+b,(1/c))/beta(a,(1/c))           #according to theory the mean value
-  variance<-(beta(a+b,(2/c))/beta(a,(2/c)))-mean^2       #according to theory the variance value
   # generating an output in list format consisting pdf,mean and variance
-  output<-list("pdf"=ans,"mean"=mean,"var"=variance)
-  return(output)
+  return(list("pdf"=ans,"mean"=beta(a+b,(1/c))/beta(a,(1/c)),
+              "var"=(beta(a+b,(2/c))/beta(a,(2/c)))-(beta(a+b,(1/c))/beta(a,(1/c)))^2 ))
 }
 
 #' Generalized Beta Type-1 Distribution
@@ -165,7 +163,7 @@ dGBeta1<-function(p,a,b,c)
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -173,7 +171,7 @@ dGBeta1<-function(p,a,b,c)
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.1080/03610918.2015.1088024}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -291,7 +289,7 @@ pGBeta1<-function(p,a,b,c)
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -299,7 +297,7 @@ pGBeta1<-function(p,a,b,c)
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.1080/03610918.2015.1088024}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -414,7 +412,7 @@ mazGBeta1<-function(r,a,b,c)
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -422,7 +420,7 @@ mazGBeta1<-function(r,a,b,c)
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.1080/03610918.2015.1088024}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -493,24 +491,18 @@ dMcGBB<-function(x,n,a,b,c)
         for (i in 1:length(x))
         {
           value<-NULL
-          j<-0:(n-x[i])
-          value<-sum(((-1)^j)*choose(n-x[i],j)*beta((x[i]/c+a+j/c),b))
+          value<-sum(((-1)^(0:(n-x[i])))*choose(n-x[i],(0:(n-x[i])))*beta((x[i]/c+a+(0:(n-x[i]))/c),b))
           final[i]<-choose(n,x[i])*(1/beta(a,b))*value
         }
       }
     }
   }
-  mean<-n*beta(a+b,1/c)/beta(a,1/c)         #according to theory the mean
-  variance<-n^2*((beta(a+b,2/c)/beta(a,2/c))-(beta(a+b,1/c)/beta(a,1/c))^2)
-  +n*((beta(a+b,1/c)/beta(a,1/c))-(beta(a+b,2/c)/beta(a,2/c)))
-  #according to theory the variance
-  ove.dis.par<-(((beta(a+b,2/c))/(beta(a,2/c)))-((beta(a+b,1/c))/(beta(a,1/c)))^2)/
-    (((beta(a+b,1/c))/(beta(a,1/c)))-((beta(a+b,1/c))/(beta(a,1/c)))^2)
-  #according to theory the over dispersion value
   # generating an output in list format consisting pdf,mean,variance and overdispersion value
-  output<-list("pdf"=final,"mean"=mean,"var"=variance,
-               "over.dis.para"=ove.dis.par)
-  return(output)
+  return(list("pdf"=final,"mean"=n*beta(a+b,1/c)/beta(a,1/c),
+              "var"=n^2*((beta(a+b,2/c)/beta(a,2/c))-(beta(a+b,1/c)/beta(a,1/c))^2)+
+                n*((beta(a+b,1/c)/beta(a,1/c))-(beta(a+b,2/c)/beta(a,2/c))),
+              "over.dis.para"=(((beta(a+b,2/c))/(beta(a,2/c)))-((beta(a+b,1/c))/(beta(a,1/c)))^2)/
+                (((beta(a+b,1/c))/(beta(a,1/c)))-((beta(a+b,1/c))/(beta(a,1/c)))^2)))
 }
 
 #' McDonald Generalized Beta Binomial Distribution
@@ -553,7 +545,7 @@ dMcGBB<-function(x,n,a,b,c)
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -561,7 +553,7 @@ dMcGBB<-function(x,n,a,b,c)
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.1080/03610918.2015.1088024}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -601,8 +593,7 @@ pMcGBB<-function(x,n,a,b,c)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dMcGBB(j,n,a,b,c)$pdf)
+    ans[i]<-sum(dMcGBB(0:x[i],n,a,b,c)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -635,7 +626,7 @@ pMcGBB<-function(x,n,a,b,c)
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -643,7 +634,7 @@ pMcGBB<-function(x,n,a,b,c)
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.1080/03610918.2015.1088024}.
 #'
 #' @examples
 #' No.D.D <- 0:7            #assigning the random variables
@@ -677,22 +668,19 @@ NegLLMcGBB<-function(x,freq,a,b,c)
     }
     else
     {
-        #constructing the data set using the random variables vector and frequency vector
-        n<-max(x)
-        data<-rep(x,freq)
-        i<-1:sum(freq)
-        term1<-sum(log(choose(n,data[i])))
-        value<-NULL
-        for (i in 1:sum(freq))
-        {
-          j<-0:n-data[i]
-          value[i]<-sum(((-1)^(j))*choose(n-data[i],j)*beta((data[i]/c)+a+(j/c),b))
-        }
-        value
-        term2<-sum(log(value))
-        McGBBLL<-term1+term2+sum(freq)*log(1/beta(a,b))
-        #calculating the negative log likelihood value and representing as a single output value
-        return(-McGBBLL)
+      #constructing the data set using the random variables vector and frequency vector
+      n<-max(x)
+      data<-rep(x,freq)
+
+      value<-NULL
+      for (i in 1:sum(freq))
+      {
+       value[i]<-sum(((-1)^(0:n-data[i]))*choose(n-data[i],(0:n-data[i]))*
+                       beta((data[i]/c)+a+((0:n-data[i])/c),b))
+      }
+      #calculating the negative log likelihood value and representing as a single output value
+      return(-(sum(log(choose(n,data[1:sum(freq)])))+sum(log(value))+
+                 sum(freq)*log(1/beta(a,b))))
     }
   }
 }
@@ -731,7 +719,7 @@ NegLLMcGBB<-function(x,freq,a,b,c)
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -739,7 +727,7 @@ NegLLMcGBB<-function(x,freq,a,b,c)
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.1080/03610918.2015.1088024}.
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -753,7 +741,7 @@ NegLLMcGBB<-function(x,freq,a,b,c)
 #' parameters <- EstMLEMcGBB(x=No.D.D,freq=Obs.fre.1,a=0.1,b=0.1,c=0.2)
 #'
 #' bbmle::coef(parameters)         #extracting the parameters
-#'         }
+#' }
 #' @export
 EstMLEMcGBB<-function(x,freq,a,b,c,...)
 {
@@ -780,17 +768,16 @@ EstMLEMcGBB<-function(x,freq,a,b,c,...)
   #Gaussian Hypergeometric Generalized Beta binomial distribution
   n<-max(x)
   data<-rep(x,freq)
-  i<-1:sum(freq)
-  term1<-sum(log(choose(n,data)))
+
   value<-NULL
   for (i in 1:sum(freq))
   {
-    j<-0:n-data[i]
-    value[i]<-sum(((-1)^(j))*choose(n-data[i],j)*beta((data[i]/c)+a+(j/c),b))
+   value[i]<-sum(((-1)^(0:n-data[i]))*choose(n-data[i],(0:n-data[i]))*
+                   beta((data[i]/c)+a+((0:n-data[i])/c),b))
   }
-  term2<-sum(log(value))
-  McGBBLL<-term1+term2+sum(freq)*log(1/beta(a,b))
-  return(-McGBBLL)
+
+  return(-(sum(log(choose(n,data[1:sum(freq)])))+sum(log(value))+
+             sum(freq)*log(1/beta(a,b))))
 }
 
 #' Fitting the McDonald Generalized Beta  Binomial distribution when binomial
@@ -856,7 +843,7 @@ EstMLEMcGBB<-function(x,freq,a,b,c,...)
 #' Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 #' Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 #'
-#' Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+#' Available at: \doi{10.5539/ijsp.v2n2p24}.
 #'
 #' Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 #' Beta - Binomial Parameters. , (October), pp.702-709.
@@ -864,7 +851,7 @@ EstMLEMcGBB<-function(x,freq,a,b,c,...)
 #' Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 #' Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+#' Available at: \doi{10.1080/03610918.2015.1088024}.
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -890,7 +877,7 @@ EstMLEMcGBB<-function(x,freq,a,b,c,...)
 #'
 #' #extracting the residuals
 #' residuals(results)
-#'      }
+#' }
 #'
 #' @export
  fitMcGBB<-function(x,obs.freq,a,b,c)
@@ -905,6 +892,7 @@ EstMLEMcGBB<-function(x,freq,a,b,c,...)
   else
   {
     est<-dMcGBB(x,max(x),a,b,c)
+    odp<-est$over.dis.para; names(odp)<-NULL
     #for given random variables and parameters calculating the estimated probability values
     est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
@@ -935,14 +923,13 @@ EstMLEMcGBB<-function(x,freq,a,b,c,...)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLMcGBB(x,obs.freq,a,b,c)
-    AICvalue<-2*3+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitMB"=est,"NegLL"=NegLL,"a"=a,"b"=b,"c"=c,"AIC"=AICvalue,
-                "over.dis.para"=est$over.dis.para,"call"=match.call())
+                "fitMB"=est,"NegLL"=NegLL,"a"=a,"b"=b,"c"=c,"AIC"=2*3+2*NegLL,
+                "over.dis.para"=odp,"call"=match.call())
     class(final)<-c("fitMB","fit")
     return(final)
     }
@@ -952,8 +939,7 @@ EstMLEMcGBB<-function(x,freq,a,b,c,...)
 #' @export
 fitMcGBB.default<-function(x,obs.freq,a,b,c)
 {
-  est<-fitMcGBB(x,obs.freq,a,b,c)
-  return(est)
+  return(fitMcGBB(x,obs.freq,a,b,c))
 }
 
 #' @method print fitMB

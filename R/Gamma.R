@@ -115,11 +115,9 @@ dGAMMA<-function(p,c,l)
         }
       }
     }
-    mean<-(c/(c+1))^l             #according to theory the mean value
-    variance<-(c/(c+2))^l - (c/(c+1))^(2*l)     #according to theory the variance value
     # generating an output in list format consisting pdf,mean and variance
-    output<-list("pdf"=ans,"mean"=mean,"var"=variance)
-    return(output)
+    return(list("pdf"=ans,"mean"=(c/(c+1))^l,
+                "var"=(c/(c+2))^l - (c/(c+1))^(2*l)))
   }
 }
 
@@ -223,11 +221,6 @@ pGAMMA<-function(p,c,l)
     {
       ans<-NULL
       val<-NULL
-      #the equation contains partial incomplete gamma function, below is the integral function
-      Igp<-function(t)
-      {
-        (t^(l-1))*(exp(-t))
-      }
       #for each input values in the vector necessary calculations and conditions are applied
       for(i in 1:length(p))
       {
@@ -238,7 +231,7 @@ pGAMMA<-function(p,c,l)
         else
         {
           #integrating the above mentioned function under limits of zero and vector p
-          val<-stats::integrate(Igp,lower = 0,upper = (c*log(1/p[i])))
+          val<-stats::integrate(function(t){(t^(l-1))*(exp(-t))},lower = 0,upper = (c*log(1/p[i])))
           ans[i]<-val$value/gamma(l)
         }
       }
@@ -479,18 +472,15 @@ dGammaBin<-function(x,n,c,l)
       #for each random variable in the input vector below calculations occur
       for (i in 1:length(x))
       {
-        j <- 0:(n-x[i])
-        ans[i]<-choose(n,x[i])*sum((-1)^j *choose(n-x[i],j) *(c/(c+x[i]+j))^l)
+       ans[i]<-choose(n,x[i])*sum((-1)^(0:(n-x[i]))*choose(n-x[i],(0:(n-x[i])))*
+                                    (c/(c+x[i]+(0:(n-x[i]))))^l)
       }
     }
   }
-  mean<-n*((c/(c+1))^l)               #according to theory the mean
-  variance<-(n^2)*((c/(c+2))^l-(c/(c+1))^(2*l))+(n*(c/(c+1))^l)*(1-((c+1)/(c+2))^l) #according to theory variance
-  ove.dis.par<-((c/(c+2))^l-(c/(c+1))^(2*l))/(((c/(c+1))^l)*(1-(c/(c+1))^l))                               #according to theory overdispersion value
   # generating an output in list format consisting pdf,mean,variance and overdispersion value
-  output<-list('pdf'=ans,'mean'=mean,'var'=variance,
-               'over.dis.para'=ove.dis.par)
-  return(output)
+  return(list('pdf'=ans,'mean'=n*((c/(c+1))^l),
+              'var'=(n^2)*((c/(c+2))^l-(c/(c+1))^(2*l))+(n*(c/(c+1))^l)*(1-((c+1)/(c+2))^l),
+              'over.dis.para'=((c/(c+2))^l-(c/(c+1))^(2*l))/(((c/(c+1))^l)*(1-(c/(c+1))^l))))
 }
 
 #' Gamma Binomial Distribution
@@ -569,8 +559,7 @@ pGammaBin<-function(x,n,c,l)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dGammaBin(j,n,c,l)$pdf)
+   ans[i]<-sum(dGammaBin(0:x[i],n,c,l)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -640,18 +629,15 @@ NegLLGammaBin<-function(x,freq,c,l)
       #constructing the data set using the random variables vector and frequency vector
       n<-max(x)
       data<-rep(x,freq)
-      i<-1:sum(freq)
-      term1<-sum(log(choose(n,data[i])))
+
       value<-NULL
       for (i in 1:sum(freq))
         {
-        j<-0:(n-data[i])
-        value[i]<-sum((-1)^j*choose(n-data[i],j)*(c/(c+data[i]+j))^l)
+        value[i]<-sum((-1)^(0:(n-data[i]))*choose(n-data[i],(0:(n-data[i])))*
+                        (c/(c+data[i]+(0:(n-data[i]))))^l)
         }
-      term2<-sum(log(value))
-      GammaBinLL<-term1+term2
       #calculating the negative log likelihood value and representing as a single output value
-      return(-GammaBinLL)
+      return(-(sum(log(choose(n,data[1:sum(freq)])))+sum(log(value))))
     }
   }
 }
@@ -723,17 +709,14 @@ EstMLEGammaBin<-function(x,freq,c,l,...)
   #Gamma binomial distribution
   n<-max(x)
   data<-rep(x,freq)
-  i<-1:sum(freq)
-  term1<-sum(log(choose(n,data)))
+
   value<-NULL
   for (i in 1:sum(freq))
   {
-    j<-0:n-data[i]
-    value[i]<-sum(((-1)^(j))*choose(n-data[i],j)*(c/(c+data[i]+j))^l)
+   value[i]<-sum(((-1)^(0:n-data[i]))*choose(n-data[i],(0:n-data[i]))*
+                   (c/(c+data[i]+(0:n-data[i])))^l)
   }
-  term2<-sum(log(value))
-  GammaBinLL<-term1+term2
-  return(-GammaBinLL)
+  return(-(sum(log(choose(n,data[1:sum(freq)])))+sum(log(value))))
 }
 
 #' Fitting the Gamma Binomial distribution when binomial random variable,
@@ -859,13 +842,12 @@ fitGammaBin<-function(x,obs.freq,c,l)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLGammaBin(x,obs.freq,c,l)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitGaB"=est,"NegLL"=NegLL,"c"=c,"l"=l,"AIC"=AICvalue,
+                "fitGaB"=est,"NegLL"=NegLL,"c"=c,"l"=l,"AIC"=2*2+2*NegLL,
                 "over.dis.para"=est$over.dis.para,"call"=match.call())
     class(final)<-c("fitGaB","fit")
     return(final)
@@ -877,8 +859,7 @@ fitGammaBin<-function(x,obs.freq,c,l)
 #' @export
 fitGammaBin.default<-function(x,obs.freq,c,l)
 {
-  est<-fitGammaBin(x,obs.freq,c,l)
-  return(est)
+  return(fitGammaBin(x,obs.freq,c,l))
 }
 
 #' @method print fitGaB
@@ -986,6 +967,7 @@ summary.fitGaB<-function(object,...)
 #' }
 #'
 #' pGrassiaIIBin(0:10,10,4,.2)   #acquiring the cumulative probability values
+#'
 #' @export
 dGrassiaIIBin<-function(x,n,a,b)
 {
@@ -1021,18 +1003,15 @@ dGrassiaIIBin<-function(x,n,a,b)
       #for each random variable in the input vector below calculations occur
       for (i in 1:length(x))
       {
-        j <- 0:x[i]
-        ans[i]<-choose(n,x[i])*sum((-1)^(x[i]-j) *choose(x[i],j) *(1+b*(n-j))^(-a))
+       ans[i]<-choose(n,x[i])*sum((-1)^(x[i]-(0:x[i]))*
+                                    choose(x[i],0:x[i])*(1+b*(n-(0:x[i])))^(-a))
       }
     }
   }
-  mean<-n*((b/(b+1))^a)               #according to theory the mean
-  variance<-(n^2)*((b/(b+2))^a-(b/(b+1))^(2*a))+(n*(b/(b+1))^a)*(1-((b+1)/(b+2))^a) #according to theory variance
-  ove.dis.par<-((b/(b+2))^a-(b/(b+1))^(2*a))/(((b/(b+1))^a)*(1-(b/(b+1))^a))                               #according to theory overdispersion value
   # generating an output in list format consisting pdf,mean,variance and overdispersion value
-  output<-list('pdf'=ans,'mean'=mean,'var'=variance,
-               'over.dis.para'=ove.dis.par)
-  return(output)
+  return(list('pdf'=ans,'mean'=n*((b/(b+1))^a) ,
+              'var'=(n^2)*((b/(b+2))^a-(b/(b+1))^(2*a))+(n*(b/(b+1))^a)*(1-((b+1)/(b+2))^a),
+              'over.dis.para'=((b/(b+2))^a-(b/(b+1))^(2*a))/(((b/(b+1))^a)*(1-(b/(b+1))^a))))
 }
 
 #' Grassia-II-Binomial Distribution
@@ -1102,6 +1081,7 @@ dGrassiaIIBin<-function(x,n,a,b)
 #' }
 #'
 #' pGrassiaIIBin(0:10,10,4,.2)   #acquiring the cumulative probability values
+#'
 #' @export
 pGrassiaIIBin<-function(x,n,a,b)
 {
@@ -1110,8 +1090,7 @@ pGrassiaIIBin<-function(x,n,a,b)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dGrassiaIIBin(j,n,a,b)$pdf)
+   ans[i]<-sum(dGrassiaIIBin(0:x[i],n,a,b)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -1181,18 +1160,15 @@ NegLLGrassiaIIBin<-function(x,freq,a,b)
       #constructing the data set using the random variables vector and frequency vector
       n<-max(x)
       data<-rep(x,freq)
-      i<-1:sum(freq)
-      term1<-sum(log(choose(n,data[i])))
+
       value<-NULL
       for (i in 1:sum(freq))
       {
-        j<-0:data[i]
-        value[i]<-sum((-1)^(data[i]-j)*choose(data[i],j)*(1+b*(n-j))^(-a))
+        value[i]<-sum((-1)^(data[i]-(0:data[i]))*
+                        choose(data[i],(0:data[i]))*(1+b*(n-(0:data[i])))^(-a))
       }
-      term2<-sum(log(value))
-      GrassiaIIBinLL<-term1+term2
       #calculating the negative log likelihood value and representing as a single output value
-      return(-GrassiaIIBinLL)
+      return(-(sum(log(choose(n,data[1:sum(freq)])))+sum(log(value))))
     }
   }
 }
@@ -1264,17 +1240,14 @@ EstMLEGrassiaIIBin<-function(x,freq,a,b,...)
   #Gamma binomial distribution
   n<-max(x)
   data<-rep(x,freq)
-  i<-1:sum(freq)
-  term1<-sum(log(choose(n,data)))
+
   value<-NULL
   for (i in 1:sum(freq))
   {
-    j<-0:data[i]
-    value[i]<-sum(((-1)^(data[i]-j))*choose(data[i],j)*(1+b*(n-j))^(-a))
+    value[i]<-sum(((-1)^(data[i]-(0:data[i])))*
+                    choose(data[i],0:data[i])*(1+b*(n-(0:data[i])))^(-a))
   }
-  term2<-sum(log(value))
-  GrassiaIIBinLL<-term1+term2
-  return(-GrassiaIIBinLL)
+  return(-(sum(log(choose(n,data[1:sum(freq)])))+sum(log(value))))
 }
 
 #' Fitting the Grassia II Binomial distribution when binomial random variable,
@@ -1369,6 +1342,7 @@ fitGrassiaIIBin<-function(x,obs.freq,a,b)
   else
   {
     est<-dGrassiaIIBin(x,max(x),a,b)
+    odp<-est$over.dis.para; names(odp)<-NULL
     #for given random variables and parameters calculating the estimated probability values
     est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
@@ -1399,14 +1373,13 @@ fitGrassiaIIBin<-function(x,obs.freq,a,b)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLGrassiaIIBin(x,obs.freq,a,b)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitGrIIB"=est,"NegLL"=NegLL,"a"=a,"b"=b,"AIC"=AICvalue,
-                "over.dis.para"=est$over.dis.para,"call"=match.call())
+                "fitGrIIB"=est,"NegLL"=NegLL,"a"=a,"b"=b,"AIC"=2*2+2*NegLL,
+                "over.dis.para"=odp,"call"=match.call())
     class(final)<-c("fitGrIIB","fit")
     return(final)
   }
@@ -1416,8 +1389,7 @@ fitGrassiaIIBin<-function(x,obs.freq,a,b)
 #' @export
 fitGrassiaIIBin.default<-function(x,obs.freq,a,b)
 {
-  est<-fitGrassiaIIBin(x,obs.freq,a,b)
-  return(est)
+  return(fitGrassiaIIBin(x,obs.freq,a,b))
 }
 
 #' @method print fitGrIIB

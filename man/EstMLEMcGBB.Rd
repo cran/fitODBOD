@@ -46,14 +46,14 @@ Obs.fre.1 <- c(47,54,43,40,40,41,39,95)  #assigning the corresponding frequencie
 parameters <- EstMLEMcGBB(x=No.D.D,freq=Obs.fre.1,a=0.1,b=0.1,c=0.2)
 
 bbmle::coef(parameters)         #extracting the parameters
-        }
+}
 }
 \references{
 Manoj, C., Wijekoon, P. & Yapa, R.D., 2013. The McDonald Generalized Beta-Binomial Distribution: A New
 Binomial Mixture Distribution and Simulation Based Comparison with Its Nested Distributions in Handling
 Overdispersion. International Journal of Statistics and Probability, 2(2), pp.24-41.
 
-Available at: \url{http://www.ccsenet.org/journal/index.php/ijsp/article/view/23491}.
+Available at: \doi{10.5539/ijsp.v2n2p24}.
 
 Janiffer, N.M., Islam, A. & Luke, O., 2014. Estimating Equations for Estimation of Mcdonald Generalized
 Beta - Binomial Parameters. , (October), pp.702-709.
@@ -61,7 +61,7 @@ Beta - Binomial Parameters. , (October), pp.702-709.
 Roozegar, R., Tahmasebi, S. & Jafari, A.A., 2015. The McDonald Gompertz Distribution: Properties and Applications.
 Communications in Statistics - Simulation and Computation, (May), pp.0-0.
 
-Available at: \url{http://www.tandfonline.com/doi/full/10.1080/03610918.2015.1088024}.
+Available at: \doi{10.1080/03610918.2015.1088024}.
 }
 \seealso{
 \code{\link[bbmle]{mle2}}

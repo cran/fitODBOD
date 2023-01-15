@@ -2,7 +2,5 @@
 #' @export
 AIC.ml<-function(object,...)
 {
-  AICvalue<-object$AIC
-  return(AICvalue)
+  return(object$AIC)
 }
-

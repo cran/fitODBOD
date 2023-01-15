@@ -45,12 +45,12 @@
 #' Kumaraswamy, P. (1980). A generalized probability density function for double-bounded random processes.
 #' Journal of Hydrology, 46(1), 79-88.
 #'
-#' Available at : \url{http://dx.doi.org/10.1016/0022-1694(80)90036-0}.
+#' Available at : \doi{10.1016/0022-1694(80)90036-0}.
 #'
 #' Jones, M. C. (2009). Kumaraswamy's distribution: A beta-type distribution with some tractability advantages.
 #' Statistical Methodology, 6(1), 70-81.
 #'
-#' Available at : \url{http://dx.doi.org/10.1016/j.stamet.2008.04.001}.
+#' Available at : \doi{10.1016/j.stamet.2008.04.001}.
 #'
 #' @seealso
 #' \code{\link[extraDistr]{Kumaraswamy}}
@@ -122,11 +122,9 @@ dKUM<-function(p,a,b)
       }
     }
   }
-  mean<-b*beta(1+(1/a),b)             #according to theory the mean value
-  variance<-b*beta(1+(2/a),b)-mean^2      #according to theory the variance value
   # generating an output in list format consisting pdf,mean and variance
-  output<-list("pdf"=ans,"mean"=mean,"var"=variance)
-  return(output)
+  return(list("pdf"=ans,"mean"=b*beta(1+(1/a),b),
+              "var"=b*beta(1+(2/a),b)-(b*beta(1+(1/a),b))^2))
 }
 
 #' Kumaraswamy Distribution
@@ -170,12 +168,12 @@ dKUM<-function(p,a,b)
 #' Kumaraswamy, P. (1980). A generalized probability density function for double-bounded random processes.
 #' Journal of Hydrology, 46(1), 79-88.
 #'
-#' Available at : \url{http://dx.doi.org/10.1016/0022-1694(80)90036-0}.
+#' Available at : \doi{10.1016/0022-1694(80)90036-0}.
 #'
 #' Jones, M. C. (2009). Kumaraswamy's distribution: A beta-type distribution with some tractability advantages.
 #' Statistical Methodology, 6(1), 70-81.
 #'
-#' Available at : \url{http://dx.doi.org/10.1016/j.stamet.2008.04.001}.
+#' Available at : \doi{10.1016/j.stamet.2008.04.001}.
 #'
 #' @seealso
 #' \code{\link[extraDistr]{Kumaraswamy}}
@@ -292,12 +290,12 @@ pKUM<-function(p,a,b)
 #' Kumaraswamy, P. (1980). A generalized probability density function for double-bounded random processes.
 #' Journal of Hydrology, 46(1), 79-88.
 #'
-#' Available at : \url{http://dx.doi.org/10.1016/0022-1694(80)90036-0}.
+#' Available at : \doi{10.1016/0022-1694(80)90036-0}.
 #'
 #' Jones, M. C. (2009). Kumaraswamy's distribution: A beta-type distribution with some tractability advantages.
 #' Statistical Methodology, 6(1), 70-81.
 #'
-#' Available at : \url{http://dx.doi.org/10.1016/j.stamet.2008.04.001}.
+#' Available at : \doi{10.1016/j.stamet.2008.04.001}.
 #'
 #' @seealso
 #' \code{\link[extraDistr]{Kumaraswamy}}
@@ -439,10 +437,10 @@ mazKUM<-function(r,a,b)
 #' a <- c(1,2,5,10,.85)
 #' plot(0,0,main="Kumaraswamy binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
-#' for (i in 1:5)
-#' {
+#' for (i in 1:5) {
 #' lines(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],pch=16)
+#'   }
 #' }
 #'
 #' dKumBin(0:10,10,4,2)$pdf  #extracting the pdf values
@@ -450,19 +448,19 @@ mazKUM<-function(r,a,b)
 #' dKumBin(0:10,10,4,2)$var  #extracting the variance
 #' dKumBin(0:10,10,4,2)$over.dis.para #extracting the over dispersion value
 #'
+#' \dontrun{
 #' #plotting the random variables and cumulative probability values
 #' col <- rainbow(5)
 #' a <- c(1,2,5,10,.85)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
-#' for (i in 1:5)
-#' {
+#' for (i in 1:5) {
 #' lines(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
+#'   }
 #' }
 #'
 #' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
-#'          }
 #'
 #' @export
 dKumBin<-function(x,n,a,b,it=25000)
@@ -491,9 +489,7 @@ dKumBin<-function(x,n,a,b,it=25000)
     {
       check<-NULL
       ans<-NULL
-      value<-NULL
       ans1<-NULL
-      value1<-NULL
       #checking if at any chance the binomial random variable is greater than binomial trial value
       #if so providing an error message and stopping the function progress
       if(max(x)>n)
@@ -512,9 +508,7 @@ dKumBin<-function(x,n,a,b,it=25000)
         y<-0:n
         for(i in 1:length(y))
         {
-          j<-0:it
-          value1[i]<-sum(((-1)^j)*choose(b-1,j)*beta(y[i]+a+a*j,n-y[i]+1))
-          ans1[i]<-a*b*choose(n,y[i])*value1[i]
+         ans1[i]<-a*b*choose(n,y[i])*sum(((-1)^(0:it))*choose(b-1,0:it)*beta(y[i]+a+a*(0:it),n-y[i]+1))
         }
         check<-sum(ans1)
         #checking if the sum of all probability values leads upto 1
@@ -528,23 +522,17 @@ dKumBin<-function(x,n,a,b,it=25000)
           #for each random variable in the input vector below calculations occur
           for(i in 1:length(x))
           {
-            j<-0:it
-            value[i]<-sum(((-1)^j)*choose(b-1,j)*beta(x[i]+a+a*j,n-x[i]+1))
-            ans[i]<-a*b*choose(n,x[i])*value[i]
+            ans[i]<-a*b*choose(n,x[i])*sum(((-1)^(0:it))*choose(b-1,0:it)*beta(x[i]+a+a*(0:it),n-x[i]+1))
           }
         }
       }
     }
   }
-
-  mean<-n*b*beta(1+(1/a),b)         #according to theory the mean
-  variance<-(n^2)*b*(beta(1+(2/a),b)-b*(beta(1+(1/a),b))^2)+n*b*(beta(1+(1/a),b)-beta(1+(2/a),b))  #according to theory variance
-  ove.dis.par<-((b*beta(1+(2/a),b))-(b*beta(1+(1/a),b))^2)/
-    ((b*beta(1+(1/a),b))-(b*beta(1+(1/a),b))^2)         #according to theory overdispersion value
   # generating an output in list format consisting pdf,mean,variance and overdispersion value
-  output<-list("pdf"=ans,"mean"=mean,"var"=variance,
-               "over.dis.para"=ove.dis.par)
-  return(output)
+  return(list("pdf"=ans,"mean"=n*b*beta(1+(1/a),b),
+              "var"=(n^2)*b*(beta(1+(2/a),b)-b*(beta(1+(1/a),b))^2)+n*b*(beta(1+(1/a),b)-beta(1+(2/a),b)),
+              "over.dis.para"=((b*beta(1+(2/a),b))-(b*beta(1+(1/a),b))^2)/
+                ((b*beta(1+(1/a),b))-(b*beta(1+(1/a),b))^2) ))
 }
 
 
@@ -603,10 +591,10 @@ dKumBin<-function(x,n,a,b,it=25000)
 #' a <- c(1,2,5,10,.85)
 #' plot(0,0,main="Kumaraswamy binomial probability function graph",xlab="Binomial random variable",
 #' ylab="Probability function values",xlim = c(0,10),ylim = c(0,0.5))
-#' for (i in 1:5)
-#' {
+#' for (i in 1:5) {
 #' lines(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],lwd=2.85)
 #' points(0:10,dKumBin(0:10,10,a[i],a[i])$pdf,col = col[i],pch=16)
+#'   }
 #' }
 #'
 #' dKumBin(0:10,10,4,2)$pdf  #extracting the pdf values
@@ -614,19 +602,18 @@ dKumBin<-function(x,n,a,b,it=25000)
 #' dKumBin(0:10,10,4,2)$var  #extracting the variance
 #' dKumBin(0:10,10,4,2)$over.dis.para #extracting the over dispersion value
 #'
+#' \dontrun{
 #' #plotting the random variables and cumulative probability values
 #' col <- rainbow(5)
 #' a <- c(1,2,5,10,.85)
 #' plot(0,0,main="Cumulative probability function graph",xlab="Binomial random variable",
 #' ylab="Cumulative probability function values",xlim = c(0,10),ylim = c(0,1))
-#' for (i in 1:5)
-#' {
+#' for (i in 1:5) {
 #' lines(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
 #' points(0:10,pKumBin(0:10,10,a[i],a[i]),col = col[i])
+#'   }
 #' }
-#'
 #' pKumBin(0:10,10,4,2)    #acquiring the cumulative probability values
-#'         }
 #'
 #' @export
 pKumBin<-function(x,n,a,b,it=25000)
@@ -636,8 +623,7 @@ pKumBin<-function(x,n,a,b,it=25000)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dKumBin(j,n,a,b,it)$pdf)
+    ans[i]<-sum(dKumBin(0:x[i],n,a,b,it)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -681,7 +667,7 @@ pKumBin<-function(x,n,a,b,it=25000)
 #'
 #' \dontrun{
 #' NegLLKumBin(No.D.D,Obs.fre.1,1.3,4.4) #acquiring the negative log likelihood value
-#'         }
+#' }
 #'
 #' @export
 NegLLKumBin<-function(x,freq,a,b,it=25000)
@@ -717,14 +703,11 @@ NegLLKumBin<-function(x,freq,a,b,it=25000)
     {
       ans1<-NULL
       n<-max(x)
-      value1<-NULL
       y<-0:n
       #constructing the probability values for all random variables
       for(i in 1:length(y))
       {
-        j<-0:it
-        value1[i]<-sum(((-1)^j)*choose(b-1,j)*beta(y[i]+a+a*j,n-y[i]+1))
-        ans1[i]<-a*b*choose(n,y[i])*value1[i]
+       ans1[i]<-a*b*choose(n,y[i])*sum(((-1)^(0:it))*choose(b-1,(0:it))*beta(y[i]+a+a*(0:it),n-y[i]+1))
       }
       check<-sum(ans1)
       #checking if the sum of all probability values leads upto one
@@ -737,20 +720,15 @@ NegLLKumBin<-function(x,freq,a,b,it=25000)
       {
         #constructing the data set using the random variables vector and frequency vector
         data<-rep(x,freq)
-        i<-1:sum(freq)
 
-        term1<-sum(log(choose(n,data[i])))
         value<-NULL
         for (i in 1:sum(freq))
         {
-          j<-0:it
-          value[i]<-sum(((-1)^j)*choose(b-1,j)*beta(data[i]+a+a*j,n-data[i]+1))
+          value[i]<-sum(((-1)^(0:it))*choose(b-1,(0:it))*beta(data[i]+a+a*(0:it),n-data[i]+1))
         }
       }
-      term2<-sum(log(value))
-      KumBinLL<-sum(freq)*log(a*b)+term1+term2
       #calculating the negative log likelihood value and representing as a single output value
-      return(-KumBinLL)
+      return(-(sum(freq)*log(a*b)+sum(log(choose(n,data[1:sum(freq)])))+sum(log(value))))
     }
   }
 }
@@ -802,7 +780,7 @@ NegLLKumBin<-function(x,freq,a,b,it=25000)
 #' parameters1 <- EstMLEKumBin(x=No.D.D,freq=Obs.fre.1,a=10.1,b=1.1,it=10000)
 #'
 #' bbmle::coef(parameters1)   #extracting the parameters
-#'         }
+#' }
 #' @export
 EstMLEKumBin<-function(x,freq,a,b,it,...)
 {
@@ -829,17 +807,14 @@ EstMLEKumBin<-function(x,freq,a,b,it,...)
   #Kumaraswamy binomial distribution
   n<-max(x)
   data<-rep(x,freq)
-  i<-1:sum(freq)
-  term1<-sum(log(choose(n,data[i])))
+
   value<-NULL
   for (i in 1:sum(freq))
   {
-    j<-0:it
-    value[i]<-sum(((-1)^j)*choose(b-1,j)*beta(data[i]+a+a*j,n-data[i]+1))
+    value[i]<-sum(((-1)^(0:it))*choose(b-1,(0:it))*beta(data[i]+a+a*(0:it),n-data[i]+1))
   }
-  term2<-sum(log(value))
-  KumBinLL<-sum(freq)*log(a*b)+term1+term2
-  return(-KumBinLL)
+
+  return(-(sum(freq)*log(a*b)+ sum(log(choose(n,data[1:sum(freq)])))+ sum(log(value))))
 }
 
 #' Fitting the Kumaraswamy Binomial Distribution when binomial random variable, frequency and shape
@@ -931,7 +906,7 @@ EstMLEKumBin<-function(x,freq,a,b,it,...)
 #'
 #' #extracting the residuals
 #' residuals(results)
-#'          }
+#' }
 #'
 #' @export
 fitKumBin<-function(x,obs.freq,a,b,it)
@@ -946,6 +921,7 @@ fitKumBin<-function(x,obs.freq,a,b,it)
   else
   {
     est<-dKumBin(x,max(x),a,b,it)
+    odp<-est$over.dis.para; names(odp)<-NULL
     #for given random variables and parameters calculating the estimated probability values
     est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
@@ -976,14 +952,13 @@ fitKumBin<-function(x,obs.freq,a,b,it)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLKumBin(x,obs.freq,a,b,it)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitBB"=est,"NegLL"=NegLL,"a"=a,"b"=b,"it"=it,"AIC"=AICvalue,
-                "over.dis.para"=est$over.dis.para,"call"=match.call())
+                "fitBB"=est,"NegLL"=NegLL,"a"=a,"b"=b,"it"=it,"AIC"=2*2+2*NegLL,
+                "over.dis.para"=odp,"call"=match.call())
     class(final)<-c("fitKB","fit")
     return(final)
   }
@@ -993,8 +968,7 @@ fitKumBin<-function(x,obs.freq,a,b,it)
 #' @export
 fitKumBin.default<-function(x,obs.freq,a,b,it)
 {
-  est<-fitKumBin(x,obs.freq,a,b,it)
-  return(est)
+  return(fitKumBin(x,obs.freq,a,b,it))
 }
 
 #' @method print fitKB

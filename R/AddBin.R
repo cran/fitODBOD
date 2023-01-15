@@ -52,7 +52,7 @@
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990}
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -130,8 +130,8 @@ dAddBin<-function(x,n,p,alpha)
         value1<-NULL
         for(i in 1:length(y))
         {
-        value1[i]<- (choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i])))*((alpha/2)*((y[i]*(y[i]-1)/p)+((n-y[i])
-                    *(n-y[i]-1)/(1-p)))-(alpha*n*(n-1)/2) + 1)
+        value1[i]<- (choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i])))*
+          ((alpha/2)*((y[i]*(y[i]-1)/p)+((n-y[i])*(n-y[i]-1)/(1-p)))-(alpha*n*(n-1)/2) + 1)
         }
         check1<-sum(value1)
         #checking if the alpha is inbetween the limits given
@@ -152,14 +152,10 @@ dAddBin<-function(x,n,p,alpha)
           for (i in 1:length(x))
           {
             value[i]<-(choose(n,x[i])*(p^x[i])*((1-p)^(n-x[i])))*
-              ((alpha/2)*((x[i]*(x[i]-1)/p)+((n-x[i])*(n-x[i]-1)/(1-p)))
-               -(alpha*n*(n-1)/2) + 1)
+              ((alpha/2)*((x[i]*(x[i]-1)/p)+((n-x[i])*(n-x[i]-1)/(1-p)))-(alpha*n*(n-1)/2) + 1)
           }
-          mean<-n*p              #according to theory the mean
-          variance<-n*p*(1-p)*(1+(n-1)*alpha)         #according to theory the variance
           # generating an output in list format consisting pdf,mean and variance
-          output<-list("pdf"=value,"mean"=mean,"var"=variance)
-          return(output)
+          return(list("pdf"=value,"mean"=n*p,"var"=n*p*(1-p)*(1+(n-1)*alpha)))
         }
       }
     }
@@ -214,7 +210,7 @@ dAddBin<-function(x,n,p,alpha)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990}
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -257,8 +253,7 @@ pAddBin<-function(x,n,p,alpha)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dAddBin(j,n,p,alpha)$pdf)
+   ans[i]<-sum(dAddBin(0:x[i],n,p,alpha)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -296,7 +291,7 @@ pAddBin<-function(x,n,p,alpha)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990}
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -336,7 +331,6 @@ NegLLAddBin<-function(x,freq,p,alpha)
     else
     {
       #creating the necessary limits for alpha, the left hand side and right hand side limits
-      AddbinLL<-NULL
       value<-NULL
       right.h<-2*(n+((2*p-1)^2)/(4*p*(1-p)))^(-1)
       left.h<-(-2/(n*(n-1)))*min(p/(1-p),(1-p)/p)
@@ -345,8 +339,8 @@ NegLLAddBin<-function(x,freq,p,alpha)
       value1<-NULL
       for(i in 1:length(y))
       {
-        value1[i]<- (choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i])))*((alpha/2)*((y[i]*(y[i]-1)/p)+((n-y[i])
-                     *(n-y[i]-1)/(1-p)))-(alpha*n*(n-1)/2) + 1)
+        value1[i]<- (choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i])))*
+          ((alpha/2)*((y[i]*(y[i]-1)/p)+((n-y[i])*(n-y[i]-1)/(1-p)))-(alpha*n*(n-1)/2) + 1)
       }
       check1<-sum(value1)
       #checking if the alpha is inbetween the limits given
@@ -363,19 +357,15 @@ NegLLAddBin<-function(x,freq,p,alpha)
       }
       else
       {
-        j<-1:sum(freq)
-        term1<-sum(log(choose(n,data[j])))
-        term2<-log(p)*sum(data[j])
-        term3<-log(1-p)*sum(n-data[j])
         for (i in 1:sum(freq))
         {
-          value[i]<-((alpha/2)*((data[i]*(data[i]-1)/p)+((n-data[i])*(n-data[i]-1)/(1-p)))-(alpha*n*(n-1)/2) + 1)
+          value[i]<-((alpha/2)*((data[i]*(data[i]-1)/p)+((n-data[i])*(n-data[i]-1)/(1-p)))-
+                       (alpha*n*(n-1)/2) + 1)
         }
-        term4<-sum(log(value))
       }
-      AddBinLL<-term1+term2+term3+term4
       #calculating the negative log likelihood value and representing as a single output value
-      return(-AddBinLL)
+      return(-(sum(log(choose(n,data[1:sum(freq)]))) + log(p)*sum(data[1:sum(freq)]) +
+                 log(1-p)*sum(n-data[1:sum(freq)]) + sum(log(value))))
     }
   }
 }
@@ -425,7 +415,7 @@ NegLLAddBin<-function(x,freq,p,alpha)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990}
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -442,7 +432,7 @@ NegLLAddBin<-function(x,freq,p,alpha)
 #'
 #' #extracting the estimated parameters
 #' coef(results)
-#'          }
+#' }
 #' @export
 EstMLEAddBin<-function(x,freq)
 {
@@ -477,19 +467,15 @@ EstMLEAddBin<-function(x,freq)
       value<-NULL
       n<-max(x)
       data<-rep(x,freq)
-      j<-1:sum(freq)
-      term1<-sum(log(choose(n,data[j])))
-      term2<-log(p)*sum(data[j])
-      term3<-log(1-p)*sum(n-data[j])
 
       for (i in 1:sum(freq))
       {
-        value[i]<-log(((alpha/2)*((data[i]*(data[i]-1)/p)+((n-data[i])*(n-data[i]-1)/(1-p)))-(alpha*n*(n-1)/2) + 1))
+        value[i]<-log(((alpha/2)*((data[i]*(data[i]-1)/p)+((n-data[i])*(n-data[i]-1)/(1-p)))-
+                         (alpha*n*(n-1)/2) + 1))
       }
-      term4<-sum(value)
 
-      AddBinLL<-term1+term2+term3+term4
-      return(-AddBinLL)
+      return(-(sum(log(choose(n,data[1:sum(freq)]))) + log(p)*sum(data[1:sum(freq)]) +
+                 log(1-p)*sum(n-data[1:sum(freq)]) + sum(value)))
     }
     #below looping function is to find the best estimated parameter combinations which minimizes the
     #negative log likelihood value by increasing the decimal point to precision of six
@@ -558,12 +544,9 @@ EstMLEAddBin<-function(x,freq)
     #finally the found best estimated p5 and alpha5 value to pfin and alphafin and find the corresponding log likelihood
     #value as well
     pfin<-answerfin$p ; alphafin<-answerfin$alpha ; NegLLAddBinfin<-answerfin$NegLLAddBin
-    #generate the output as the list format where NegLLAddBin is the minimum negative loglikelihood
-    #value and alpha and probability are the corresponding estimated alpha and probability
-    #value
-    AICvalue<-2*2+(2*NegLLAddBinfin)
-    argument<-match.call()
-    output<-list("min"=NegLLAddBinfin,"p"=pfin,"alpha"=alphafin,"AIC"=AICvalue,"call"=argument)
+
+    output<-list("min"=NegLLAddBinfin,"p"=pfin,"alpha"=alphafin,"AIC"=2*2+(2*NegLLAddBinfin),
+                 "call"=match.call())
     class(output)<-c("mlAB","ml")
     return(output)
 
@@ -574,9 +557,8 @@ EstMLEAddBin<-function(x,freq)
 #' @export
 EstMLEAddBin.default<-function(x,freq)
 {
-  est<-EstMLEAddBin(x,freq)
   #class(est)<-"mlAB"
-  return(est)
+  return(EstMLEAddBin(x,freq))
 }
 
 #' @method print mlAB
@@ -668,7 +650,7 @@ coef.mlAB<-function(object,...)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990}
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -692,7 +674,7 @@ coef.mlAB<-function(object,...)
 #'
 #' #extract fitted values
 #' fitted(results)
-#'        }
+#' }
 #'
 #' @export
 fitAddBin<-function(x,obs.freq,p,alpha)
@@ -735,15 +717,13 @@ fitAddBin<-function(x,obs.freq,p,alpha)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-
-    #calculating Negative log likelihood value and AIC
     NegLL<-NegLLAddBin(x,obs.freq,p,alpha)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitAB"=est,"NegLL"=NegLL,"p"=p,"alpha"=alpha,"AIC"=AICvalue,
-                "call"=match.call())
+                "fitAB"=est,"NegLL"=NegLL,"p"=p,"alpha"=alpha,
+                "AIC"=2*2+2*NegLL,"call"=match.call())
     class(final)<-c("fitAB","fit")
     return(final)
     }
@@ -753,8 +733,7 @@ fitAddBin<-function(x,obs.freq,p,alpha)
 #' @export
 fitAddBin.default<-function(x,obs.freq,p,alpha)
 {
-  est<-fitAddBin(x,obs.freq,p,alpha)
-  return(est)
+  return(fitAddBin(x,obs.freq,p,alpha))
 }
 
 #' @method print fitAB

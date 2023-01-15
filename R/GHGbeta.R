@@ -51,7 +51,7 @@
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}
+
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -143,15 +143,15 @@
             }
             else
             {
-              ans[i]<-(1/beta(a,b))*(forward1/forward2)*(p[i]^(a-1))*((1-p[i])^(b-1))*((c^(b+n))/((c+(1-c)*p[i])^(a+b+n)))
+              ans[i]<-(1/beta(a,b))*(forward1/forward2)*(p[i]^(a-1))*((1-p[i])^(b-1))*
+                ((c^(b+n))/((c+(1-c)*p[i])^(a+b+n)))
             }
           }
         }
-        mean<-mazGHGBeta(1,n,a,b,c)         #according to theory the mean value
-        variance<-mazGHGBeta(2,n,a,b,c)-mean^2        #according to theory the variance value
+
         # generating an output in list format consisting pdf,mean and variance
-        output<-list("pdf"=ans,"mean"=mean,"var"=variance)
-        return(output)
+        return(list("pdf"=ans,"mean"=mazGHGBeta(1,n,a,b,c),
+                    "var"=mazGHGBeta(2,n,a,b,c)-mazGHGBeta(1,n,a,b,c)^2))
       }
     }
   }
@@ -206,7 +206,6 @@
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -289,11 +288,6 @@ pGHGBeta<-function(p,n,a,b,c)
         else
         {
           ans<-NULL
-          #integral function to calculate the cumulative probability function
-          integrand<-function(p)
-          {
-            (1/beta(a,b))*(forward1/forward2)*(p^(a-1))*((1-p)^(b-1))*((c^(b+n))/((c+(1-c)*p)^(a+b+n)))
-          }
           #for each input values in the vector necessary calculations and conditions are applied
           for (i in 1:length(p))
           {
@@ -303,7 +297,9 @@ pGHGBeta<-function(p,n,a,b,c)
             }
             else
             {
-              ans[i]<-stats::integrate(integrand,lower=0,upper=p[i])$value
+              ans[i]<-stats::integrate(function(p){(1/beta(a,b))*(forward1/forward2)*
+                  (p^(a-1))*((1-p)^(b-1))*((c^(b+n))/((c+(1-c)*p)^(a+b+n)))},
+                                       lower=0,upper=p[i])$value
             }
           }
         }
@@ -363,7 +359,6 @@ pGHGBeta<-function(p,n,a,b,c)
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -460,11 +455,9 @@ mazGHGBeta<-function(r,n,a,b,c)
             else
             {
               #integral function to calculate the moment about zero values
-              integrand<-function(p,r)
-              {
-                (p^r)*(1/beta(a,b))*(forward1/forward2)*(p^(a-1))*((1-p)^(b-1))*((c^(b+n))/((c+(1-c)*p)^(a+b+n)))
-              }
-              ans[i]<-stats::integrate(integrand,lower=0,upper=1,r=r[i])$value
+              ans[i]<-stats::integrate(function(p,r){(p^r)*(1/beta(a,b))*(forward1/forward2)*
+                  (p^(a-1))*((1-p)^(b-1))*((c^(b+n))/((c+(1-c)*p)^(a+b+n)))},
+                                       lower=0,upper=1,r=r[i])$value
             }
           }
         }
@@ -530,7 +523,6 @@ mazGHGBeta<-function(r,n,a,b,c)
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}.
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -617,15 +609,11 @@ dGHGBB<-function(x,n,a,b,c)
             ans[i]<-(choose(n,x[i])*beta(x[i]+a,n-x[i]+b)*c^x[i])/(beta(a,b+n)*forward)
           }
         }
-        mean<-n*dGHGBeta(0,n,a,b,c)$mean           #according to theory the mean
-        variance<-n*dGHGBeta(0,n,a,b,c)$mean*(1-dGHGBeta(0,n,a,b,c)$mean)+n*(n-1)*dGHGBeta(0,n,a,b,c)$var
-        #according to theory the variance
-        overdispersion<-dGHGBeta(0,n,a,b,c)$var/(dGHGBeta(0,n,a,b,c)$mean*(1-dGHGBeta(0,n,a,b,c)$mean))
-        #according to theory the over dispersion
+        Tempsy<-dGHGBeta(0,n,a,b,c)
         # generating an output in list format consisting pdf,mean,variance and overdispersion value
-        output<-list("pdf"=ans,"mean"=mean,"var"=variance,
-                     "over.dis.para"=overdispersion)
-        return(output)
+        return(list("pdf"=ans,"mean"=n*Tempsy$mean ,
+                    "var"=n*Tempsy$mean*(1-Tempsy$mean)+n*(n-1)*Tempsy$var,
+                    "over.dis.para"=Tempsy$var/(Tempsy$mean*(1-Tempsy$mean))))
       }
     }
   }
@@ -677,7 +665,6 @@ dGHGBB<-function(x,n,a,b,c)
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -722,8 +709,7 @@ pGHGBB<-function(x,n,a,b,c)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dGHGBB(j,n,a,b,c)$pdf)
+    ans[i]<-sum(dGHGBB(0:x[i],n,a,b,c)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -758,7 +744,6 @@ pGHGBB<-function(x,n,a,b,c)
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -796,7 +781,6 @@ NegLLGHGBB<-function(x,freq,a,b,c)
     }
     else
     {
-
       #constructing the data set using the random variables vector and frequency vector
       n<-max(x)
       data<-rep(x,freq)
@@ -810,11 +794,10 @@ NegLLGHGBB<-function(x,freq,a,b,c)
       }
       else
       {
-        i<-1:sum(freq)
-        term1<-sum(log(choose(n,data[i]))+log(beta(data[i]+a,n-data[i]+b))+data[i]*log(c))
-        GHGBBLL<-term1-sum(freq)*log(beta(a,b+n))-sum(freq)*log(forward)
         #calculating the negative log likelihood value and representing as a single output value
-        return(-GHGBBLL)
+        return(-(sum(log(choose(n,data[1:sum(freq)]))+
+                       log(beta(data[1:sum(freq)]+a,n-data[1:sum(freq)]+b))+data[1:sum(freq)]*log(c))-
+                   sum(freq)*log(beta(a,b+n))-sum(freq)*log(forward)))
       }
     }
   }
@@ -853,7 +836,6 @@ NegLLGHGBB<-function(x,freq,a,b,c)
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -899,10 +881,10 @@ EstMLEGHGBB<-function(x,freq,a,b,c,...)
   #Gaussian Hypergeometric Generalized Beta binomial distribution
   n<-max(x)
   data<-rep(x,freq)
-  i<-1:sum(freq)
-  term1<-sum(log(choose(n,data[i]))+log(beta(data[i]+a,n-data[i]+b))+data[i]*log(c))
-  GHGBBLL<-term1-sum(freq)*log(beta(a,b+n))-sum(freq)*log(Re(hypergeo::hypergeo_powerseries(-n,a,-b-n+1,c)))
-  return(-GHGBBLL)
+  return(-(sum(log(choose(n,data[1:sum(freq)]))+
+                 log(beta(data[1:sum(freq)]+a,n-data[1:sum(freq)]+b))+
+                 data[1:sum(freq)]*log(c))-sum(freq)*log(beta(a,b+n))-
+             sum(freq)*log(Re(hypergeo::hypergeo_powerseries(-n,a,-b-n+1,c)))))
 }
 
 #' Fitting the Gaussian Hypergeometric Generalized Beta  Binomial Distribution when binomial
@@ -967,7 +949,6 @@ EstMLEGHGBB<-function(x,freq,a,b,c,...)
 #' Rodriguez-Avi, J., Conde-Sanchez, A., Saez-Castillo, A. J., & Olmo-Jimenez, M. J. (2007). A generalization
 #' of the beta-binomial distribution. Journal of the Royal Statistical Society. Series C (Applied Statistics), 56(1), 51-61.
 #'
-#' Available at : \url{http://dx.doi.org/10.1111/j.1467-9876.2007.00564.x}
 #'
 #' Pearson, J., 2009. Computation of Hypergeometric Functions. Transformation, (September), p.1--123.
 #'
@@ -1013,6 +994,7 @@ fitGHGBB<-function(x,obs.freq,a,b,c)
   else
   {
     est<-dGHGBB(x,max(x),a,b,c)
+    odp<-est$over.dis.para; names(odp)<-NULL
     #for given random variables and parameters calculating the estimated probability values
     est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
@@ -1043,14 +1025,13 @@ fitGHGBB<-function(x,obs.freq,a,b,c)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative Loglikelihood value and AIC
     NegLL<-NegLLGHGBB(x,obs.freq,a,b,c)
-    AICvalue<-2*3+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitGB"=est, "NegLL"=NegLL, "a"=a, "b"=b, "c"=c, "AIC"=AICvalue,
-                "over.dis.para"=est$over.dis.para,"call"=match.call())
+                "fitGB"=est, "NegLL"=NegLL, "a"=a, "b"=b, "c"=c,
+                "AIC"=2*3+2*NegLL,"over.dis.para"=odp,"call"=match.call())
     class(final)<-c("fitGB","fit")
     return(final)
     }
@@ -1060,8 +1041,7 @@ fitGHGBB<-function(x,obs.freq,a,b,c)
 #' @export
 fitGHGBB.default<-function(x,obs.freq,a,b,c)
 {
-  est<-fitGHGBB(x,obs.freq,a,b,c)
-  return(est)
+  return(fitGHGBB(x,obs.freq,a,b,c))
 }
 
 #' @method print fitGB

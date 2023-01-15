@@ -49,7 +49,7 @@
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+#' Available at: \doi{10.1080/03610928508828990}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -120,11 +120,11 @@ dMultiBin<-function(x,n,p,theta)
         #constructing the probability values for all random variables
         y<-0:n
         value1<-NULL
-        j<-0:n
-        func1<-sum(choose(n,j)*(p^j)*((1-p)^(n-j))*(theta^(j*(n-j))))
+
+        func1<-
         for (i in 1:length(y))
         {
-          value1[i]<-choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i]))*(theta^(y[i]*(n-y[i])))/func1
+          value1[i]<-choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i]))*(theta^(y[i]*(n-y[i])))/(sum(choose(n,0:n)*(p^(0:n))*((1-p)^(n-(0:n)))*(theta^((0:n)*(n-(0:n))))))
         }
         check1<-sum(value1)
         #checking if the theta value is less than or equal to zero if so providig an error message
@@ -146,13 +146,12 @@ dMultiBin<-function(x,n,p,theta)
           #for each random variable in the input vector below calculations occur
           for (i in 1:length(x))
           {
-            value[i]<-choose(n,x[i])*(p^x[i])*((1-p)^(n-x[i]))*(theta^(x[i]*(n-x[i])))/func1
+            value[i]<-choose(n,x[i])*(p^x[i])*((1-p)^(n-x[i]))*(theta^(x[i]*(n-x[i])))/
+              (sum(choose(n,0:n)*(p^(0:n))*((1-p)^(n-(0:n)))*(theta^((0:n)*(n-(0:n))))))
           }
           # generating an output in list format consisting pdf,mean and variance
-          mean<-sum((0:n)*value1)
-          variance<-sum(((0:n)^2)*value1)-mean^2
-          output<-list("pdf"=value,"mean"=mean,"var"=variance)
-          return(output)
+          return(list("pdf"=value,"mean"=sum((0:n)*value1),
+                      "var"=sum(((0:n)^2)*value1)-(sum((0:n)*value1))^2))
         }
       }
     }
@@ -204,7 +203,7 @@ dMultiBin<-function(x,n,p,theta)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+#' Available at: \doi{10.1080/03610928508828990}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -245,8 +244,7 @@ pMultiBin<-function(x,n,p,theta)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dMultiBin(j,n,p,theta)$pdf)
+    ans[i]<-sum(dMultiBin(0:x[i],n,p,theta)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -284,7 +282,7 @@ pMultiBin<-function(x,n,p,theta)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+#' Available at: \doi{10.1080/03610928508828990}.
 #'
 #' @examples
 #' No.D.D <- 0:7       #assigning the random variables
@@ -310,11 +308,11 @@ NegLLMultiBin<-function(x,freq,p,theta)
     #constructing the probability values for all random variables
     y<-0:n
     value1<-NULL
-    j<-0:n
-    func1<-sum(choose(n,j)*(p^j)*((1-p)^(n-j))*(theta^(j*(n-j))))
+
     for (i in 1:length(y))
     {
-      value1[i]<-choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i]))*(theta^(y[i]*(n-y[i])))/func1
+      value1[i]<-choose(n,y[i])*(p^y[i])*((1-p)^(n-y[i]))*(theta^(y[i]*(n-y[i])))/
+        sum(choose(n,0:n)*(p^(0:n))*((1-p)^(n-(0:n)))*(theta^((0:n)*(n-(0:n)))))
     }
     check1<-sum(value1)
     #checking if any of the random variables of frequencies are less than zero if so
@@ -340,15 +338,11 @@ NegLLMultiBin<-function(x,freq,p,theta)
     else
     {
       k<-0:n
-      func1<-sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(theta^(k*(n-k))))
-      j<-1:sum(freq)
-      term1<-sum(log(choose(n,data[j])))
-      term2<-log(p)*sum(data[j])
-      term3<-log(1-p)*sum(n-data[j])
-      term4<-log(theta)*sum(data[j]*(n-data[j]))
-      MultiBinLL<-term1+term2+term3+term4-sum(freq)*log(func1)
       #calculating the negative log likelihood value and representing as a single output value
-      return(-MultiBinLL)
+      return(-(sum(log(choose(n,data[1:sum(freq)]))) + log(p)*sum(data[1:sum(freq)]) +
+                 log(1-p)*sum(n-data[1:sum(freq)])+
+                 log(theta)*sum(data[1:sum(freq)]*(n-data[1:sum(freq)]))-
+                 sum(freq)*log(sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(theta^(k*(n-k)))))))
     }
   }
 }
@@ -389,7 +383,7 @@ NegLLMultiBin<-function(x,freq,p,theta)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -430,14 +424,10 @@ EstMLEMultiBin<-function(x,freq,p,theta,...)
   n<-max(x)
   data<-rep(x,freq)
   k<-0:n
-  func1<-sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(theta^(k*(n-k))))
-  j<-1:sum(freq)
-  term1<-sum(log(choose(n,data[j])))
-  term2<-log(p)*sum(data[j])
-  term3<-log(1-p)*sum(n-data[j])
-  term4<-log(theta)*sum(data[j]*(n-data[j]))
-  MultiBinLL<-term1+term2+term3+term4-sum(freq)*log(func1)
-  return(-MultiBinLL)
+  return(-(sum(log(choose(n,data[1:sum(freq)])))+ log(p)*sum(data[1:sum(freq)])+
+             log(1-p)*sum(n-data[1:sum(freq)])+
+             log(theta)*sum(data[1:sum(freq)]*(n-data[1:sum(freq)]))-
+             sum(freq)*log(sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(theta^(k*(n-k)))))))
 }
 
 #' Fitting the Multiplicative Binomial Distribution when binomial
@@ -502,7 +492,7 @@ EstMLEMultiBin<-function(x,freq,p,theta,...)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+#' Available at: \doi{10.1080/03610928508828990}.
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -568,14 +558,12 @@ fitMultiBin<-function(x,obs.freq,p,theta)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative log likelihood value and AIC
     NegLL<-NegLLMultiBin(x,obs.freq,p,theta)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
-                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitMuB"=est,"NegLL"=NegLL,"p"=p,"theta"=theta,"AIC"=AICvalue,
-                "call"=match.call())
+                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),"fitMuB"=est,
+                "NegLL"=NegLL,"p"=p,"theta"=theta,"AIC"=2*2+2*NegLL,"call"=match.call())
     class(final)<-c("fitMuB","fit")
     return(final)
   }
@@ -585,8 +573,7 @@ fitMultiBin<-function(x,obs.freq,p,theta)
 #' @export
 fitMultiBin.default<-function(x,obs.freq,p,theta)
 {
-  est<-fitMultiBin(x,obs.freq,p,theta)
-  return(est)
+  return(fitMultiBin(x,obs.freq,p,theta))
 }
 
 #' @method print fitMuB

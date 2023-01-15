@@ -4,11 +4,13 @@
 \name{Terror_data_USA}
 \alias{Terror_data_USA}
 \title{Terror Data USA}
-\format{A data frame with 2 columns and 9 rows
+\format{
+A data frame with 2 columns and 9 rows
 \describe{
 \item{\code{Incidents}}{No of Incidents Occurred}
 \item{\code{fre}}{Observed frequencies}
-}}
+}
+}
 \source{
 Extracted from
 

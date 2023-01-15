@@ -59,12 +59,9 @@
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
-#'
-#' @seealso
-#' \code{\link[BinaryEPPM]{CBprob}}
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -134,12 +131,9 @@ dCorrBin<-function(x,n,p,cov)
       else
       {
         value<-NULL
-        j<-0:n
         #creating the necessary limits for correlation, the left hand side and right hand side limits
-        constant<-(j-(n-1)*p-0.5)^2
-        con<-min(constant)
         left.h<-(-2/(n*(n-1)))*min(p/(1-p),(1-p)/p)
-        right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-con)
+        right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-min(((0:n)-(n-1)*p-0.5)^2))
         # checking if the correlation output satisfies conditions mentioned above
         if(correlation < -1 | correlation > 1 | correlation < left.h | correlation > right.h)
         {
@@ -172,12 +166,9 @@ dCorrBin<-function(x,n,p,cov)
               value[i]<-((choose(n,x[i]))*(p^x[i])*((1-p)^(n-x[i]))*
                            (1+(cov/(2*(p^2)*((1-p)^2)))*(((x[i]-n*p)^2)+(x[i]*(2*p-1))-(n*(p^2)))))
             }
-            mean<-n*p                 #according to theory the mean
-            variance<-n*(p*(1-p)+(n-1)*cov)                 #according to theory the variance
-            correlation<-cov/(p*(1-p))                    #according to theory correlation
             # generating an output in list format consisting pdf,mean and variance
-            output<-list("pdf"=value,"mean"=mean,"var"=variance,"corr"=correlation,"mincorr"=left.h,"maxcorr"=right.h)
-            return(output)
+            return(list("pdf"=value,"mean"=n*p,"var"=n*(p*(1-p)+(n-1)*cov),
+                        "corr"=cov/(p*(1-p)),"mincorr"=left.h,"maxcorr"=right.h))
           }
         }
       }
@@ -234,12 +225,9 @@ dCorrBin<-function(x,n,p,cov)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+#' Available at: \doi{10.1080/03610928508828990}.
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
-#'
-#' @seealso
-#' \code{\link[BinaryEPPM]{CBprob}}
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -283,8 +271,7 @@ pCorrBin<-function(x,n,p,cov)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dCorrBin(j,n,p,cov)$pdf)
+    ans[i]<-sum(dCorrBin(0:x[i],n,p,cov)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -325,7 +312,7 @@ pCorrBin<-function(x,n,p,cov)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -365,12 +352,9 @@ NegLLCorrBin<-function(x,freq,p,cov)
     else
     {
       value<-NULL
-      j<-0:n
       #creating the necessary limits for correlation, the left hand side and right hand side limits
-      constant<-(j-(n-1)*p-0.5)^2
-      con<-min(constant)
       left.h<-(-2/(n*(n-1)))*min(p/(1-p),(1-p)/p)
-      right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-con)
+      right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-(min(((0:n)-(n-1)*p-0.5)^2)))
       # checking if the correlation output satisfies conditions mentioned above
       if(correlation < -1 | correlation > 1 | correlation < left.h | correlation > right.h)
       {
@@ -397,18 +381,13 @@ NegLLCorrBin<-function(x,freq,p,cov)
         }
         else
         {
-          j<-1:sum(freq)
-          term1<-sum(log(choose(n,data[j])))
-          term2<-log(p)*sum(data[j])
-          term3<-log(1-p)*sum(n-data[j])
           for (i in 1:sum(freq))
           {
             value[i]<-log(1+((cov/(2*(p^2)*((1-p)^2)))*(((data[i]-n*p)^2)+(data[i]*(2*p-1))-(n*(p^2)))))
           }
-          term4<-sum(value)
-          CorrBinLL<-term1+term2+term3+term4
           #calculating the negative log likelihood value and representing as a single output value
-          return(-CorrBinLL)
+          return(-(sum(log(choose(n,data[1:sum(freq)]))) +
+                     log(p)*sum(data[1:sum(freq)]) + log(1-p)*sum(n-data[1:sum(freq)]) + sum(value)))
         }
       }
     }
@@ -455,7 +434,7 @@ NegLLCorrBin<-function(x,freq,p,cov)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -498,18 +477,14 @@ EstMLECorrBin<-function(x,freq,p,cov,...)
   value<-NULL
   n<-max(x)
   data<-rep(x,freq)
-  j<-1:sum(freq)
-  term1<-sum(log(choose(n,data[j])))
-  term2<-log(p)*sum(data[j])
-  term3<-log(1-p)*sum(n-data[j])
 
   for (i in 1:sum(freq))
   {
     value[i]<-log(1+((cov/(2*(p^2)*((1-p)^2)))*(((data[i]-n*p)^2)+(data[i]*(2*p-1))-(n*(p^2)))))
   }
-  term4<-sum(value)
-  CorrBinLL<-term1+term2+term3+term4
-  return(-CorrBinLL)
+
+  return(-(sum(log(choose(n,data[1:sum(freq)]))) + log(p)*sum(data[1:sum(freq)]) +
+             log(1-p)*sum(n-data[1:sum(freq)]) + sum(value)))
 }
 
 #' Fitting the Correlated Binomial Distribution when binomial
@@ -575,7 +550,7 @@ EstMLECorrBin<-function(x,freq,p,cov,...)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+#' Available at: \doi{10.1080/03610928508828990}.
 #'
 #' Jorge G. Morel and Nagaraj K. Neerchal. Overdispersion Models in SAS. SAS Institute, 2012.
 #'
@@ -640,13 +615,12 @@ fitCorrBin<-function(x,obs.freq,p,cov)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative log likelihood value and AIC
     NegLL<-NegLLCorrBin(x,obs.freq,p,cov)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,"statistic"=round(statistic,4),
                 "df"=df,"p.value"=round(p.value,4),"corr"=est$corr,"fitCB"=est,"NegLL"=NegLL,
-                "p"=p,"cov"=cov,"AIC"=AICvalue,"call"=match.call())
+                "p"=p,"cov"=cov,"AIC"=2*2+2*NegLL,"call"=match.call())
     class(final)<-c("fitCB","fit")
     return(final)
     }
@@ -656,8 +630,7 @@ fitCorrBin<-function(x,obs.freq,p,cov)
 #' @export
 fitCorrBin.default<-function(x,obs.freq,p,cov)
 {
-  est<-fitCorrBin(x,obs.freq,p,cov)
-  return(est)
+  return(fitCorrBin(x,obs.freq,p,cov))
 }
 
 #' @method print fitCB

@@ -41,7 +41,7 @@
 #' generalization of the binomial distribution and its properties and applications.
 #' Statistics & Probability Letters, 87, pp.158-166.
 #'
-#' Available at: \url{http://conteudo.icmc.usp.br/CMS/Arquivos/arquivos_enviados/BIBLIOTECA_113_NSE_90.pdf}
+#' Available at: \doi{10.1016/j.spl.2014.01.019}
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -132,11 +132,9 @@ dCOMPBin<-function(x,n,p,v)
             value[i]<-(((choose(n,x[i]))^v)*(p^x[i])*((1-p)^(n-x[i])))/
                               (sum(((choose(n,y))^v)*(p^y)*((1-p)^(n-y))))
           }
-          mean<-sum(value1*y)
-          variance<-sum((y^2)*value1)-mean^2
           # generating an output in list format consisting pdf,mean and variance
-          output<-list("pdf"=value,"mean"=mean,"var"=variance)
-          return(output)
+          return(list("pdf"=value,"mean"=sum(value1*y),
+                      "var"=sum((y^2)*value1)-(sum(value1*y))^2))
         }
       }
     }
@@ -180,7 +178,7 @@ dCOMPBin<-function(x,n,p,v)
 #' generalization of the binomial distribution and its properties and applications.
 #' Statistics & Probability Letters, 87, pp.158-166.
 #'
-#' Available at: \url{http://conteudo.icmc.usp.br/CMS/Arquivos/arquivos_enviados/BIBLIOTECA_113_NSE_90.pdf}
+#' Available at: \doi{10.1016/j.spl.2014.01.019}
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -221,8 +219,7 @@ pCOMPBin<-function(x,n,p,v)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dCOMPBin(j,n,p,v)$pdf)
+    ans[i]<-sum(dCOMPBin(0:x[i],n,p,v)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -258,7 +255,7 @@ pCOMPBin<-function(x,n,p,v)
 #' generalization of the binomial distribution and its properties and applications.
 #' Statistics & Probability Letters, 87, pp.158-166.
 #'
-#' Available at: \url{http://conteudo.icmc.usp.br/CMS/Arquivos/arquivos_enviados/BIBLIOTECA_113_NSE_90.pdf}
+#' Available at: \doi{10.1016/j.spl.2014.01.019}
 #'
 #' @examples
 #' No.D.D <- 0:7         #assigning the random variables
@@ -314,14 +311,10 @@ NegLLCOMPBin<-function(x,freq,p,v)
       }
       else
       {
-        j<-1:sum(freq)
-        term1<-v*sum(log(choose(n,data[j])))
-        term2<-log(p)*sum(data[j])
-        term3<-log(1-p)*sum(n-data[j])
-        term4<-sum(freq)*log(sum(((choose(n,y))^v)*(p^y)*((1-p)^(n-y))))
-        COMPBinLL<-term1+term2+term3-term4
         #calculating the negative log likelihood value and representing as a single output value
-        return(-COMPBinLL)
+        return(-(v*sum(log(choose(n,data[1:sum(freq)]))) +
+                   log(p)*sum(data[1:sum(freq)]) + log(1-p)*sum(n-data[1:sum(freq)]) -
+                   sum(freq)*log(sum(((choose(n,y))^v)*(p^y)*((1-p)^(n-y))))))
       }
     }
   }
@@ -361,7 +354,7 @@ NegLLCOMPBin<-function(x,freq,p,v)
 #' generalization of the binomial distribution and its properties and applications.
 #' Statistics & Probability Letters, 87, pp.158-166.
 #'
-#' Available at: \url{http://conteudo.icmc.usp.br/CMS/Arquivos/arquivos_enviados/BIBLIOTECA_113_NSE_90.pdf}
+#' Available at: \doi{10.1016/j.spl.2014.01.019}
 #'
 #' @examples
 #' No.D.D <- 0:7               #assigning the random variables
@@ -399,13 +392,9 @@ EstMLECOMPBin<-function(x,freq,p,v,...)
   n<-max(x)
   y<-0:n
   data<-rep(x,freq)
-  j<-1:sum(freq)
-  term1<-v*sum(log(choose(n,data[j])))
-  term2<-log(p)*sum(data[j])
-  term3<-log(1-p)*sum(n-data[j])
-  term4<-sum(freq)*log(sum(((choose(n,y))^v)*(p^y)*((1-p)^(n-y))))
-  COMPBinLL<-term1+term2+term3-term4
-  return(-COMPBinLL)
+
+  return(-(v*sum(log(choose(n,data[1:sum(freq)]))) + log(p)*sum(data[1:sum(freq)]) +
+             log(1-p)*sum(n-data[1:sum(freq)]) - sum(freq)*log(sum(((choose(n,y))^v)*(p^y)*((1-p)^(n-y))))))
 }
 
 #' Fitting the COM Poisson Binomial Distribution when binomial
@@ -468,7 +457,7 @@ EstMLECOMPBin<-function(x,freq,p,v,...)
 #' generalization of the binomial distribution and its properties and applications.
 #' Statistics & Probability Letters, 87, pp.158-166.
 #'
-#' Available at: \url{http://conteudo.icmc.usp.br/CMS/Arquivos/arquivos_enviados/BIBLIOTECA_113_NSE_90.pdf}
+#' Available at: \doi{10.1016/j.spl.2014.01.019}
 #'
 #' @examples
 #' No.D.D <- 0:7                    #assigning the random variables
@@ -531,13 +520,12 @@ fitCOMPBin<-function(x,obs.freq,p,v)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative log likelihood value and AIC
     NegLL<-NegLLCOMPBin(x,obs.freq,p,v)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,"statistic"=round(statistic,4),
-                "df"=df,"p.value"=round(p.value,4),"fitCPB"=est,"NegLL"=NegLL,"AIC"=AICvalue,"p"=p,"v"=v,
-                "call"=match.call())
+                "df"=df,"p.value"=round(p.value,4),"fitCPB"=est,
+                "NegLL"=NegLL,"p"=p,"v"=v,"AIC"=2*2+2*NegLL,"call"=match.call())
     class(final)<-c("fitCPB","fit")
     return(final)
   }
@@ -547,8 +535,7 @@ fitCOMPBin<-function(x,obs.freq,p,v)
 #' @export
 fitCOMPBin.default<-function(x,obs.freq,p,v)
 {
-  est<-fitCOMPBin(x,obs.freq,p,v)
-  return(est)
+  return(fitCOMPBin(x,obs.freq,p,v))
 }
 
 #' @method print fitCPB

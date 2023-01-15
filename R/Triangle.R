@@ -52,20 +52,13 @@
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2} .
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2} .
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427} .
-#'
-#' @seealso
-#' \code{\link[triangle]{triangle}}
-#'
-#' ---------------
-#'
-#' \code{\link[extraDistr]{Triangular}}
+#' Available at: \doi{10.9734/BJMCS/2014/12299} .
 #'
 #'
 #' @examples
@@ -138,12 +131,8 @@ dTRI<-function(p,mode)
       }
     }
   }
-  mean<-(1+mode)/3          #according to theory the mean value
-  variance<-(1+mode^2-mode)/18        #according to theory the variance value
-
   # generating an output in list format consisting pdf,mean and variance
-  output<-list("pdf"=ans,"mean"=mean,"var"=variance)
-  return(output)
+  return(list("pdf"=ans,"mean"=(1+mode)/3,"var"=(1+mode^2-mode)/18))
 }
 
 #' Triangular Distribution Bounded Between [0,1]
@@ -195,20 +184,14 @@ dTRI<-function(p,mode)
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2} .
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2} .
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427} .
+#' Available at: \doi{10.9734/BJMCS/2014/12299} .
 #'
-#' @seealso
-#' \code{\link[triangle]{triangle}}
-#'
-#' ---------------
-#'
-#' \code{\link[extraDistr]{Triangular}}
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -333,20 +316,14 @@ pTRI<-function(p,mode)
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2}.
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2}.
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427} .
+#' Available at: \doi{10.9734/BJMCS/2014/12299} .
 #'
-#' @seealso
-#' \code{\link[triangle]{triangle}}
-#'
-#' ---------------
-#'
-#' \code{\link[extraDistr]{Triangular}}
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -476,13 +453,13 @@ mazTRI<-function(r,mode)
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2} .
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2} .
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427}.
+#' Available at: \doi{10.9734/BJMCS/2014/12299}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -533,12 +510,6 @@ dTriBin<-function(x,n,mode)
     }
     else
     {
-      #the equation contains a term of beta partial integration, below provides the function for
-      #integration
-      Bp1<-function(q)
-      {
-        (q^(a-1))*((1-q)^(b-1))
-      }
       #checking if at any chance the binomial random variable is greater than binomial trial value
       #if so providing an error message and stopping the function progress
       if(max(x)>n)
@@ -566,25 +537,22 @@ dTriBin<-function(x,n,mode)
           #of R function
           a<-x[i]+2
           b<-n-x[i]+1
-          integrate1<-stats::integrate(Bp1,lower=0,upper=mode)
+          integrate1<-stats::integrate(function(q){ (q^(a-1))*((1-q)^(b-1)) },lower=0,upper=mode)
           #setting necessary values for alpha and beta and integrating the second term with the help
           #of R function
           a<-x[i]+1
           b<-n-x[i]+2
-          integrate2<-stats::integrate(Bp1,lower=0,upper=mode)
+          integrate2<-stats::integrate(function(q){ (q^(a-1))*((1-q)^(b-1)) },lower=0,upper=mode)
 
           ans[i]<-2*choose(n,x[i])*(((1/mode)*(integrate1$value))+((1/(1-mode))*beta(x[i]+1,n-x[i]+2))-
                   ((1/(1-mode))*(integrate2$value)))
         }
       }
     }
-    mean<-n*(1+mode)/3        #according to theory the mean
-    variance<-n*(n+3)/18 - n*(n-3)*mode*(1-mode)/18         #according to theory variance
-    ove.dis.par<-0.5*(1-mode+mode^2)/(2+mode-mode^2)        #according to theory overdispersion value
     # generating an output in list format consisting pdf,mean,variance and overdispersion value
-    output<-list("pdf"=ans,"mean"=mean,"var"=variance,
-                 "over.dis.para"=ove.dis.par)
-    return(output)
+    return(list("pdf"=ans,"mean"=n*(1+mode)/3,
+                "var"=n*(n+3)/18 - n*(n-3)*mode*(1-mode)/18,
+                "over.dis.para"=0.5*(1-mode+mode^2)/(2+mode-mode^2)))
   }
 }
 
@@ -634,13 +602,13 @@ dTriBin<-function(x,n,mode)
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2}.
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2}.
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427}.
+#' Available at: \doi{10.9734/BJMCS/2014/12299}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -680,8 +648,7 @@ pTriBin<-function(x,n,mode)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dTriBin(j,n,mode)$pdf)
+    ans[i]<-sum(dTriBin(0:x[i],n,mode)$pdf)
   }
   #generating an ouput vector of cumulative probability function values
   return(ans)
@@ -717,13 +684,13 @@ pTriBin<-function(x,n,mode)
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2}.
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2}.
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427}.
+#' Available at: \doi{10.9734/BJMCS/2014/12299}.
 #'
 #' @examples
 #' No.D.D <- 0:7    #assigning the Random variables
@@ -760,25 +727,16 @@ NegLLTriBin<-function(x,freq,mode)
       #as the equation contains partial beta integration here an integrative function is written
       inte<-function(a,b)
       {
-        Bp<-function(q)
-        {
-          ((q^(a-1))*((1-q)^(b-1)))
-        }
-        return(Bp)
+        return(function(q){ ((q^(a-1))*((1-q)^(b-1))) })
       }
       #constructing the data set using the random variables vector and frequency vector
       n<-max(x)
       data<-rep(x,freq)
-      i<-1:sum(freq)
-      term1<-sum(log(choose(n,data[i])))
+
+      term2<-NULL
 
       temp1<-NULL
       temp2<-NULL
-      a1<-NULL
-      b1<-NULL
-      a2<-NULL
-      b2<-NULL
-      term2<-NULL
       #creating an instance for the output of the integration
       temp<-function(a,b)
       {
@@ -787,21 +745,13 @@ NegLLTriBin<-function(x,freq,mode)
       #doing the calculations for all binomial random variables under assigned data vector
       for(i in 1:sum(freq))
       {
-        a1[i]<-data[i]+2
-        b1[i]<-n-data[i]+1
+        temp1[i]<-temp(data[i]+2,n-data[i]+1)
+        temp2[i]<-temp(data[i]+1,n-data[i]+2)
 
-        a2[i]<-data[i]+1
-        b2[i]<-n-data[i]+2
-
-        temp1[i]<-temp(a1[i],b1[i])
-        temp2[i]<-temp(a2[i],b2[i])
-
-        term2[i]<-log((mode^(-1)*temp1[i])+((1-mode)^(-1)*beta(a2[i],b2[i]))-((1-mode)^(-1)*temp2[i]))
+        term2[i]<-log((mode^(-1)*temp1[i])+((1-mode)^(-1)*beta(data[i]+1,n-data[i]+2))-((1-mode)^(-1)*temp2[i]))
       }
-      TriBinLL<-term1+sum(term2)+sum(freq)*log(2)
-
       #calculating the negative log likelihood value and representing as a single output value
-      return(-TriBinLL)
+      return(-(sum(log(choose(n,data[1:sum(freq)]))) + sum(term2)+ sum(freq)*log(2)))
     }
   }
 }
@@ -848,13 +798,13 @@ NegLLTriBin<-function(x,freq,mode)
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2}.
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2}.
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427}.
+#' Available at: \doi{10.9734/BJMCS/2014/12299}.
 #'
 #' @examples
 #' No.D.D <- 0:7   #assigning the random variables
@@ -869,7 +819,7 @@ NegLLTriBin<-function(x,freq,mode)
 #' summary(results)
 #'
 #' AIC(results)  #show the AIC value
-#'         }
+#' }
 #'
 #' @export
 EstMLETriBin<-function(x,freq)
@@ -926,8 +876,7 @@ EstMLETriBin<-function(x,freq)
       rnames<-as.numeric(rownames(value1)[inds[,1]])
       #generate the output as a list format where TriBinNegLL is the minimum negative loglikelihood
       #value and mode is the corresponding estimated mode parameter value.
-      output<-list("TriBinNegLL"=TriBinNegLL,"mode"=rnames)
-      return(output)
+      return(list("TriBinNegLL"=TriBinNegLL,"mode"=rnames))
     }
     #consider the mode values from 0.1 to 0.9 estimate the best mode value in between 0.1 and 0.9 for first decimal point
     answer1<-looping(x,freq,0.1,0.9,0.1,9)
@@ -952,14 +901,10 @@ EstMLETriBin<-function(x,freq)
     #consider the sixth decimal point of mode5, now estimate the best mode value
     answerfin<-looping(x,freq,mode5-0.000005,mode5+0.000004,0.000001,10)
 
-    #finally the found best estimated mode5 value to modefin and find the corresponding negative
-    #log likelihood value as well
-    modefin<-answerfin$mode ;  TriBinNegLLfin<-answerfin$TriBinNegLL
     #generate the output as a list format where TriBinNegLL is the minimum negative loglikelihood
     #value and mode is the corresponding estimated mode parameter value.
-    AICvalue<-2*1+(2*TriBinNegLLfin)
-    argument<-match.call()
-    output<-list("min"=TriBinNegLLfin,"mode"=modefin,"AIC"=AICvalue,"call"=argument)
+    output<-list("min"=answerfin$TriBinNegLL,"mode"=answerfin$mode,
+                 "AIC"=2*1+(2*answerfin$TriBinNegLL),"call"=match.call())
     class(output)<-c("ml","mlTRI")
     return(output)
   }
@@ -969,8 +914,7 @@ EstMLETriBin<-function(x,freq)
 #' @export
 EstMLETriBin.default<-function(x,freq)
 {
-  est<-EstMLETriBin(x,freq)
-  return(est)
+  return(EstMLETriBin(x,freq))
 }
 
 #' @method print mlTRI
@@ -1061,13 +1005,13 @@ coef.mlTRI<-function(object,...)
 #' Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 #' Modeling. Boston: Birkhuser Boston, pp. 21-33.
 #'
-#' Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2}.
+#' Available at: \doi{10.1007/978-0-8176-4626-4_2}.
 #'
 #' Okagbue, H. et al., 2014. Using the Average of the Extreme Values of a Triangular Distribution for a
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of Mathematics
 #' & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427}.
+#' Available at: \doi{10.9734/BJMCS/2014/12299}.
 #'
 #' @examples
 #' No.D.D <- 0:7      #assigning the random variables
@@ -1098,6 +1042,7 @@ fitTriBin<-function(x,obs.freq,mode)
   else
   {
     est<-dTriBin(x,max(x),mode)
+    odp<-est$over.dis.para; names(odp)<-NULL
     #for given random variables and mode parameter calculating the estimated probability values
     est.prob<-est$pdf
     #using the estimated probability values the expected frequencies are calculated
@@ -1128,12 +1073,12 @@ fitTriBin<-function(x,obs.freq,mode)
     }
     #calculating Negative log likelihood value and AIC
     NegLL<-NegLLTriBin(x,obs.freq,mode)
-    AICvalue<-2*1+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
                 "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitTB"=est,"NegLL"=NegLL,"mode"=mode,"AIC"=AICvalue,
-                "over.dis.para"=est$over.dis.para,"call"=match.call())
+                "fitTB"=est,"NegLL"=NegLL,"mode"=mode,"AIC"=2*1+2*NegLL,
+                "over.dis.para"=odp,"call"=match.call())
     class(final)<-c("fitTB","fit")
     return(final)
     }
@@ -1143,8 +1088,7 @@ fitTriBin<-function(x,obs.freq,mode)
 #' @export
 fitTriBin.default<-function(x,obs.freq,mode)
 {
-  est<-fitTriBin(x,obs.freq,mode)
-  return(est)
+  return(fitTriBin(x,obs.freq,mode))
 }
 
 #' @method print fitTB
@@ -1176,4 +1120,3 @@ summary.fitTB<-function(object,...)
       Negative Loglikehood value :",object$NegLL,"\n\t
       AIC value :",object$AIC,"\n")
 }
-

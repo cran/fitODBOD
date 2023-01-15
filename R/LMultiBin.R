@@ -146,18 +146,14 @@ dLMBin<-function(x,n,p,phi)
           # generating an output in list format consisting pdf,mean and variance
           pi<-function(phi,p,i,n)
           {
-            x1<-0:n-i
-            Ktop<-sum(choose(n-i,x1)*(p^x1)*((1-p)^(n-i-x1))*(phi^((n-i-x1)*(x1+i))))
-            x2<-0:n
-            Kbottom<-sum(choose(n,x2)*(p^x2)*((1-p)^(n-x2))*(phi^((n-x2)*x2)))
+            Ktop<-sum(choose(n-i,0:n-i)*(p^(0:n-i))*((1-p)^(n-i-(0:n-i)))*(phi^((n-i-(0:n-i))*(0:n-i+i))))
+            Kbottom<-sum(choose(n,0:n)*(p^(0:n))*((1-p)^(n-(0:n)))*(phi^((n-(0:n))*(0:n))))
             return(p^i*Ktop/Kbottom)
           }
-          mean<-n*pi(phi,p,1,n)
-          variance<-n*pi(phi,p,1,n)+n*(n-1)*pi(phi,p,2,n)-(n*pi(phi,p,1,n))^2
-          output<-list("pdf"=value,"mean"=mean,"var"=variance)
-          return(output)
+          return(list("pdf"=value,"mean"=n*pi(phi,p,1,n),
+                      "var"=n*pi(phi,p,1,n)+n*(n-1)*pi(phi,p,2,n)-(n*pi(phi,p,1,n))^2))
         }
-        }
+      }
     }
   }
 }
@@ -243,8 +239,7 @@ pLMBin<-function(x,n,p,phi)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dLMBin(j,n,p,phi)$pdf)
+    ans[i]<-sum(dLMBin(0:x[i],n,p,phi)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -331,17 +326,12 @@ NegLLLMBin<-function(x,freq,p,phi)
     else
     {
       k<-0:n
-      func1<-sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(phi^(k*(n-k))))
-      j<-1:sum(freq)
-      term1<-sum(log(choose(n,data[j])))
-      term2<-log(p)*sum(data[j])
-      term3<-log(1-p)*sum(n-data[j])
-      term4<-log(phi)*sum(data[j]*(n-data[j]))
-      MultiBinLL<-term1+term2+term3+term4-sum(freq)*log(func1)
       #calculating the negative log likelihood value and representing as a single output value
-      return(-MultiBinLL)
+      return(-(sum(log(choose(n,data[1:sum(freq)]))) + log(p)*sum(data[1:sum(freq)]) +
+                 log(1-p)*sum(n-data[1:sum(freq)]) + log(phi)*sum(data[1:sum(freq)]*(n-data[1:sum(freq)])) -
+                 sum(freq)*log(sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(phi^(k*(n-k)))))))
     }
-    }
+  }
 }
 
 #' Estimating the probability of success and theta for Lovinson Multiplicative Binomial
@@ -414,14 +404,9 @@ EstMLELMBin<-function(x,freq,p,phi,...)
   n<-max(x)
   data<-rep(x,freq)
   k<-0:n
-  func1<-sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(phi^(k*(n-k))))
-  j<-1:sum(freq)
-  term1<-sum(log(choose(n,data[j])))
-  term2<-log(p)*sum(data[j])
-  term3<-log(1-p)*sum(n-data[j])
-  term4<-log(phi)*sum(data[j]*(n-data[j]))
-  MultiBinLL<-term1+term2+term3+term4-sum(freq)*log(func1)
-  return(-MultiBinLL)
+  return(-(sum(log(choose(n,data[1:sum(freq)]))) + log(p)*sum(data[1:sum(freq)]) +
+             log(1-p)*sum(n-data[1:sum(freq)]) + log(phi)*sum(data[1:sum(freq)]*(n-data[1:sum(freq)])) -
+             sum(freq)*log(sum(choose(n,k)*(p^k)*((1-p)^(n-k))*(phi^(k*(n-k)))))))
 }
 
 #' Fitting the Lovinson Multiplicative Binomial Distribution when binomial
@@ -547,12 +532,11 @@ fitLMBin<-function(x,obs.freq,p,phi)
     }
     #calculating Negative log likelihood value and AIC
     NegLL<-NegLLLMBin(x,obs.freq,p,phi)
-    AICvalue<-2*2+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,
-                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),
-                "fitLMB"=est,"NegLL"=NegLL,"p"=p,"phi"=phi,"AIC"=AICvalue,
-                "call"=match.call())
+                "statistic"=round(statistic,4),"df"=df,"p.value"=round(p.value,4),"fitLMB"=est,
+                "NegLL"=NegLL,"p"=p,"phi"=phi,"AIC"=2*2+2*NegLL,"call"=match.call())
     class(final)<-c("fitLMB","fit")
     return(final)
   }
@@ -562,8 +546,7 @@ fitLMBin<-function(x,obs.freq,p,phi)
 #' @export
 fitLMBin.default<-function(x,obs.freq,p,phi)
 {
-  est<-fitLMBin(x,obs.freq,p,phi)
-  return(est)
+  return(fitLMBin(x,obs.freq,p,phi))
 }
 
 #' @method print fitLMB

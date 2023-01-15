@@ -4,18 +4,20 @@
 \name{Course_data}
 \alias{Course_data}
 \title{Course Data}
-\format{A data frame with 2 columns and 9 rows
+\format{
+A data frame with 2 columns and 9 rows
 \describe{
 \item{\code{sub.pass}}{subjects passed}
 \item{\code{fre}}{Observed frequencies}
-}}
+}
+}
 \source{
 Extracted from
 
 Karlis, D. & Xekalaki, E., 2008. The Polygonal Distribution. In Advances in Mathematical and Statistical
 Modeling. Boston: Birkhuser Boston, pp. 21-33.
 
-Available at: \url{http://dx.doi.org/10.1007/978-0-8176-4626-4_2}.
+Available at: \doi{10.1007/978-0-8176-4626-4_2}.
 }
 \usage{
 Course_data

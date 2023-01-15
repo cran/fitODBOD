@@ -60,7 +60,7 @@
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #'
 #' @examples
@@ -133,12 +133,9 @@ dBetaCorrBin<-function(x,n,cov,a,b)
       else
       {
         value<-NULL
-        j<-0:n
         #creating the necessary limits for correlation, the left hand side and right hand side limits
-        constant<-(j-(n-1)*p-0.5)^2
-        con<-min(constant)
         left.h<-(-2/(n*(n-1)))*min(p/(1-p),(1-p)/p)
-        right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-con)
+        right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25- min(((0:n)-(n-1)*p-0.5)^2))
           # checking if the correlation output satisfies conditions mentioned above
           if(correlation < -1 | correlation > 1 | correlation < left.h | correlation > right.h)
           {
@@ -151,16 +148,12 @@ dBetaCorrBin<-function(x,n,cov,a,b)
           value1<-NULL
           for(i in 1:length(y))
           {
-            value1[i]<-(
-                      (choose(n,y[i]))*(beta(a+y[i],b+n-y[i])/beta(a,b))*
-              ( 1+(cov/2)*
-                  (
-                   ((y[i]*(y[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((y[i]+a-2)*(y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))
-                  -((2*y[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))
-                  +((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-y[i]+b-2)*(n-y[i]+b-1)))
-                 )
-              )
-                      )
+            value1[i]<-((choose(n,y[i]))*(beta(a+y[i],b+n-y[i])/beta(a,b))*
+              (1+(cov/2)*(((y[i]*(y[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                              ((y[i]+a-2)*(y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))-
+                    ((2*y[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                       ((y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))+
+                     ((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-y[i]+b-2)*(n-y[i]+b-1))))))
           }
           check1<-sum(value1)
 
@@ -176,23 +169,16 @@ dBetaCorrBin<-function(x,n,cov,a,b)
             #for each random variable in the input vector below calculations occur
             for (i in 1:length(x))
             {
-              value[i]<-(
-                       (choose(n,x[i]))*(beta(a+x[i],b+n-x[i])/beta(a,b))*
-                ( 1+(cov/2)*
-                    (
-                     ((x[i]*(x[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((x[i]+a-2)*(x[i]+a-1)*(n-x[i]+b-2)*(n-x[i]+b-1)))
-                    -((2*x[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((x[i]+a-1)*(n-x[i]+b-2)*(n-x[i]+b-1)))
-                    +((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-x[i]+b-2)*(n-x[i]+b-1)))
-                    )
-                )
-                        )
+              value[i]<-((choose(n,x[i]))*(beta(a+x[i],b+n-x[i])/beta(a,b))*
+                (1+(cov/2)*(((x[i]*(x[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                        ((x[i]+a-2)*(x[i]+a-1)*(n-x[i]+b-2)*(n-x[i]+b-1)))-
+                      ((2*x[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                         ((x[i]+a-1)*(n-x[i]+b-2)*(n-x[i]+b-1)))+
+                      ((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-x[i]+b-2)*(n-x[i]+b-1))))))
             }
-            mean<-n*p                 #according to theory the mean
-            variance<-n*p*(1-p)*(n*shi+1)/(1+shi)+n*(n-1)*cov    #according to theory the variance
-            correlation<-cov/(p*(1-p))                    #according to theory correlation
             # generating an output in list format consisting pdf,mean and variance
-            output<-list("pdf"=value,"mean"=mean,"var"=variance,"corr"=correlation,"mincorr"=left.h,"maxcorr"=right.h)
-            return(output)
+            return(list("pdf"=value,"mean"=n*p,"var"=n*p*(1-p)*(n*shi+1)/(1+shi)+n*(n-1)*cov,
+                        "corr"=cov/(p*(1-p)),"mincorr"=left.h,"maxcorr"=right.h))
           }
         }
       }
@@ -250,7 +236,7 @@ dBetaCorrBin<-function(x,n,cov,a,b)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990}.
+#' Available at: \doi{10.1080/03610928508828990}.
 #'
 #' @examples
 #' #plotting the random variables and probability values
@@ -294,8 +280,7 @@ pBetaCorrBin<-function(x,n,cov,a,b)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dBetaCorrBin(j,n,cov,a,b)$pdf)
+   ans[i]<-sum(dBetaCorrBin(0:x[i],n,cov,a,b)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
@@ -332,7 +317,7 @@ pBetaCorrBin<-function(x,n,cov,a,b)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #'
 #' @examples
@@ -373,12 +358,10 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
     else
     {
       value<-NULL
-      j<-0:n
+
       #creating the necessary limits for correlation, the left hand side and right hand side limits
-      constant<-(j-(n-1)*p-0.5)^2
-      con<-min(constant)
       left.h<-(-2/(n*(n-1)))*min(p/(1-p),(1-p)/p)
-      right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25-con)
+      right.h<-(2*p*(1-p))/(((n-1)*p*(1-p))+0.25- min(((0:n)-(n-1)*p-0.5)^2))
 
       # checking if the correlation output satisfies conditions mentioned above
       if(correlation < -1 | correlation > 1 | correlation < left.h | correlation > right.h)
@@ -392,17 +375,12 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
       value1<-NULL
       for(i in 1:length(y))
       {
-        value1[i]<-(
-                    (choose(n,y[i]))*(beta(a+y[i],b+n-y[i])/beta(a,b))*
-            ( 1+(cov/2)*
-                (
-                  ((y[i]*(y[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((y[i]+a-2)*(y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))
-                  -((2*y[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))
-                  +((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-y[i]+b-2)*(n-y[i]+b-1)))
-                )
-            )
-
-                    )
+        value1[i]<-((choose(n,y[i]))*(beta(a+y[i],b+n-y[i])/beta(a,b))*
+            (1+(cov/2)*(((y[i]*(y[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                             ((y[i]+a-2)*(y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))-
+                    ((2*y[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                       ((y[i]+a-1)*(n-y[i]+b-2)*(n-y[i]+b-1)))+
+                    ((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-y[i]+b-2)*(n-y[i]+b-1))))))
       }
       check1<-sum(value1)
 
@@ -415,27 +393,17 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
         }
         else
         {
-          j<-1:sum(freq)
-          term1<-sum(log(choose(n,data[j])))
-          term2<-length(data)*log(beta(a,b))
-          term3<-sum(log(beta(a+data[j],b+n-data[j])))
           for (i in 1:sum(freq))
           {
-            value[i]<-log(
-                      ( 1+(cov/2)*
-                    (
-                      ((data[i]*(data[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((data[i]+a-2)*(data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))
-                      -((2*data[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))
-                      +((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-data[i]+b-2)*(n-data[i]+b-1)))
-                    )
-                      )
-                        )
+            value[i]<-log((1+(cov/2)*(((data[i]*(data[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                                      ((data[i]+a-2)*(data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))-
+                        ((2*data[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                           ((data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))+
+                        ((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-data[i]+b-2)*(n-data[i]+b-1))))))
           }
-          term4<-sum(value)
-
-        BetaCorrBinLL<-term1-term2+term3+term4
         #calculating the negative log likelihood value and representing as a single output value
-        return(-BetaCorrBinLL)
+        return(-(sum(log(choose(n,data[1:sum(freq)]))) - length(data)*log(beta(a,b)) +
+                   sum(log(beta(a+data[1:sum(freq)],b+n-data[1:sum(freq)]))) + sum(value)))
         }
       }
     }
@@ -477,7 +445,7 @@ NegLLBetaCorrBin<-function(x,freq,cov,a,b)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #' @seealso
 #' \code{\link[bbmle]{mle2}}
@@ -519,26 +487,17 @@ EstMLEBetaCorrBin<-function(x,freq,cov,a,b,...)
   value<-NULL
   n<-max(x)
   data<-rep(x,freq)
-  j<-1:sum(freq)
-  term1<-sum(log(choose(n,data[j])))
-  term2<-length(data)*log(beta(a,b))
-  term3<-sum(log(beta(a+data[j],b+n-data[j])))
+
   for (i in 1:sum(freq))
   {
-    value[i]<-log(
-      ( 1+(cov/2)*
-          (
-            ((data[i]*(data[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((data[i]+a-2)*(data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))
-            -((2*data[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/((data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))
-            +((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-data[i]+b-2)*(n-data[i]+b-1)))
-          )
-      )
-    )
+    value[i]<-log((1+(cov/2)*(((data[i]*(data[i]-1)*(a+b+n-4)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+               ((data[i]+a-2)*(data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))-
+              ((2*data[i]*(n-1)*(a+b+n-3)*(a+b+n-2)*(a+b+n-1))/
+                 ((data[i]+a-1)*(n-data[i]+b-2)*(n-data[i]+b-1)))+
+              ((n*(n-1)*(a+b+n-2)*(a+b+n-1))/((n-data[i]+b-2)*(n-data[i]+b-1))))))
   }
-  term4<-sum(value)
-
-  BetaCorrBinLL<-term1-term2+term3+term4
-  return(-BetaCorrBinLL)
+  return(-(sum(log(choose(n,data[1:sum(freq)])))- length(data)*log(beta(a,b)) +
+             sum(log(beta(a+data[1:sum(freq)],b+n-data[1:sum(freq)]))) + sum(value)))
 }
 
 #' Fitting the Beta-Correlated Binomial Distribution when binomial
@@ -605,7 +564,7 @@ EstMLEBetaCorrBin<-function(x,freq,cov,a,b,...)
 #' Paul, S.R., 1985. A three-parameter generalization of the binomial distribution. Communications in Statistics
 #' - Theory and Methods, 14(6), pp.1497-1506.
 #'
-#' Available at: \url{http://www.tandfonline.com/doi/abs/10.1080/03610928508828990} .
+#' Available at: \doi{10.1080/03610928508828990} .
 #'
 #' @examples
 #' No.D.D <- 0:7                    #assigning the random variables
@@ -669,13 +628,13 @@ fitBetaCorrBin<-function(x,obs.freq,cov,a,b)
     {
       message("Chi-squared approximation is not suitable because expected frequency approximates to zero")
     }
-    #calculating Negative log likelihood value and AIC
     NegLL<-NegLLBetaCorrBin(x,obs.freq,cov,a,b)
-    AICvalue<-2*3+NegLL
+    names(NegLL)<-NULL
     #the final output is in a list format containing the calculated values
     final<-list("bin.ran.var"=x,"obs.freq"=obs.freq,"exp.freq"=exp.freq,"statistic"=round(statistic,4),
-                "df"=df,"p.value"=round(p.value,4),"cov"=cov,"a"=a,"b"=b,"corr"=est$corr,"fitBCB"=est,"NegLL"=NegLL,
-                "AIC"=AICvalue,"call"=match.call())
+                "df"=df,"p.value"=round(p.value,4),"cov"=cov,"a"=a,"b"=b,"corr"=est$corr,"fitBCB"=est,
+                "NegLL"=NegLL,"AIC"=2*3+2*NegLL,"call"=match.call())
+
     class(final)<-c("fitBCB","fit")
     return(final)
     }
@@ -685,8 +644,7 @@ fitBetaCorrBin<-function(x,obs.freq,cov,a,b)
 #' @export
 fitBetaCorrBin.default<-function(x,obs.freq,cov,a,b)
 {
-  est<-fitBetaCorrBin(x,obs.freq,cov,a,b)
-  return(est)
+  return(fitBetaCorrBin(x,obs.freq,cov,a,b))
 }
 
 #' @method print fitBCB

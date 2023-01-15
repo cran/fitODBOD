@@ -99,12 +99,8 @@ dUNI<-function(p)
       }
     }
   }
-  mean<-1/2     #according to theory the mean value
-  variance<-1/12 # according to theory the variance value
-
   # generating an output in list format consisting pdf,mean and variance
-  output<-list("pdf"=ans,"mean"=mean,"var"=variance)
-  return(output)
+  return(list("pdf"=ans,"mean"=1/2,"var"=1/12))
 }
 
 #' Uniform Distribution Bounded Between [0,1]
@@ -356,7 +352,7 @@ mazUNI<-function(r)
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of
 #' Mathematics & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427} .
+#' Available at: \doi{10.9734/BJMCS/2014/12299} .
 #'
 #' @examples
 #' #plotting the binomial random variables and probability values
@@ -425,7 +421,7 @@ dUniBin<-function(x,n)
 #' Transformation, and Its Approximant via the Continuous Uniform Distribution. British Journal of
 #' Mathematics & Computer Science, 4(24), pp.3497-3507.
 #'
-#' Available at: \url{http://www.sciencedomain.org/abstract.php?iid=699&id=6&aid=6427}.
+#' Available at: \doi{10.9734/BJMCS/2014/12299}.
 #'
 #' @examples
 #' #plotting the binomial random variables and probability values
@@ -453,12 +449,10 @@ pUniBin<-function(x,n)
   #values are calculated
   for(i in 1:length(x))
   {
-    j<-0:x[i]
-    ans[i]<-sum(dUniBin(j,n)$pdf)
+    ans[i]<-sum(dUniBin(0:x[i],n)$pdf)
   }
   #generating an ouput vector cumulative probability function values
   return(ans)
 }
 
-#'
 #' @import stats

@@ -16,7 +16,7 @@ fitBB<-fitBetaBin(Chromosome_data$No.of.Asso,Chromosome_data$fre,estimate$a,esti
 context("Checking outputs")
 test_that("Output value expected",{
           expect_identical(round(AIC(fitBB),4),
-                           440.8131)
+                           877.6263)
 })
 
 test_that("Checking class of output",{
