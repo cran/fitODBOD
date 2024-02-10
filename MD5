@@ -1,6 +1,6 @@
-0ec4ecdff72e14577335fd48a6f98f26 *DESCRIPTION
+3fa6f04e31996705202be95123d357b2 *DESCRIPTION
 28a57b6ca75c0eeb636e6ccb52749d36 *LICENSE
-dfdacd6bcd2789a171f374d3847d4e3e *NAMESPACE
+352f3d9d1e62ab83932e0343b3215cc8 *NAMESPACE
 3c50c300e68f3402e90e83f5a5835704 *R/AddBin.R
 584262448db7bf00a2db873bf5e05b62 *R/BMD_ABD.R
 1d95e1b451ec466ebce7054e0edb0bfd *R/Beta.R
@@ -15,10 +15,11 @@ cb29a4ffb8f3b15216ee71641607506a *R/Kumaraswamy.R
 d0eacb6ec4c2ae561daf14da67343c0c *R/LMultiBin.R
 1e4a6faa72524827537d5ba8c0870e81 *R/MultiBin.R
 0d565775383e93d976289b441446b4cc *R/Overdispersion.R
+23dc41f649ae90835eed8e2817472741 *R/SimulateBOD.R
 88f4321cb863437ce2d198861200c5fc *R/Triangle.R
 9bd421e9cc6bd52e136ddb6e1664a62c *R/Uniform.R
 4be0dd0635a26e9be356e6a5a7819879 *R/ml.R
-e3521d51360a8ded59913eb82bd2acbd *build/partial.rdb
+cdbdb705c017565f8d24cdc91a0e6ec8 *build/partial.rdb
 f0a48d53460beaa2b13939898f4a1a92 *data/Alcohol_data.rda
 3e17b377b7c0087b86b72c3120d58e0b *data/Chromosome_data.rda
 3461c52a01d49e3ce021be1217c0353b *data/Course_data.rda
@@ -49,6 +50,7 @@ e01ae484d7b1285c27c08b4da6b28a3a *man/EstMLEGammaBin.Rd
 768c5a759623d6a7b29b082d8dcdda9b *man/EstMLEMultiBin.Rd
 5ab358906f0284e7e91b9597bf4d08e5 *man/EstMLETriBin.Rd
 0caba3cb7c5786f732bb8e7bf1275085 *man/Exam_data.Rd
+061d624fa4d83254902381628385fd8b *man/GenerateBOD.Rd
 65fef23332c036d84ed11f33d272fc35 *man/Male_Children.Rd
 9b6d8ae8af39215571bea305137141c1 *man/NegLLAddBin.Rd
 971e6165bb2e6c026b3511d7a3a31860 *man/NegLLBetaBin.Rd
@@ -89,7 +91,7 @@ c6b737401be29af48ad6637795125d27 *man/dTriBin.Rd
 8fe282b0af37410c1e2afdb87ce9e386 *man/dUNI.Rd
 5a90473e9a92bf8a6d8fbf3b29022c47 *man/dUniBin.Rd
 c80c12e62ede3f6cd71473d711894d94 *man/figures/Capture.png
-2a82d967dfdb004d19a31fb16f496301 *man/figures/Table-1.png
+8ded89266ea5d40d6d5354bb757cdd37 *man/figures/Table-1.png
 d63ebff8186829f8514aadd7908fe45f *man/figures/logo.png
 6ea2d3d9f033e96908122ce3474338e5 *man/fitAddBin.Rd
 d04d41a76ff7b8abe0721756ed7a43dd *man/fitBetaBin.Rd
@@ -134,6 +136,7 @@ fbf3294aa2ec7ab7c266a6a61547c104 *man/pTriBin.Rd
 cd1e64a8ef888e43229945374306691a *man/pUNI.Rd
 c355b69c380ceebe821ca007094f7540 *man/pUniBin.Rd
 332173f20d20942c02019350ea4dcadc *tests/spelling.R
+e8f0f6ea13cf468865f2285d684d68a1 *tests/spelling.Rout.save
 8f97017818b5fc32c215254425c1b25c *tests/testthat.R
 53b3df6e95c19ab0cd5bdfe7ab432ad3 *tests/testthat/test-AIC.R
 6eedcf831d0b26df9228bc17c49bff9b *tests/testthat/test-Alcohol_data.R

@@ -1,7 +1,7 @@
 Type: Package
 Package: fitODBOD
 Title: Modeling Over Dispersed Binomial Outcome Data Using BMD and ABD
-Version: 1.5.0
+Version: 1.5.1
 Authors@R: c(
     person("Amalan", "Mahendran", , "amalan0595@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0643-9052")),
@@ -16,21 +16,21 @@ Description: Contains Probability Mass Functions, Cumulative Mass
     also Journal article to use the package(<doi:10.21105/joss.01505>).
 License: MIT + file LICENSE
 URL:
-        https://github.com/Amalan-ConStat/fitODBOD,https://amalan-constat.github.io/fitODBOD/index.html
+        https://github.com/Amalan-ConStat/fitODBOD,https://amalan-constat.github.io/fitODBOD/index.html,https://amalan-con-stat.shinyapps.io/fitODBODRshiny/
 BugReports: https://github.com/Amalan-ConStat/fitODBOD/issues
 Depends: R (>= 4.0.0)
-Imports: bbmle, hypergeo, stats
+Imports: bbmle, hypergeo, MASS, mvtnorm, stats
 Suggests: flextable, ggplot2, ggthemes, grid, gridExtra, knitr,
         reshape2, rmarkdown, spelling, testthat, tibble, viridis
 Encoding: UTF-8
 Language: en-US
 LazyData: TRUE
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 NeedsCompilation: no
-Packaged: 2023-01-15 11:16:57 UTC; amala
+Packaged: 2024-02-10 04:16:52 UTC; amala
 Author: Amalan Mahendran [aut, cre] (<https://orcid.org/0000-0002-0643-9052>),
   Pushpakanthie Wijekoon [aut, ctb]
     (<https://orcid.org/0000-0003-4242-1017>)
 Maintainer: Amalan Mahendran <amalan0595@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-01-15 11:40:06 UTC
+Date/Publication: 2024-02-10 05:00:07 UTC
