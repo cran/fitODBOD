@@ -1,4 +1,4 @@
-50d5c08389695c120924453aa92005e8 *DESCRIPTION
+21c6d501c4e56f8196badd62c2d843b9 *DESCRIPTION
 28a57b6ca75c0eeb636e6ccb52749d36 *LICENSE
 3ae41f8f734b41b15a48948bd401dc06 *NAMESPACE
 5a82dd999645d8eb79c8f1d7b50da988 *R/AddBin.R
@@ -19,7 +19,7 @@ a51d3c73b3c80fa49bc7c6897408deec *R/LMultiBin.R
 c0ac5f200e2dbbbdb93acb3ad4c46901 *R/Triangle.R
 57f2b87cf3611fa5ea8a4a3ebccc7a4f *R/Uniform.R
 4be0dd0635a26e9be356e6a5a7819879 *R/ml.R
-f8caa78a51cb7dceb72fdfd4b5fee792 *build/partial.rdb
+630ea7393bd67181d28a2568e9e78006 *build/partial.rdb
 f0a48d53460beaa2b13939898f4a1a92 *data/Alcohol_data.rda
 3e17b377b7c0087b86b72c3120d58e0b *data/Chromosome_data.rda
 3461c52a01d49e3ce021be1217c0353b *data/Course_data.rda
@@ -137,7 +137,7 @@ ebae53258ac0475a2e41a4d6ecd08589 *man/pLMBin.Rd
 3a16324d29f4bd6d4617409c565a7b38 *man/pUNI.Rd
 697799d78f1e04a5bab502e9f6155ddc *man/pUniBin.Rd
 332173f20d20942c02019350ea4dcadc *tests/spelling.R
-e8f0f6ea13cf468865f2285d684d68a1 *tests/spelling.Rout.save
+75f83149fde185230c5d59ef10415fa4 *tests/spelling.Rout.save
 8f97017818b5fc32c215254425c1b25c *tests/testthat.R
 53b3df6e95c19ab0cd5bdfe7ab432ad3 *tests/testthat/test-AIC.R
 6eedcf831d0b26df9228bc17c49bff9b *tests/testthat/test-Alcohol_data.R
