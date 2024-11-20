@@ -1,7 +1,7 @@
 Type: Package
 Package: fitODBOD
 Title: Modeling Over Dispersed Binomial Outcome Data Using BMD and ABD
-Version: 1.5.3
+Version: 1.5.4
 Authors@R: c(
     person(given="Amalan",family="Mahendran", email="amalan0595@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0643-9052")),
@@ -28,10 +28,10 @@ Language: en-US
 LazyData: TRUE
 RoxygenNote: 7.3.1
 NeedsCompilation: no
-Packaged: 2024-10-04 14:39:17 UTC; amala
+Packaged: 2024-11-20 06:45:30 UTC; amala
 Author: Amalan Mahendran [aut, cre] (<https://orcid.org/0000-0002-0643-9052>),
   Pushpakanthie Wijekoon [aut, ctb]
     (<https://orcid.org/0000-0003-4242-1017>)
 Maintainer: Amalan Mahendran <amalan0595@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-10-10 15:00:12 UTC
+Date/Publication: 2024-11-20 07:00:05 UTC
